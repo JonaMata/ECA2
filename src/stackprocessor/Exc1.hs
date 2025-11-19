@@ -3,11 +3,11 @@
 {-
 Student information:
   Student 1
-    lastname:
-    student number:
+    lastname: Matarazzi
+    student number: s2133202
   Student 2
-    lastname:
-    student number:
+    lastname: Liebe
+    student number: s2506890
 -}
 module Exc1 where
 
