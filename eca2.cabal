@@ -1,5 +1,5 @@
 cabal-version:       2.4
-name:                stackprocessor
+name:                eca2
 version:             0.1
 license:             BSD-2-Clause
 author:              John Smith <john@example.com>
