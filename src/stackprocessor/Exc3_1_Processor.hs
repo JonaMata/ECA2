@@ -3,11 +3,11 @@
 {-
 Student information:
   Student 1
-    lastname:
-    student number:
+    lastname: Matarazzi
+    student number: s2133202
   Student 2
-    lastname:
-    student number:
+    lastname: Liebe
+    student number: s2506890
 -}
 module Exc3_1_Processor where
 
@@ -24,18 +24,19 @@ data Instr = Push Value
 
 
 processor :: () -> (Instr, Value) -> ((), Stack.Instr)
-processor state (instr, value) = undefined -- add your definition
+processor state (Push v, _) = (state, Stack.Push v)
 
 
 procBlock :: HiddenClockResetEnable dom
   => Signal dom (Instr, Value) -> Signal dom (Stack.Instr)
-procBlock = undefined -- add your definition
+procBlock = mealy processor ()
 
 
 system :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom Value
-system instr = undefined -- add your definition
-
+system instr = out
+  where
+    out = Stack.system (procBlock (bundle (instr, out)))
 
 testSystem = mapM_ print $ simulateN @System len system inp
   where
