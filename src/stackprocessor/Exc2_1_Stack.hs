@@ -27,12 +27,13 @@ type State = (Address) -- the stack pointer
 type Output = (Address, Maybe (Address, Value))
 
 stackController :: State -> Instr  -> (State, Output)
-stackController sp instr = undefined -- add your definition
+stackController sp Nop = (sp, (sp, Nothing))
+stackController sp (Push v) = (sp + 1, (sp, Just (sp, v)))
 
 
 stackBlock :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom Output
-stackBlock = undefined -- add your definition
+stackBlock = mealy stackController 0
 
 
 blockRAMblock :: HiddenClockResetEnable dom
@@ -42,7 +43,8 @@ blockRAMblock = blockRam $ 0:>0:>0:>0:>0:>0:>0:>0:>Nil
 
 system :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom Value
-system instr = undefined -- add your definition
+system instr = blockRAMblock read write
+  where (read, write) = unbundle (stackBlock instr)
 
 
 testStackBlock = mapM_ print $ simulateN @System len stackBlock inp
