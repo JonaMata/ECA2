@@ -3,11 +3,11 @@
 {-
 Student information:
   Student 1
-    lastname:
-    student number:
+    lastname: Matarazzi
+    student number: s2133202
   Student 2
-    lastname:
-    student number:
+    lastname: Liebe
+    student number: s2506890
 -}
 module Exc2_2_Stack where
 -- The NOINLINE options are there because of synthesis later on.
@@ -28,12 +28,15 @@ type State = (Address) -- the stack pointer
 type Output = (Address, Maybe (Address, Value))
 
 stackController :: State -> Instr  -> (State, Output)
-stackController sp instr = undefined -- extend your definition
+stackController sp Nop = (sp, (sp, Nothing))
+stackController sp (Push v) = (sp + 1, (sp, Just (sp, v)))
+stackController sp Pop = (sp - 1, (sp - 1, Nothing))
 
 
 {-# NOINLINE stackBlock #-}
-stackBlock :: HiddenClockResetEnable dom => Signal dom Instr -> Signal dom Output
-stackBlock = undefined -- use your definition
+stackBlock :: HiddenClockResetEnable dom
+  => Signal dom Instr -> Signal dom Output
+stackBlock = mealy stackController 0
 
 
 {-# NOINLINE blockRAMblock #-}
@@ -45,7 +48,8 @@ blockRAMblock = blockRam $ 0:>0:>0:>0:>0:>0:>0:>0:>Nil
 {-# NOINLINE system #-}
 system :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom Value
-system instr = undefined -- use your definition
+system instr = blockRAMblock read write
+  where (read, write) = unbundle (stackBlock instr)
 
 
 testStackBlock = mapM_ print $ simulateN @System len stackBlock inp
