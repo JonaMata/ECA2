@@ -33,10 +33,12 @@ processor Idle (Nop, _) = (Idle, (Stack.Nop, Nothing))
 processor Idle (Push v, _) = (Idle, (Stack.Push v, Nothing))
 processor Idle (Calc op, _) = (Calcing Nothing op, (Stack.Pop, Nothing))
 processor (Calcing Nothing op) (_, v) = (Calcing (Just v) op, (Stack.Pop, Nothing))
-processor (Calcing (Just v) Mult) (_, v2) = (Idle, (Stack.Push (v * v2), Just (v * v2)))
-processor (Calcing (Just v) Add) (_, v2) = (Idle, (Stack.Push (v + v2), Just (v + v2)))
-
-
+processor (Calcing (Just v) op) (_, v2) = (Idle, (Stack.Push res, Just res))
+  where
+    res = case op of
+      Mult -> v * v2
+      Add  -> v + v2
+      
 
 procBlock :: HiddenClockResetEnable dom
   => Signal dom (Instr, Value) -> Signal dom (Stack.Instr, Maybe Value)
