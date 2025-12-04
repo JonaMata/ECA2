@@ -3,11 +3,11 @@
 {-
 Student information:
   Student 1
-    lastname:
-    student number:
+    lastname: Matarazzi
+    student number: s2133202
   Student 2
-    lastname:
-    student number:
+    lastname: Liebe
+    student number: s2506890
 -}
 module Exc5_System where
 
@@ -19,6 +19,6 @@ import qualified Exc4_Fetch as Fetch
 
 
 system :: HiddenClockResetEnable dom => Signal dom (Maybe Proc.Value)
-system = undefined -- add your definition
+system = Proc.system Fetch.system 
 
 testSystem = mapM_ print $ sampleN @System 32 system
