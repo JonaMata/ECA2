@@ -3,11 +3,11 @@
 {-
 Student information:
   Student 1
-    lastname:
-    student number:
+    lastname: Matarazzi
+    student number: s2133202
   Student 2
-    lastname:
-    student number:
+    lastname: Liebe
+    student number: s2506890
 -}
 module Exc6_Processor where
 -- The NOINLINE options are here because of synthesis later on.
@@ -36,23 +36,41 @@ data Instr
 
 type State = (ProcState, RegisterFile)
 
-data ProcState = TODO -- Add your own processor state
+data ProcState 
+  = Calcing (Maybe Value) Opcode 
+  | Saving RegisterAddress
+  | Idle
+  deriving (Show, Generic, NFDataX)
 
 
 processor :: State -> (Instr, Value) -> (State, (Stack.Instr, Value))
-processor (state, regs) (instr, value) = undefined -- Add your implementation
+processor (Idle, regs) (Nop, _) = ((Idle, regs), (Stack.Nop, head regs))
+processor (Idle, regs) (Push v, _) = ((Idle, regs), (Stack.Push v, head regs))
+processor (Idle, regs) (PushR addr, _) = ((Idle, regs), (Stack.Push (regs !! addr), head regs))
+processor (Idle, regs) (Save addr, _) = ((Saving addr, regs), (Stack.Pop, head regs))
+processor (Idle, regs) (Calc op, _) = ((Calcing Nothing op, regs), (Stack.Pop, head regs))
+processor (Saving addr, regs) (_, v) = ((Idle, replace addr v regs), (Stack.Pop, head regs))
+processor (Calcing Nothing op, regs) (_, v) = ((Calcing (Just v) op, regs), (Stack.Pop, head regs))
+processor (Calcing (Just v) op, regs) (_, v2) = ((Idle, regs), (Stack.Push res, head regs))
+  where
+    res = case op of
+      Mult -> v * v2
+      Add  -> v + v2
 
 
 {-# NOINLINE procBlock #-}
 procBlock :: HiddenClockResetEnable dom
   => Signal dom (Instr, Value) -> Signal dom (Stack.Instr, Value)
-procBlock = undefined -- Add your implementation
+procBlock = mealy processor (Idle, repeat 0)
 
 
 {-# NOINLINE system #-}
 system :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom Value
-system instr = undefined -- Add your implementation
+system instr = out
+  where
+    (stack_instr, out) = unbundle (procBlock (bundle (instr, mid)))
+    mid = Stack.system stack_instr
 
 
 {-# NOINLINE system' #-}
