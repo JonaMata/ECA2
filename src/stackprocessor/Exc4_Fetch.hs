@@ -20,6 +20,9 @@ import qualified Exc3_2_Processor as Proc
 import qualified Data.List as L
 
 import Debug.Trace
+import Exc2_2_Stack (blockRAMblock)
+import GHC.IO.Device (RawIO(write))
+import Clash.Explicit.Verification (next)
 
 type Address = Unsigned 8
 type Program = Vec 256 Proc.Instr
@@ -49,7 +52,14 @@ testProgram =
     repeat Proc.Nop
 
 fetcher :: State -> Proc.Instr -> (State, Output)
-fetcher (pc, stallt) instr = undefined -- add your definition
+fetcher (pc, stallt) instr = if stallt > 0 then
+  ((pc, stallt-1), (Proc.Nop, pc))
+  else 
+    case instr of
+        Proc.Nop -> ((pc + 1, 0), (instr, pc+1))
+        Proc.Push _ -> ((pc + 1, 0), (instr, pc+1))
+        Proc.Calc _ -> ((pc + 1, 2), (instr, pc+1))
+
 
 
 instrBRAM :: HiddenClockResetEnable dom =>
@@ -59,11 +69,14 @@ instrBRAM = blockRam $ testProgram
 
 fetchBlock :: HiddenClockResetEnable dom =>
     Signal dom Proc.Instr -> Signal dom Output
-fetchBlock = undefined -- add your definition
+fetchBlock = mealy fetcher (0,1)
 
 
 system :: HiddenClockResetEnable dom => Signal dom Proc.Instr
-system = undefined -- add your definition
+system = instr
+  where 
+    (instr, readAddr) = unbundle (fetchBlock nextInstr)
+    nextInstr = instrBRAM readAddr (pure Nothing)
 
 
 testSystem = mapM_ print $ sampleN @System 32 system

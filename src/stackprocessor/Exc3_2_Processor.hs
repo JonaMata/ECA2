@@ -29,19 +29,29 @@ data State = Calcing (Maybe Value) Opcode | Idle
   deriving (Show, Generic, NFDataX)
 
 processor :: State -> (Instr, Value) -> (State, (Stack.Instr, Maybe Value))
-processor state (instr, value) = undefined -- extend your definition
+processor Idle (Nop, _) = (Idle, (Stack.Nop, Nothing))
+processor Idle (Push v, _) = (Idle, (Stack.Push v, Nothing))
+processor Idle (Calc op, _) = (Calcing Nothing op, (Stack.Pop, Nothing))
+processor (Calcing Nothing op) (_, v) = (Calcing (Just v) op, (Stack.Pop, Nothing))
+processor (Calcing (Just v) Mult) (_, v2) = (Idle, (Stack.Push (v * v2), Just (v * v2)))
+processor (Calcing (Just v) Add) (_, v2) = (Idle, (Stack.Push (v + v2), Just (v + v2)))
 
 
 
 procBlock :: HiddenClockResetEnable dom
   => Signal dom (Instr, Value) -> Signal dom (Stack.Instr, Maybe Value)
-procBlock = undefined -- extend your definition
+procBlock = mealy processor Idle
 
 
 
 system :: HiddenClockResetEnable dom
   => Signal dom Instr -> Signal dom (Maybe Value)
-system instr = undefined -- extend your definition
+system instr = out
+  where
+    (stack_instr, out) = unbundle (procBlock (bundle (instr, mid)))
+    mid = Stack.system stack_instr
+
+
 
 
 testSystem = simulateN @System len system inp
