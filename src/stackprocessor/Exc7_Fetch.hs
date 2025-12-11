@@ -58,7 +58,6 @@ fetcher (pc, stallt) instr = if stallt > 0 then
   ((pc, stallt-1), (Proc.Nop, pc))
   else 
     case instr of
-        Proc.Nop -> ((pc + 1, 0), (instr, pc+1))
         Proc.Calc _ -> ((pc + 1, 2), (instr, pc+1))
         Proc.Save _ -> ((pc + 1, 1), (instr, pc+1))
         otherwise -> ((pc + 1, 0), (instr, pc+1))
