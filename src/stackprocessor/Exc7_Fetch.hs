@@ -54,7 +54,14 @@ testProgram =
     repeat Nop
 
 fetcher :: State -> Proc.Instr -> (State, Output)
-fetcher (pc, stallt) instr = undefined -- add your definition
+fetcher (pc, stallt) instr = if stallt > 0 then
+  ((pc, stallt-1), (Proc.Nop, pc))
+  else 
+    case instr of
+        Proc.Nop -> ((pc + 1, 0), (instr, pc+1))
+        Proc.Calc _ -> ((pc + 1, 2), (instr, pc+1))
+        Proc.Save _ -> ((pc + 1, 1), (instr, pc+1))
+        otherwise -> ((pc + 1, 0), (instr, pc+1))
 
 
 {-# NOINLINE instrBRAM #-}
@@ -66,12 +73,15 @@ instrBRAM = blockRam $ testProgram
 {-# NOINLINE fetchBlock #-}
 fetchBlock :: HiddenClockResetEnable dom
   => Signal dom Proc.Instr -> Signal dom Output
-fetchBlock = undefined -- add your definition
+fetchBlock = mealy fetcher (0,1)
 
 
 {-# NOINLINE system #-}
 system :: HiddenClockResetEnable dom => Signal dom Proc.Instr
-system = undefined -- add your definition
+system = instr
+  where 
+    (instr, readAddr) = unbundle (fetchBlock nextInstr)
+    nextInstr = instrBRAM readAddr (pure Nothing)
 
 
 testSystem = mapM_ print $ sampleN @System 40 system
