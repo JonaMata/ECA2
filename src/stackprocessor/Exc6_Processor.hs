@@ -17,6 +17,7 @@ import Clash.Signal
 import qualified Exc2_2_Stack as Stack
 import qualified Data.List as L
 import Debug.Trace
+import Data.Type.Equality (outer)
 
 type Value = Stack.Value
 
@@ -76,7 +77,12 @@ system instr = out
 {-# NOINLINE system' #-}
 system' :: HiddenClockResetEnable dom
   => RegisterFile -> Signal dom Instr -> Signal dom Value
-system' regs instr = undefined -- Add your implementation (6.2)
+system' regs instr = out
+  where
+    (stack_instr, out) = unbundle (procBlock' (bundle (instr, mid)))
+    mid = Stack.system stack_instr
+    procBlock' = mealy processor (Idle, regs)
+
 
 
 
