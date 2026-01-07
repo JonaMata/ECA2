@@ -83,7 +83,10 @@ common common-options
 
 library
   import: common-options
-  hs-source-dirs: src/stackprocessor
+  hs-source-dirs:
+    - src/stackprocessor
+    - src/filters
+    - src/centerofmass
   exposed-modules:
     -- Exc2_2_Stack
     -- Exc6_Processor
