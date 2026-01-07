@@ -1,0 +1,119 @@
+{
+    "components": [
+        "stackBlock",
+        "blockRAMblock",
+        "system_1",
+        "procBlock",
+        "system",
+        "instrBRAM",
+        "fetchBlock",
+        "system_0",
+        "topEntity"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "topEntity.sdc",
+            "sha256": "13d4c1aafcc09a84d81d3b60d513cb901384a10e27e5a5a16572a600f15895f3"
+        },
+        {
+            "name": "Exc8_System_topEntity_types.vhdl",
+            "sha256": "ba33fd1d314c1f9031d08b01da22313732bd16212e3f359753498a53ab487bea"
+        },
+        {
+            "name": "stackBlock.vhdl",
+            "sha256": "793dc66f80078d78e4f615f9b7ca21e9c17a1355d4d2933a670ac28ed7242154"
+        },
+        {
+            "name": "blockRAMblock.vhdl",
+            "sha256": "3bde1234872a366a7e6d329c106535b3b28f766cea9353da1c962a1d99832ec7"
+        },
+        {
+            "name": "system_1.vhdl",
+            "sha256": "c8c6ed42ec278c3ea2c34aa0c19e96b400eea6cffe95f64dfe698bf22fd46524"
+        },
+        {
+            "name": "procBlock.vhdl",
+            "sha256": "2c483667bca6fddc954b90de69052955cc74e2a7120ec1a92ffe2352034aeac9"
+        },
+        {
+            "name": "system.vhdl",
+            "sha256": "032314c7033e64b62f10b3402d50af7dfbf385e6e3d573c119fcec3d17865ef9"
+        },
+        {
+            "name": "instrBRAM.vhdl",
+            "sha256": "a0c43027ebb2effca901e62d31265343fa076231f14e3f2d49580828bdb99375"
+        },
+        {
+            "name": "fetchBlock.vhdl",
+            "sha256": "240891d40266626f6cc1230f379c232fe6a2bcb7746296dfc419eaac5b459060"
+        },
+        {
+            "name": "system_0.vhdl",
+            "sha256": "6535d88ef0753d70a19f4634ae4013b803816e29c1fba0adf5677e985e0096cb"
+        },
+        {
+            "name": "topEntity.vhdl",
+            "sha256": "28f5a9bd7ca5a1c49586d922b6ed677b54f718e8b2c0d1e0269f067328c0a10d"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "211bf63b1f6ea85363a0801a12d66d234fd02818d203178ab5b52f0c71b3bb17",
+    "top_component": {
+        "name": "topEntity",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": true,
+                "name": "clk",
+                "type_name": "clk.Exc8_System_topEntity_types.clk_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": false,
+                "name": "rst",
+                "type_name": "rst.Exc8_System_topEntity_types.rst_System",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "result",
+                "type_name": "signed(15 downto 0)",
+                "width": 16
+            }
+        ]
+    },
+    "version": "unstable"
+}

@@ -84,6 +84,11 @@ common common-options
 library
   import: common-options
   hs-source-dirs: src/stackprocessor
+  exposed-modules:
+    -- Exc2_2_Stack
+    -- Exc6_Processor
+    -- Exc7_Fetch
+    -- Exc8_System
   default-language: Haskell2010
 
 -- Builds the executable 'clash', with tutorial project in scope
