@@ -101,7 +101,8 @@ wfL path i = writeFile path (pre L.++ printimage i)
     pre = "P2\r\n" L.++ (show w) L.++ " " L.++ (show h) L.++ "\r\n" L.++ mx L.++ "\r\n"
     w = L.length (i L.!! 0) -- length of first row is image width
     h = L.length i
-    mx = show $ L.maximum $ L.maximum i
+    mx = show $ L.maximum $ L.map L.maximum i
+
 
 blocks2DL ::
   Int         -- window width and height
