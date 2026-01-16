@@ -1,0 +1,66 @@
+{
+    "components": [
+        "fir1_100"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "fir1_100_types.vhdl",
+            "sha256": "55c27c7cebea3d2ab63081063c44e453d4feba8f75f701f4a0326df2d0b011e1"
+        },
+        {
+            "name": "fir1_100.vhdl",
+            "sha256": "bf72e0dd8dc58fc9f7af2fa07674daaecc013488fbcae5454b6447523ceb97a2"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "e922f736e3f68b61fcae0776534215ad7ba10b29813a3de2d502b6879035df68",
+    "top_component": {
+        "name": "fir1_100",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "xs",
+                "type_name": "std_logic_vector(1799 downto 0)",
+                "width": 1800
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "o",
+                "type_name": "signed(17 downto 0)",
+                "width": 18
+            }
+        ]
+    },
+    "version": "unstable"
+}

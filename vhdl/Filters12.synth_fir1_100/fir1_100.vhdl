@@ -1,0 +1,4818 @@
+-- Automatically generated VHDL-93
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.MATH_REAL.ALL;
+use std.textio.all;
+use work.all;
+use work.fir1_100_types.all;
+
+entity fir1_100 is
+  port(xs : in std_logic_vector(1799 downto 0);
+       o  : out signed(17 downto 0));
+end;
+
+architecture structural of fir1_100 is
+  signal wild     : fir1_100_types.array_of_signed_18(0 to 99);
+  signal xs_0     : fir1_100_types.array_of_signed_18(0 to 99);
+  signal \c$vec1\ : fir1_100_types.array_of_signed_18(0 to 99);
+
+begin
+  xs_0 <= fir1_100_types.array_of_signed_18'(fir1_100_types.fromSLV(xs));
+
+  \c$vec1\ <= fir1_100_types.array_of_signed_18'( to_signed(52,18)
+                                                , to_signed(52,18)
+                                                , to_signed(50,18)
+                                                , to_signed(47,18)
+                                                , to_signed(43,18)
+                                                , to_signed(38,18)
+                                                , to_signed(31,18)
+                                                , to_signed(23,18)
+                                                , to_signed(14,18)
+                                                , to_signed(5,18)
+                                                , to_signed(-5,18)
+                                                , to_signed(-15,18)
+                                                , to_signed(-26,18)
+                                                , to_signed(-37,18)
+                                                , to_signed(-47,18)
+                                                , to_signed(-57,18)
+                                                , to_signed(-66,18)
+                                                , to_signed(-74,18)
+                                                , to_signed(-80,18)
+                                                , to_signed(-85,18)
+                                                , to_signed(-88,18)
+                                                , to_signed(-88,18)
+                                                , to_signed(-87,18)
+                                                , to_signed(-83,18)
+                                                , to_signed(-77,18)
+                                                , to_signed(-69,18)
+                                                , to_signed(-57,18)
+                                                , to_signed(-44,18)
+                                                , to_signed(-28,18)
+                                                , to_signed(-9,18)
+                                                , to_signed(10,18)
+                                                , to_signed(32,18)
+                                                , to_signed(57,18)
+                                                , to_signed(82,18)
+                                                , to_signed(109,18)
+                                                , to_signed(136,18)
+                                                , to_signed(164,18)
+                                                , to_signed(192,18)
+                                                , to_signed(220,18)
+                                                , to_signed(247,18)
+                                                , to_signed(273,18)
+                                                , to_signed(298,18)
+                                                , to_signed(321,18)
+                                                , to_signed(342,18)
+                                                , to_signed(360,18)
+                                                , to_signed(376,18)
+                                                , to_signed(389,18)
+                                                , to_signed(399,18)
+                                                , to_signed(405,18)
+                                                , to_signed(409,18)
+                                                , to_signed(409,18)
+                                                , to_signed(405,18)
+                                                , to_signed(399,18)
+                                                , to_signed(389,18)
+                                                , to_signed(376,18)
+                                                , to_signed(360,18)
+                                                , to_signed(342,18)
+                                                , to_signed(321,18)
+                                                , to_signed(298,18)
+                                                , to_signed(273,18)
+                                                , to_signed(247,18)
+                                                , to_signed(220,18)
+                                                , to_signed(192,18)
+                                                , to_signed(164,18)
+                                                , to_signed(136,18)
+                                                , to_signed(109,18)
+                                                , to_signed(82,18)
+                                                , to_signed(57,18)
+                                                , to_signed(32,18)
+                                                , to_signed(10,18)
+                                                , to_signed(-9,18)
+                                                , to_signed(-28,18)
+                                                , to_signed(-44,18)
+                                                , to_signed(-57,18)
+                                                , to_signed(-69,18)
+                                                , to_signed(-77,18)
+                                                , to_signed(-83,18)
+                                                , to_signed(-87,18)
+                                                , to_signed(-88,18)
+                                                , to_signed(-88,18)
+                                                , to_signed(-85,18)
+                                                , to_signed(-80,18)
+                                                , to_signed(-74,18)
+                                                , to_signed(-66,18)
+                                                , to_signed(-57,18)
+                                                , to_signed(-47,18)
+                                                , to_signed(-37,18)
+                                                , to_signed(-26,18)
+                                                , to_signed(-15,18)
+                                                , to_signed(-5,18)
+                                                , to_signed(5,18)
+                                                , to_signed(14,18)
+                                                , to_signed(23,18)
+                                                , to_signed(31,18)
+                                                , to_signed(38,18)
+                                                , to_signed(43,18)
+                                                , to_signed(47,18)
+                                                , to_signed(50,18)
+                                                , to_signed(52,18)
+                                                , to_signed(52,18) );
+
+  -- zipWith begin
+  zipWith : for i in wild'range generate
+  begin
+    fun_99 : block
+      signal result                     : signed(17 downto 0);
+      signal \c$case_alt\               : signed(17 downto 0);
+      signal \c$app_arg\                : std_logic_vector(30 downto 0);
+      signal \c$app_arg_0\              : std_logic;
+      signal \c$app_arg_1\              : std_logic;
+      signal \c$app_arg_2\              : std_logic_vector(5 downto 0);
+      signal \c$app_arg_3\              : std_logic_vector(4 downto 0);
+      signal rL                         : std_logic_vector(4 downto 0);
+      signal rR                         : std_logic_vector(30 downto 0);
+      signal ds3                        : fir1_100_types.Tuple2;
+      signal result_selection_res       : boolean;
+      signal \c$case_alt_selection_res\ : boolean;
+      signal \c$shI\                    : signed(63 downto 0);
+      signal \c$bv\                     : std_logic_vector(30 downto 0);
+      signal \c$bv_0\                   : std_logic_vector(35 downto 0);
+    begin
+      wild(i) <= result;
+
+      result_selection_res <= ((not \c$app_arg_1\) or \c$app_arg_0\) = '1';
+
+      result <= signed((std_logic_vector(resize(unsigned(\c$app_arg\),18)))) when result_selection_res else
+                \c$case_alt\;
+
+      \c$case_alt_selection_res\ <= ( \c$app_arg_3\(\c$app_arg_3\'high) ) = '0';
+
+      \c$case_alt\ <= to_signed(131071,18) when \c$case_alt_selection_res\ else
+                      to_signed(-131072,18);
+
+      \c$shI\ <= (to_signed(13,64));
+
+      capp_arg_shiftR : block
+        signal sh : natural;
+      begin
+        sh <=
+            -- pragma translate_off
+            natural'high when (\c$shI\(64-1 downto 31) /= 0) else
+            -- pragma translate_on
+            to_integer(\c$shI\);
+        \c$app_arg\ <= std_logic_vector(shift_right(unsigned(rR),sh))
+            -- pragma translate_off
+            when ((to_signed(13,64)) >= 0) else (others => 'X')
+            -- pragma translate_on
+            ;
+      end block;
+
+      -- reduceAnd begin,
+
+      reduceAnd : block
+        function and_reduce (arg : std_logic_vector) return std_logic is
+          variable upper, lower : std_logic;
+          variable half         : integer;
+          variable argi         : std_logic_vector (arg'length - 1 downto 0);
+          variable result       : std_logic;
+        begin
+          if (arg'length < 1) then
+            result := '1';
+          else
+            argi := arg;
+            if (argi'length = 1) then
+              result := argi(argi'left);
+            else
+              half   := (argi'length + 1) / 2; -- lsb-biased tree
+              upper  := and_reduce (argi (argi'left downto half));
+              lower  := and_reduce (argi (half - 1 downto argi'right));
+              result := upper and lower;
+            end if;
+          end if;
+          return result;
+        end;
+      begin
+        \c$app_arg_0\ <= and_reduce(\c$app_arg_2\);
+      end block;
+      -- reduceAnd end
+
+      -- reduceOr begin
+      reduceOr : block
+        function or_reduce (arg : std_logic_vector) return std_logic is
+          variable upper, lower : std_logic;
+          variable half         : integer;
+          variable argi         : std_logic_vector (arg'length - 1 downto 0);
+          variable result       : std_logic;
+        begin
+          if (arg'length < 1) then
+            result := '0';
+          else
+            argi := arg;
+            if (argi'length = 1) then
+              result := argi(argi'left);
+            else
+              half   := (argi'length + 1) / 2; -- lsb-biased tree
+              upper  := or_reduce (argi (argi'left downto half));
+              lower  := or_reduce (argi (half - 1 downto argi'right));
+              result := upper or lower;
+            end if;
+          end if;
+          return result;
+        end;
+      begin
+        \c$app_arg_1\ <= or_reduce(\c$app_arg_2\);
+      end block;
+      -- reduceOr end
+
+      \c$bv\ <= (rR);
+
+      \c$app_arg_2\ <= (std_logic_vector'(std_logic_vector'(((std_logic_vector'(0 => ( \c$bv\(\c$bv\'high) ))))) & std_logic_vector'(\c$app_arg_3\)));
+
+      \c$app_arg_3\ <= rL;
+
+      rL <= ds3.Tuple2_sel0_std_logic_vector_0;
+
+      rR <= ds3.Tuple2_sel1_std_logic_vector_1;
+
+      \c$bv_0\ <= ((std_logic_vector((\c$vec1\(i) * xs_0(i)))));
+
+      ds3 <= (\c$bv_0\(\c$bv_0\'high downto 31),\c$bv_0\(31-1 downto 0));
+
+
+    end block;
+  end generate;
+  -- zipWith end
+
+  fold : block
+    signal vec      : fir1_100_types.array_of_signed_18(0 to 99);
+    signal acc_7_0  : signed(17 downto 0);
+    signal acc_1    : signed(17 downto 0);
+    signal acc_2    : signed(17 downto 0);
+    signal acc_3    : signed(17 downto 0);
+    signal acc_4    : signed(17 downto 0);
+    signal acc_5    : signed(17 downto 0);
+    signal acc_6    : signed(17 downto 0);
+    signal acc_7    : signed(17 downto 0);
+    signal acc_8    : signed(17 downto 0);
+    signal acc_9    : signed(17 downto 0);
+    signal acc_10   : signed(17 downto 0);
+    signal acc_11   : signed(17 downto 0);
+    signal acc_12   : signed(17 downto 0);
+    signal acc_13   : signed(17 downto 0);
+    signal acc_14   : signed(17 downto 0);
+    signal acc_15   : signed(17 downto 0);
+    signal acc_16   : signed(17 downto 0);
+    signal acc_17   : signed(17 downto 0);
+    signal acc_18   : signed(17 downto 0);
+    signal acc_19   : signed(17 downto 0);
+    signal acc_20   : signed(17 downto 0);
+    signal acc_21   : signed(17 downto 0);
+    signal acc_22   : signed(17 downto 0);
+    signal acc_23   : signed(17 downto 0);
+    signal acc_24   : signed(17 downto 0);
+    signal acc_25   : signed(17 downto 0);
+    signal acc_26   : signed(17 downto 0);
+    signal acc_27   : signed(17 downto 0);
+    signal acc_28   : signed(17 downto 0);
+    signal acc_29   : signed(17 downto 0);
+    signal acc_30   : signed(17 downto 0);
+    signal acc_31   : signed(17 downto 0);
+    signal acc_32   : signed(17 downto 0);
+    signal acc_33   : signed(17 downto 0);
+    signal acc_34   : signed(17 downto 0);
+    signal acc_35   : signed(17 downto 0);
+    signal acc_36   : signed(17 downto 0);
+    signal acc_37   : signed(17 downto 0);
+    signal acc_38   : signed(17 downto 0);
+    signal acc_39   : signed(17 downto 0);
+    signal acc_40   : signed(17 downto 0);
+    signal acc_41   : signed(17 downto 0);
+    signal acc_42   : signed(17 downto 0);
+    signal acc_43   : signed(17 downto 0);
+    signal acc_44   : signed(17 downto 0);
+    signal acc_45   : signed(17 downto 0);
+    signal acc_46   : signed(17 downto 0);
+    signal acc_47   : signed(17 downto 0);
+    signal acc_48   : signed(17 downto 0);
+    signal acc_49   : signed(17 downto 0);
+    signal acc_50   : signed(17 downto 0);
+    signal acc_51   : signed(17 downto 0);
+    signal acc_52   : signed(17 downto 0);
+    signal acc_53   : signed(17 downto 0);
+    signal acc_54   : signed(17 downto 0);
+    signal acc_55   : signed(17 downto 0);
+    signal acc_56   : signed(17 downto 0);
+    signal acc_57   : signed(17 downto 0);
+    signal acc_58   : signed(17 downto 0);
+    signal acc_59   : signed(17 downto 0);
+    signal acc_60   : signed(17 downto 0);
+    signal acc_61   : signed(17 downto 0);
+    signal acc_62   : signed(17 downto 0);
+    signal acc_63   : signed(17 downto 0);
+    signal acc_64   : signed(17 downto 0);
+    signal acc_65   : signed(17 downto 0);
+    signal acc_66   : signed(17 downto 0);
+    signal acc_67   : signed(17 downto 0);
+    signal acc_68   : signed(17 downto 0);
+    signal acc_69   : signed(17 downto 0);
+    signal acc_70   : signed(17 downto 0);
+    signal acc_71   : signed(17 downto 0);
+    signal acc_72   : signed(17 downto 0);
+    signal acc_73   : signed(17 downto 0);
+    signal acc_74   : signed(17 downto 0);
+    signal acc_75   : signed(17 downto 0);
+    signal acc_76   : signed(17 downto 0);
+    signal acc_77   : signed(17 downto 0);
+    signal acc_78   : signed(17 downto 0);
+    signal acc_79   : signed(17 downto 0);
+    signal acc_80   : signed(17 downto 0);
+    signal acc_81   : signed(17 downto 0);
+    signal acc_82   : signed(17 downto 0);
+    signal acc_83   : signed(17 downto 0);
+    signal acc_84   : signed(17 downto 0);
+    signal acc_85   : signed(17 downto 0);
+    signal acc_86   : signed(17 downto 0);
+    signal acc_87   : signed(17 downto 0);
+    signal acc_88   : signed(17 downto 0);
+    signal acc_89   : signed(17 downto 0);
+    signal acc_90   : signed(17 downto 0);
+    signal acc_91   : signed(17 downto 0);
+    signal acc_92   : signed(17 downto 0);
+    signal acc_93   : signed(17 downto 0);
+    signal acc_94   : signed(17 downto 0);
+    signal acc_95   : signed(17 downto 0);
+    signal acc_96   : signed(17 downto 0);
+    signal acc_97   : signed(17 downto 0);
+    signal acc_98   : signed(17 downto 0);
+    signal acc_99   : signed(17 downto 0);
+    signal acc_100  : signed(17 downto 0);
+    signal acc_1_0  : signed(17 downto 0);
+    signal acc_1_1  : signed(17 downto 0);
+    signal acc_1_2  : signed(17 downto 0);
+    signal acc_1_3  : signed(17 downto 0);
+    signal acc_1_4  : signed(17 downto 0);
+    signal acc_1_5  : signed(17 downto 0);
+    signal acc_1_6  : signed(17 downto 0);
+    signal acc_1_7  : signed(17 downto 0);
+    signal acc_1_8  : signed(17 downto 0);
+    signal acc_1_9  : signed(17 downto 0);
+    signal acc_1_10 : signed(17 downto 0);
+    signal acc_1_11 : signed(17 downto 0);
+    signal acc_1_12 : signed(17 downto 0);
+    signal acc_1_13 : signed(17 downto 0);
+    signal acc_1_14 : signed(17 downto 0);
+    signal acc_1_15 : signed(17 downto 0);
+    signal acc_1_16 : signed(17 downto 0);
+    signal acc_1_17 : signed(17 downto 0);
+    signal acc_1_18 : signed(17 downto 0);
+    signal acc_1_19 : signed(17 downto 0);
+    signal acc_1_20 : signed(17 downto 0);
+    signal acc_1_21 : signed(17 downto 0);
+    signal acc_1_22 : signed(17 downto 0);
+    signal acc_1_23 : signed(17 downto 0);
+    signal acc_1_24 : signed(17 downto 0);
+    signal acc_1_25 : signed(17 downto 0);
+    signal acc_1_26 : signed(17 downto 0);
+    signal acc_1_27 : signed(17 downto 0);
+    signal acc_1_28 : signed(17 downto 0);
+    signal acc_1_29 : signed(17 downto 0);
+    signal acc_1_30 : signed(17 downto 0);
+    signal acc_1_31 : signed(17 downto 0);
+    signal acc_1_32 : signed(17 downto 0);
+    signal acc_1_33 : signed(17 downto 0);
+    signal acc_1_34 : signed(17 downto 0);
+    signal acc_1_35 : signed(17 downto 0);
+    signal acc_1_36 : signed(17 downto 0);
+    signal acc_1_37 : signed(17 downto 0);
+    signal acc_1_38 : signed(17 downto 0);
+    signal acc_1_39 : signed(17 downto 0);
+    signal acc_1_40 : signed(17 downto 0);
+    signal acc_1_41 : signed(17 downto 0);
+    signal acc_1_42 : signed(17 downto 0);
+    signal acc_1_43 : signed(17 downto 0);
+    signal acc_1_44 : signed(17 downto 0);
+    signal acc_1_45 : signed(17 downto 0);
+    signal acc_1_46 : signed(17 downto 0);
+    signal acc_1_47 : signed(17 downto 0);
+    signal acc_1_48 : signed(17 downto 0);
+    signal acc_1_49 : signed(17 downto 0);
+    signal acc_2_0  : signed(17 downto 0);
+    signal acc_2_1  : signed(17 downto 0);
+    signal acc_2_2  : signed(17 downto 0);
+    signal acc_2_3  : signed(17 downto 0);
+    signal acc_2_4  : signed(17 downto 0);
+    signal acc_2_5  : signed(17 downto 0);
+    signal acc_2_6  : signed(17 downto 0);
+    signal acc_2_7  : signed(17 downto 0);
+    signal acc_2_8  : signed(17 downto 0);
+    signal acc_2_9  : signed(17 downto 0);
+    signal acc_2_10 : signed(17 downto 0);
+    signal acc_2_11 : signed(17 downto 0);
+    signal acc_2_12 : signed(17 downto 0);
+    signal acc_2_13 : signed(17 downto 0);
+    signal acc_2_14 : signed(17 downto 0);
+    signal acc_2_15 : signed(17 downto 0);
+    signal acc_2_16 : signed(17 downto 0);
+    signal acc_2_17 : signed(17 downto 0);
+    signal acc_2_18 : signed(17 downto 0);
+    signal acc_2_19 : signed(17 downto 0);
+    signal acc_2_20 : signed(17 downto 0);
+    signal acc_2_21 : signed(17 downto 0);
+    signal acc_2_22 : signed(17 downto 0);
+    signal acc_2_23 : signed(17 downto 0);
+    signal acc_3_0  : signed(17 downto 0);
+    signal acc_3_1  : signed(17 downto 0);
+    signal acc_3_2  : signed(17 downto 0);
+    signal acc_3_3  : signed(17 downto 0);
+    signal acc_3_4  : signed(17 downto 0);
+    signal acc_3_5  : signed(17 downto 0);
+    signal acc_3_6  : signed(17 downto 0);
+    signal acc_3_7  : signed(17 downto 0);
+    signal acc_3_8  : signed(17 downto 0);
+    signal acc_3_9  : signed(17 downto 0);
+    signal acc_3_10 : signed(17 downto 0);
+    signal acc_3_11 : signed(17 downto 0);
+    signal acc_4_0  : signed(17 downto 0);
+    signal acc_4_1  : signed(17 downto 0);
+    signal acc_4_2  : signed(17 downto 0);
+    signal acc_4_3  : signed(17 downto 0);
+    signal acc_4_4  : signed(17 downto 0);
+    signal acc_4_5  : signed(17 downto 0);
+    signal acc_5_0  : signed(17 downto 0);
+    signal acc_5_1  : signed(17 downto 0);
+    signal acc_5_2  : signed(17 downto 0);
+    signal acc_2_24 : signed(17 downto 0);
+    signal acc_6_0  : signed(17 downto 0);
+    signal acc_6_1  : signed(17 downto 0);
+  begin
+    o <= acc_7_0;
+
+    vec <= wild;
+
+    acc_1 <= vec(0);
+
+    acc_2 <= vec(1);
+
+    acc_3 <= vec(2);
+
+    acc_4 <= vec(3);
+
+    acc_5 <= vec(4);
+
+    acc_6 <= vec(5);
+
+    acc_7 <= vec(6);
+
+    acc_8 <= vec(7);
+
+    acc_9 <= vec(8);
+
+    acc_10 <= vec(9);
+
+    acc_11 <= vec(10);
+
+    acc_12 <= vec(11);
+
+    acc_13 <= vec(12);
+
+    acc_14 <= vec(13);
+
+    acc_15 <= vec(14);
+
+    acc_16 <= vec(15);
+
+    acc_17 <= vec(16);
+
+    acc_18 <= vec(17);
+
+    acc_19 <= vec(18);
+
+    acc_20 <= vec(19);
+
+    acc_21 <= vec(20);
+
+    acc_22 <= vec(21);
+
+    acc_23 <= vec(22);
+
+    acc_24 <= vec(23);
+
+    acc_25 <= vec(24);
+
+    acc_26 <= vec(25);
+
+    acc_27 <= vec(26);
+
+    acc_28 <= vec(27);
+
+    acc_29 <= vec(28);
+
+    acc_30 <= vec(29);
+
+    acc_31 <= vec(30);
+
+    acc_32 <= vec(31);
+
+    acc_33 <= vec(32);
+
+    acc_34 <= vec(33);
+
+    acc_35 <= vec(34);
+
+    acc_36 <= vec(35);
+
+    acc_37 <= vec(36);
+
+    acc_38 <= vec(37);
+
+    acc_39 <= vec(38);
+
+    acc_40 <= vec(39);
+
+    acc_41 <= vec(40);
+
+    acc_42 <= vec(41);
+
+    acc_43 <= vec(42);
+
+    acc_44 <= vec(43);
+
+    acc_45 <= vec(44);
+
+    acc_46 <= vec(45);
+
+    acc_47 <= vec(46);
+
+    acc_48 <= vec(47);
+
+    acc_49 <= vec(48);
+
+    acc_50 <= vec(49);
+
+    acc_51 <= vec(50);
+
+    acc_52 <= vec(51);
+
+    acc_53 <= vec(52);
+
+    acc_54 <= vec(53);
+
+    acc_55 <= vec(54);
+
+    acc_56 <= vec(55);
+
+    acc_57 <= vec(56);
+
+    acc_58 <= vec(57);
+
+    acc_59 <= vec(58);
+
+    acc_60 <= vec(59);
+
+    acc_61 <= vec(60);
+
+    acc_62 <= vec(61);
+
+    acc_63 <= vec(62);
+
+    acc_64 <= vec(63);
+
+    acc_65 <= vec(64);
+
+    acc_66 <= vec(65);
+
+    acc_67 <= vec(66);
+
+    acc_68 <= vec(67);
+
+    acc_69 <= vec(68);
+
+    acc_70 <= vec(69);
+
+    acc_71 <= vec(70);
+
+    acc_72 <= vec(71);
+
+    acc_73 <= vec(72);
+
+    acc_74 <= vec(73);
+
+    acc_75 <= vec(74);
+
+    acc_76 <= vec(75);
+
+    acc_77 <= vec(76);
+
+    acc_78 <= vec(77);
+
+    acc_79 <= vec(78);
+
+    acc_80 <= vec(79);
+
+    acc_81 <= vec(80);
+
+    acc_82 <= vec(81);
+
+    acc_83 <= vec(82);
+
+    acc_84 <= vec(83);
+
+    acc_85 <= vec(84);
+
+    acc_86 <= vec(85);
+
+    acc_87 <= vec(86);
+
+    acc_88 <= vec(87);
+
+    acc_89 <= vec(88);
+
+    acc_90 <= vec(89);
+
+    acc_91 <= vec(90);
+
+    acc_92 <= vec(91);
+
+    acc_93 <= vec(92);
+
+    acc_94 <= vec(93);
+
+    acc_95 <= vec(94);
+
+    acc_96 <= vec(95);
+
+    acc_97 <= vec(96);
+
+    acc_98 <= vec(97);
+
+    acc_99 <= vec(98);
+
+    acc_100 <= vec(99);
+
+    fun_100 : block
+        signal result_3                     : signed(17 downto 0);
+        signal \c$case_alt_3\               : signed(17 downto 0);
+        signal \r'\                         : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg\               : std_logic_vector(18 downto 0);
+        signal r                            : signed(18 downto 0);
+        signal result_selection_res_0       : boolean;
+        signal \c$bv_1\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_0\ : boolean;
+        signal \c$bv_2\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_3\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection\              : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_0 <= result_3;
+
+        \c$bv_1\ <= (\r'\);
+
+        result_selection_res_0 <= (( \c$r'_app_arg\(\c$r'_app_arg\'high) ) xor ( \c$bv_1\(\c$bv_1\'high) )) = '0';
+
+        result_3 <= signed(\r'\) when result_selection_res_0 else
+                    \c$case_alt_3\;
+
+        \c$bv_2\ <= ((std_logic_vector(acc_1)));
+
+        \c$bv_3\ <= ((std_logic_vector(acc_2)));
+
+        \c$case_alt_selection_res_0\ <= (( \c$bv_2\(\c$bv_2\'high) ) and ( \c$bv_3\(\c$bv_3\'high) )) = '0';
+
+        \c$case_alt_3\ <= to_signed(131071,18) when \c$case_alt_selection_res_0\ else
+                          to_signed(-131072,18);
+
+        \r'_projection\ <= (\c$r'_app_arg\(\c$r'_app_arg\'high downto 18),\c$r'_app_arg\(18-1 downto 0));
+
+        \r'\ <= \r'_projection\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg\ <= (std_logic_vector(r));
+
+        r <= resize(acc_1,19) + resize(acc_2,19);
+
+
+      end block;
+
+    fun_101 : block
+        signal result_4                     : signed(17 downto 0);
+        signal \c$case_alt_4\               : signed(17 downto 0);
+        signal \r'_1\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_0\             : std_logic_vector(18 downto 0);
+        signal r_0                          : signed(18 downto 0);
+        signal result_selection_res_1       : boolean;
+        signal \c$bv_4\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_1\ : boolean;
+        signal \c$bv_5\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_6\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_0\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_1 <= result_4;
+
+        \c$bv_4\ <= (\r'_1\);
+
+        result_selection_res_1 <= (( \c$r'_app_arg_0\(\c$r'_app_arg_0\'high) ) xor ( \c$bv_4\(\c$bv_4\'high) )) = '0';
+
+        result_4 <= signed(\r'_1\) when result_selection_res_1 else
+                    \c$case_alt_4\;
+
+        \c$bv_5\ <= ((std_logic_vector(acc_3)));
+
+        \c$bv_6\ <= ((std_logic_vector(acc_4)));
+
+        \c$case_alt_selection_res_1\ <= (( \c$bv_5\(\c$bv_5\'high) ) and ( \c$bv_6\(\c$bv_6\'high) )) = '0';
+
+        \c$case_alt_4\ <= to_signed(131071,18) when \c$case_alt_selection_res_1\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_0\ <= (\c$r'_app_arg_0\(\c$r'_app_arg_0\'high downto 18),\c$r'_app_arg_0\(18-1 downto 0));
+
+        \r'_1\ <= \r'_projection_0\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_0\ <= (std_logic_vector(r_0));
+
+        r_0 <= resize(acc_3,19) + resize(acc_4,19);
+
+
+      end block;
+
+    fun_102 : block
+        signal result_5                     : signed(17 downto 0);
+        signal \c$case_alt_5\               : signed(17 downto 0);
+        signal \r'_2\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_1\             : std_logic_vector(18 downto 0);
+        signal r_1                          : signed(18 downto 0);
+        signal result_selection_res_2       : boolean;
+        signal \c$bv_7\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_2\ : boolean;
+        signal \c$bv_8\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_9\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_1\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_2 <= result_5;
+
+        \c$bv_7\ <= (\r'_2\);
+
+        result_selection_res_2 <= (( \c$r'_app_arg_1\(\c$r'_app_arg_1\'high) ) xor ( \c$bv_7\(\c$bv_7\'high) )) = '0';
+
+        result_5 <= signed(\r'_2\) when result_selection_res_2 else
+                    \c$case_alt_5\;
+
+        \c$bv_8\ <= ((std_logic_vector(acc_5)));
+
+        \c$bv_9\ <= ((std_logic_vector(acc_6)));
+
+        \c$case_alt_selection_res_2\ <= (( \c$bv_8\(\c$bv_8\'high) ) and ( \c$bv_9\(\c$bv_9\'high) )) = '0';
+
+        \c$case_alt_5\ <= to_signed(131071,18) when \c$case_alt_selection_res_2\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_1\ <= (\c$r'_app_arg_1\(\c$r'_app_arg_1\'high downto 18),\c$r'_app_arg_1\(18-1 downto 0));
+
+        \r'_2\ <= \r'_projection_1\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_1\ <= (std_logic_vector(r_1));
+
+        r_1 <= resize(acc_5,19) + resize(acc_6,19);
+
+
+      end block;
+
+    fun_103 : block
+        signal result_6                     : signed(17 downto 0);
+        signal \c$case_alt_6\               : signed(17 downto 0);
+        signal \r'_3\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_2\             : std_logic_vector(18 downto 0);
+        signal r_2                          : signed(18 downto 0);
+        signal result_selection_res_3       : boolean;
+        signal \c$bv_10\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_3\ : boolean;
+        signal \c$bv_11\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_12\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_2\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_3 <= result_6;
+
+        \c$bv_10\ <= (\r'_3\);
+
+        result_selection_res_3 <= (( \c$r'_app_arg_2\(\c$r'_app_arg_2\'high) ) xor ( \c$bv_10\(\c$bv_10\'high) )) = '0';
+
+        result_6 <= signed(\r'_3\) when result_selection_res_3 else
+                    \c$case_alt_6\;
+
+        \c$bv_11\ <= ((std_logic_vector(acc_7)));
+
+        \c$bv_12\ <= ((std_logic_vector(acc_8)));
+
+        \c$case_alt_selection_res_3\ <= (( \c$bv_11\(\c$bv_11\'high) ) and ( \c$bv_12\(\c$bv_12\'high) )) = '0';
+
+        \c$case_alt_6\ <= to_signed(131071,18) when \c$case_alt_selection_res_3\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_2\ <= (\c$r'_app_arg_2\(\c$r'_app_arg_2\'high downto 18),\c$r'_app_arg_2\(18-1 downto 0));
+
+        \r'_3\ <= \r'_projection_2\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_2\ <= (std_logic_vector(r_2));
+
+        r_2 <= resize(acc_7,19) + resize(acc_8,19);
+
+
+      end block;
+
+    fun_104 : block
+        signal result_7                     : signed(17 downto 0);
+        signal \c$case_alt_7\               : signed(17 downto 0);
+        signal \r'_4\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_3\             : std_logic_vector(18 downto 0);
+        signal r_3                          : signed(18 downto 0);
+        signal result_selection_res_4       : boolean;
+        signal \c$bv_13\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_4\ : boolean;
+        signal \c$bv_14\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_15\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_3\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_4 <= result_7;
+
+        \c$bv_13\ <= (\r'_4\);
+
+        result_selection_res_4 <= (( \c$r'_app_arg_3\(\c$r'_app_arg_3\'high) ) xor ( \c$bv_13\(\c$bv_13\'high) )) = '0';
+
+        result_7 <= signed(\r'_4\) when result_selection_res_4 else
+                    \c$case_alt_7\;
+
+        \c$bv_14\ <= ((std_logic_vector(acc_9)));
+
+        \c$bv_15\ <= ((std_logic_vector(acc_10)));
+
+        \c$case_alt_selection_res_4\ <= (( \c$bv_14\(\c$bv_14\'high) ) and ( \c$bv_15\(\c$bv_15\'high) )) = '0';
+
+        \c$case_alt_7\ <= to_signed(131071,18) when \c$case_alt_selection_res_4\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_3\ <= (\c$r'_app_arg_3\(\c$r'_app_arg_3\'high downto 18),\c$r'_app_arg_3\(18-1 downto 0));
+
+        \r'_4\ <= \r'_projection_3\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_3\ <= (std_logic_vector(r_3));
+
+        r_3 <= resize(acc_9,19) + resize(acc_10,19);
+
+
+      end block;
+
+    fun_105 : block
+        signal result_8                     : signed(17 downto 0);
+        signal \c$case_alt_8\               : signed(17 downto 0);
+        signal \r'_5\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_4\             : std_logic_vector(18 downto 0);
+        signal r_4                          : signed(18 downto 0);
+        signal result_selection_res_5       : boolean;
+        signal \c$bv_16\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_5\ : boolean;
+        signal \c$bv_17\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_18\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_4\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_5 <= result_8;
+
+        \c$bv_16\ <= (\r'_5\);
+
+        result_selection_res_5 <= (( \c$r'_app_arg_4\(\c$r'_app_arg_4\'high) ) xor ( \c$bv_16\(\c$bv_16\'high) )) = '0';
+
+        result_8 <= signed(\r'_5\) when result_selection_res_5 else
+                    \c$case_alt_8\;
+
+        \c$bv_17\ <= ((std_logic_vector(acc_11)));
+
+        \c$bv_18\ <= ((std_logic_vector(acc_12)));
+
+        \c$case_alt_selection_res_5\ <= (( \c$bv_17\(\c$bv_17\'high) ) and ( \c$bv_18\(\c$bv_18\'high) )) = '0';
+
+        \c$case_alt_8\ <= to_signed(131071,18) when \c$case_alt_selection_res_5\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_4\ <= (\c$r'_app_arg_4\(\c$r'_app_arg_4\'high downto 18),\c$r'_app_arg_4\(18-1 downto 0));
+
+        \r'_5\ <= \r'_projection_4\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_4\ <= (std_logic_vector(r_4));
+
+        r_4 <= resize(acc_11,19) + resize(acc_12,19);
+
+
+      end block;
+
+    fun_106 : block
+        signal result_9                     : signed(17 downto 0);
+        signal \c$case_alt_9\               : signed(17 downto 0);
+        signal \r'_6\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_5\             : std_logic_vector(18 downto 0);
+        signal r_5                          : signed(18 downto 0);
+        signal result_selection_res_6       : boolean;
+        signal \c$bv_19\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_6\ : boolean;
+        signal \c$bv_20\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_21\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_5\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_6 <= result_9;
+
+        \c$bv_19\ <= (\r'_6\);
+
+        result_selection_res_6 <= (( \c$r'_app_arg_5\(\c$r'_app_arg_5\'high) ) xor ( \c$bv_19\(\c$bv_19\'high) )) = '0';
+
+        result_9 <= signed(\r'_6\) when result_selection_res_6 else
+                    \c$case_alt_9\;
+
+        \c$bv_20\ <= ((std_logic_vector(acc_13)));
+
+        \c$bv_21\ <= ((std_logic_vector(acc_14)));
+
+        \c$case_alt_selection_res_6\ <= (( \c$bv_20\(\c$bv_20\'high) ) and ( \c$bv_21\(\c$bv_21\'high) )) = '0';
+
+        \c$case_alt_9\ <= to_signed(131071,18) when \c$case_alt_selection_res_6\ else
+                          to_signed(-131072,18);
+
+        \r'_projection_5\ <= (\c$r'_app_arg_5\(\c$r'_app_arg_5\'high downto 18),\c$r'_app_arg_5\(18-1 downto 0));
+
+        \r'_6\ <= \r'_projection_5\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_5\ <= (std_logic_vector(r_5));
+
+        r_5 <= resize(acc_13,19) + resize(acc_14,19);
+
+
+      end block;
+
+    fun_107 : block
+        signal result_10                    : signed(17 downto 0);
+        signal \c$case_alt_10\              : signed(17 downto 0);
+        signal \r'_7\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_6\             : std_logic_vector(18 downto 0);
+        signal r_6                          : signed(18 downto 0);
+        signal result_selection_res_7       : boolean;
+        signal \c$bv_22\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_7\ : boolean;
+        signal \c$bv_23\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_24\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_6\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_7 <= result_10;
+
+        \c$bv_22\ <= (\r'_7\);
+
+        result_selection_res_7 <= (( \c$r'_app_arg_6\(\c$r'_app_arg_6\'high) ) xor ( \c$bv_22\(\c$bv_22\'high) )) = '0';
+
+        result_10 <= signed(\r'_7\) when result_selection_res_7 else
+                     \c$case_alt_10\;
+
+        \c$bv_23\ <= ((std_logic_vector(acc_15)));
+
+        \c$bv_24\ <= ((std_logic_vector(acc_16)));
+
+        \c$case_alt_selection_res_7\ <= (( \c$bv_23\(\c$bv_23\'high) ) and ( \c$bv_24\(\c$bv_24\'high) )) = '0';
+
+        \c$case_alt_10\ <= to_signed(131071,18) when \c$case_alt_selection_res_7\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_6\ <= (\c$r'_app_arg_6\(\c$r'_app_arg_6\'high downto 18),\c$r'_app_arg_6\(18-1 downto 0));
+
+        \r'_7\ <= \r'_projection_6\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_6\ <= (std_logic_vector(r_6));
+
+        r_6 <= resize(acc_15,19) + resize(acc_16,19);
+
+
+      end block;
+
+    fun_108 : block
+        signal result_11                    : signed(17 downto 0);
+        signal \c$case_alt_11\              : signed(17 downto 0);
+        signal \r'_8\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_7\             : std_logic_vector(18 downto 0);
+        signal r_7                          : signed(18 downto 0);
+        signal result_selection_res_8       : boolean;
+        signal \c$bv_25\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_8\ : boolean;
+        signal \c$bv_26\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_27\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_7\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_8 <= result_11;
+
+        \c$bv_25\ <= (\r'_8\);
+
+        result_selection_res_8 <= (( \c$r'_app_arg_7\(\c$r'_app_arg_7\'high) ) xor ( \c$bv_25\(\c$bv_25\'high) )) = '0';
+
+        result_11 <= signed(\r'_8\) when result_selection_res_8 else
+                     \c$case_alt_11\;
+
+        \c$bv_26\ <= ((std_logic_vector(acc_17)));
+
+        \c$bv_27\ <= ((std_logic_vector(acc_18)));
+
+        \c$case_alt_selection_res_8\ <= (( \c$bv_26\(\c$bv_26\'high) ) and ( \c$bv_27\(\c$bv_27\'high) )) = '0';
+
+        \c$case_alt_11\ <= to_signed(131071,18) when \c$case_alt_selection_res_8\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_7\ <= (\c$r'_app_arg_7\(\c$r'_app_arg_7\'high downto 18),\c$r'_app_arg_7\(18-1 downto 0));
+
+        \r'_8\ <= \r'_projection_7\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_7\ <= (std_logic_vector(r_7));
+
+        r_7 <= resize(acc_17,19) + resize(acc_18,19);
+
+
+      end block;
+
+    fun_109 : block
+        signal result_12                    : signed(17 downto 0);
+        signal \c$case_alt_12\              : signed(17 downto 0);
+        signal \r'_9\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_8\             : std_logic_vector(18 downto 0);
+        signal r_8                          : signed(18 downto 0);
+        signal result_selection_res_9       : boolean;
+        signal \c$bv_28\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_9\ : boolean;
+        signal \c$bv_29\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_30\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_8\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_9 <= result_12;
+
+        \c$bv_28\ <= (\r'_9\);
+
+        result_selection_res_9 <= (( \c$r'_app_arg_8\(\c$r'_app_arg_8\'high) ) xor ( \c$bv_28\(\c$bv_28\'high) )) = '0';
+
+        result_12 <= signed(\r'_9\) when result_selection_res_9 else
+                     \c$case_alt_12\;
+
+        \c$bv_29\ <= ((std_logic_vector(acc_19)));
+
+        \c$bv_30\ <= ((std_logic_vector(acc_20)));
+
+        \c$case_alt_selection_res_9\ <= (( \c$bv_29\(\c$bv_29\'high) ) and ( \c$bv_30\(\c$bv_30\'high) )) = '0';
+
+        \c$case_alt_12\ <= to_signed(131071,18) when \c$case_alt_selection_res_9\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_8\ <= (\c$r'_app_arg_8\(\c$r'_app_arg_8\'high downto 18),\c$r'_app_arg_8\(18-1 downto 0));
+
+        \r'_9\ <= \r'_projection_8\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_8\ <= (std_logic_vector(r_8));
+
+        r_8 <= resize(acc_19,19) + resize(acc_20,19);
+
+
+      end block;
+
+    fun_110 : block
+        signal result_13                     : signed(17 downto 0);
+        signal \c$case_alt_13\               : signed(17 downto 0);
+        signal \r'_10\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_9\              : std_logic_vector(18 downto 0);
+        signal r_9                           : signed(18 downto 0);
+        signal result_selection_res_10       : boolean;
+        signal \c$bv_31\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_10\ : boolean;
+        signal \c$bv_32\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_33\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_9\             : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_10 <= result_13;
+
+        \c$bv_31\ <= (\r'_10\);
+
+        result_selection_res_10 <= (( \c$r'_app_arg_9\(\c$r'_app_arg_9\'high) ) xor ( \c$bv_31\(\c$bv_31\'high) )) = '0';
+
+        result_13 <= signed(\r'_10\) when result_selection_res_10 else
+                     \c$case_alt_13\;
+
+        \c$bv_32\ <= ((std_logic_vector(acc_21)));
+
+        \c$bv_33\ <= ((std_logic_vector(acc_22)));
+
+        \c$case_alt_selection_res_10\ <= (( \c$bv_32\(\c$bv_32\'high) ) and ( \c$bv_33\(\c$bv_33\'high) )) = '0';
+
+        \c$case_alt_13\ <= to_signed(131071,18) when \c$case_alt_selection_res_10\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_9\ <= (\c$r'_app_arg_9\(\c$r'_app_arg_9\'high downto 18),\c$r'_app_arg_9\(18-1 downto 0));
+
+        \r'_10\ <= \r'_projection_9\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_9\ <= (std_logic_vector(r_9));
+
+        r_9 <= resize(acc_21,19) + resize(acc_22,19);
+
+
+      end block;
+
+    fun_111 : block
+        signal result_14                     : signed(17 downto 0);
+        signal \c$case_alt_14\               : signed(17 downto 0);
+        signal \r'_11\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_10\             : std_logic_vector(18 downto 0);
+        signal r_10                          : signed(18 downto 0);
+        signal result_selection_res_11       : boolean;
+        signal \c$bv_34\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_11\ : boolean;
+        signal \c$bv_35\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_36\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_10\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_11 <= result_14;
+
+        \c$bv_34\ <= (\r'_11\);
+
+        result_selection_res_11 <= (( \c$r'_app_arg_10\(\c$r'_app_arg_10\'high) ) xor ( \c$bv_34\(\c$bv_34\'high) )) = '0';
+
+        result_14 <= signed(\r'_11\) when result_selection_res_11 else
+                     \c$case_alt_14\;
+
+        \c$bv_35\ <= ((std_logic_vector(acc_23)));
+
+        \c$bv_36\ <= ((std_logic_vector(acc_24)));
+
+        \c$case_alt_selection_res_11\ <= (( \c$bv_35\(\c$bv_35\'high) ) and ( \c$bv_36\(\c$bv_36\'high) )) = '0';
+
+        \c$case_alt_14\ <= to_signed(131071,18) when \c$case_alt_selection_res_11\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_10\ <= (\c$r'_app_arg_10\(\c$r'_app_arg_10\'high downto 18),\c$r'_app_arg_10\(18-1 downto 0));
+
+        \r'_11\ <= \r'_projection_10\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_10\ <= (std_logic_vector(r_10));
+
+        r_10 <= resize(acc_23,19) + resize(acc_24,19);
+
+
+      end block;
+
+    fun_112 : block
+        signal result_15                     : signed(17 downto 0);
+        signal \c$case_alt_15\               : signed(17 downto 0);
+        signal \r'_12\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_11\             : std_logic_vector(18 downto 0);
+        signal r_11                          : signed(18 downto 0);
+        signal result_selection_res_12       : boolean;
+        signal \c$bv_37\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_12\ : boolean;
+        signal \c$bv_38\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_39\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_11\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_12 <= result_15;
+
+        \c$bv_37\ <= (\r'_12\);
+
+        result_selection_res_12 <= (( \c$r'_app_arg_11\(\c$r'_app_arg_11\'high) ) xor ( \c$bv_37\(\c$bv_37\'high) )) = '0';
+
+        result_15 <= signed(\r'_12\) when result_selection_res_12 else
+                     \c$case_alt_15\;
+
+        \c$bv_38\ <= ((std_logic_vector(acc_25)));
+
+        \c$bv_39\ <= ((std_logic_vector(acc_26)));
+
+        \c$case_alt_selection_res_12\ <= (( \c$bv_38\(\c$bv_38\'high) ) and ( \c$bv_39\(\c$bv_39\'high) )) = '0';
+
+        \c$case_alt_15\ <= to_signed(131071,18) when \c$case_alt_selection_res_12\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_11\ <= (\c$r'_app_arg_11\(\c$r'_app_arg_11\'high downto 18),\c$r'_app_arg_11\(18-1 downto 0));
+
+        \r'_12\ <= \r'_projection_11\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_11\ <= (std_logic_vector(r_11));
+
+        r_11 <= resize(acc_25,19) + resize(acc_26,19);
+
+
+      end block;
+
+    fun_113 : block
+        signal result_16                     : signed(17 downto 0);
+        signal \c$case_alt_16\               : signed(17 downto 0);
+        signal \r'_13\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_12\             : std_logic_vector(18 downto 0);
+        signal r_12                          : signed(18 downto 0);
+        signal result_selection_res_13       : boolean;
+        signal \c$bv_40\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_13\ : boolean;
+        signal \c$bv_41\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_42\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_12\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_13 <= result_16;
+
+        \c$bv_40\ <= (\r'_13\);
+
+        result_selection_res_13 <= (( \c$r'_app_arg_12\(\c$r'_app_arg_12\'high) ) xor ( \c$bv_40\(\c$bv_40\'high) )) = '0';
+
+        result_16 <= signed(\r'_13\) when result_selection_res_13 else
+                     \c$case_alt_16\;
+
+        \c$bv_41\ <= ((std_logic_vector(acc_27)));
+
+        \c$bv_42\ <= ((std_logic_vector(acc_28)));
+
+        \c$case_alt_selection_res_13\ <= (( \c$bv_41\(\c$bv_41\'high) ) and ( \c$bv_42\(\c$bv_42\'high) )) = '0';
+
+        \c$case_alt_16\ <= to_signed(131071,18) when \c$case_alt_selection_res_13\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_12\ <= (\c$r'_app_arg_12\(\c$r'_app_arg_12\'high downto 18),\c$r'_app_arg_12\(18-1 downto 0));
+
+        \r'_13\ <= \r'_projection_12\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_12\ <= (std_logic_vector(r_12));
+
+        r_12 <= resize(acc_27,19) + resize(acc_28,19);
+
+
+      end block;
+
+    fun_114 : block
+        signal result_17                     : signed(17 downto 0);
+        signal \c$case_alt_17\               : signed(17 downto 0);
+        signal \r'_14\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_13\             : std_logic_vector(18 downto 0);
+        signal r_13                          : signed(18 downto 0);
+        signal result_selection_res_14       : boolean;
+        signal \c$bv_43\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_14\ : boolean;
+        signal \c$bv_44\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_45\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_13\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_14 <= result_17;
+
+        \c$bv_43\ <= (\r'_14\);
+
+        result_selection_res_14 <= (( \c$r'_app_arg_13\(\c$r'_app_arg_13\'high) ) xor ( \c$bv_43\(\c$bv_43\'high) )) = '0';
+
+        result_17 <= signed(\r'_14\) when result_selection_res_14 else
+                     \c$case_alt_17\;
+
+        \c$bv_44\ <= ((std_logic_vector(acc_29)));
+
+        \c$bv_45\ <= ((std_logic_vector(acc_30)));
+
+        \c$case_alt_selection_res_14\ <= (( \c$bv_44\(\c$bv_44\'high) ) and ( \c$bv_45\(\c$bv_45\'high) )) = '0';
+
+        \c$case_alt_17\ <= to_signed(131071,18) when \c$case_alt_selection_res_14\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_13\ <= (\c$r'_app_arg_13\(\c$r'_app_arg_13\'high downto 18),\c$r'_app_arg_13\(18-1 downto 0));
+
+        \r'_14\ <= \r'_projection_13\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_13\ <= (std_logic_vector(r_13));
+
+        r_13 <= resize(acc_29,19) + resize(acc_30,19);
+
+
+      end block;
+
+    fun_115 : block
+        signal result_18                     : signed(17 downto 0);
+        signal \c$case_alt_18\               : signed(17 downto 0);
+        signal \r'_15\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_14\             : std_logic_vector(18 downto 0);
+        signal r_14                          : signed(18 downto 0);
+        signal result_selection_res_15       : boolean;
+        signal \c$bv_46\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_15\ : boolean;
+        signal \c$bv_47\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_48\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_14\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_15 <= result_18;
+
+        \c$bv_46\ <= (\r'_15\);
+
+        result_selection_res_15 <= (( \c$r'_app_arg_14\(\c$r'_app_arg_14\'high) ) xor ( \c$bv_46\(\c$bv_46\'high) )) = '0';
+
+        result_18 <= signed(\r'_15\) when result_selection_res_15 else
+                     \c$case_alt_18\;
+
+        \c$bv_47\ <= ((std_logic_vector(acc_31)));
+
+        \c$bv_48\ <= ((std_logic_vector(acc_32)));
+
+        \c$case_alt_selection_res_15\ <= (( \c$bv_47\(\c$bv_47\'high) ) and ( \c$bv_48\(\c$bv_48\'high) )) = '0';
+
+        \c$case_alt_18\ <= to_signed(131071,18) when \c$case_alt_selection_res_15\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_14\ <= (\c$r'_app_arg_14\(\c$r'_app_arg_14\'high downto 18),\c$r'_app_arg_14\(18-1 downto 0));
+
+        \r'_15\ <= \r'_projection_14\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_14\ <= (std_logic_vector(r_14));
+
+        r_14 <= resize(acc_31,19) + resize(acc_32,19);
+
+
+      end block;
+
+    fun_116 : block
+        signal result_19                     : signed(17 downto 0);
+        signal \c$case_alt_19\               : signed(17 downto 0);
+        signal \r'_16\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_15\             : std_logic_vector(18 downto 0);
+        signal r_15                          : signed(18 downto 0);
+        signal result_selection_res_16       : boolean;
+        signal \c$bv_49\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_16\ : boolean;
+        signal \c$bv_50\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_51\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_15\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_16 <= result_19;
+
+        \c$bv_49\ <= (\r'_16\);
+
+        result_selection_res_16 <= (( \c$r'_app_arg_15\(\c$r'_app_arg_15\'high) ) xor ( \c$bv_49\(\c$bv_49\'high) )) = '0';
+
+        result_19 <= signed(\r'_16\) when result_selection_res_16 else
+                     \c$case_alt_19\;
+
+        \c$bv_50\ <= ((std_logic_vector(acc_33)));
+
+        \c$bv_51\ <= ((std_logic_vector(acc_34)));
+
+        \c$case_alt_selection_res_16\ <= (( \c$bv_50\(\c$bv_50\'high) ) and ( \c$bv_51\(\c$bv_51\'high) )) = '0';
+
+        \c$case_alt_19\ <= to_signed(131071,18) when \c$case_alt_selection_res_16\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_15\ <= (\c$r'_app_arg_15\(\c$r'_app_arg_15\'high downto 18),\c$r'_app_arg_15\(18-1 downto 0));
+
+        \r'_16\ <= \r'_projection_15\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_15\ <= (std_logic_vector(r_15));
+
+        r_15 <= resize(acc_33,19) + resize(acc_34,19);
+
+
+      end block;
+
+    fun_117 : block
+        signal result_20                     : signed(17 downto 0);
+        signal \c$case_alt_20\               : signed(17 downto 0);
+        signal \r'_17\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_16\             : std_logic_vector(18 downto 0);
+        signal r_16                          : signed(18 downto 0);
+        signal result_selection_res_17       : boolean;
+        signal \c$bv_52\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_17\ : boolean;
+        signal \c$bv_53\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_54\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_16\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_17 <= result_20;
+
+        \c$bv_52\ <= (\r'_17\);
+
+        result_selection_res_17 <= (( \c$r'_app_arg_16\(\c$r'_app_arg_16\'high) ) xor ( \c$bv_52\(\c$bv_52\'high) )) = '0';
+
+        result_20 <= signed(\r'_17\) when result_selection_res_17 else
+                     \c$case_alt_20\;
+
+        \c$bv_53\ <= ((std_logic_vector(acc_35)));
+
+        \c$bv_54\ <= ((std_logic_vector(acc_36)));
+
+        \c$case_alt_selection_res_17\ <= (( \c$bv_53\(\c$bv_53\'high) ) and ( \c$bv_54\(\c$bv_54\'high) )) = '0';
+
+        \c$case_alt_20\ <= to_signed(131071,18) when \c$case_alt_selection_res_17\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_16\ <= (\c$r'_app_arg_16\(\c$r'_app_arg_16\'high downto 18),\c$r'_app_arg_16\(18-1 downto 0));
+
+        \r'_17\ <= \r'_projection_16\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_16\ <= (std_logic_vector(r_16));
+
+        r_16 <= resize(acc_35,19) + resize(acc_36,19);
+
+
+      end block;
+
+    fun_118 : block
+        signal result_21                     : signed(17 downto 0);
+        signal \c$case_alt_21\               : signed(17 downto 0);
+        signal \r'_18\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_17\             : std_logic_vector(18 downto 0);
+        signal r_17                          : signed(18 downto 0);
+        signal result_selection_res_18       : boolean;
+        signal \c$bv_55\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_18\ : boolean;
+        signal \c$bv_56\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_57\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_17\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_18 <= result_21;
+
+        \c$bv_55\ <= (\r'_18\);
+
+        result_selection_res_18 <= (( \c$r'_app_arg_17\(\c$r'_app_arg_17\'high) ) xor ( \c$bv_55\(\c$bv_55\'high) )) = '0';
+
+        result_21 <= signed(\r'_18\) when result_selection_res_18 else
+                     \c$case_alt_21\;
+
+        \c$bv_56\ <= ((std_logic_vector(acc_37)));
+
+        \c$bv_57\ <= ((std_logic_vector(acc_38)));
+
+        \c$case_alt_selection_res_18\ <= (( \c$bv_56\(\c$bv_56\'high) ) and ( \c$bv_57\(\c$bv_57\'high) )) = '0';
+
+        \c$case_alt_21\ <= to_signed(131071,18) when \c$case_alt_selection_res_18\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_17\ <= (\c$r'_app_arg_17\(\c$r'_app_arg_17\'high downto 18),\c$r'_app_arg_17\(18-1 downto 0));
+
+        \r'_18\ <= \r'_projection_17\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_17\ <= (std_logic_vector(r_17));
+
+        r_17 <= resize(acc_37,19) + resize(acc_38,19);
+
+
+      end block;
+
+    fun_119 : block
+        signal result_22                     : signed(17 downto 0);
+        signal \c$case_alt_22\               : signed(17 downto 0);
+        signal \r'_19\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_18\             : std_logic_vector(18 downto 0);
+        signal r_18                          : signed(18 downto 0);
+        signal result_selection_res_19       : boolean;
+        signal \c$bv_58\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_19\ : boolean;
+        signal \c$bv_59\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_60\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_18\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_19 <= result_22;
+
+        \c$bv_58\ <= (\r'_19\);
+
+        result_selection_res_19 <= (( \c$r'_app_arg_18\(\c$r'_app_arg_18\'high) ) xor ( \c$bv_58\(\c$bv_58\'high) )) = '0';
+
+        result_22 <= signed(\r'_19\) when result_selection_res_19 else
+                     \c$case_alt_22\;
+
+        \c$bv_59\ <= ((std_logic_vector(acc_39)));
+
+        \c$bv_60\ <= ((std_logic_vector(acc_40)));
+
+        \c$case_alt_selection_res_19\ <= (( \c$bv_59\(\c$bv_59\'high) ) and ( \c$bv_60\(\c$bv_60\'high) )) = '0';
+
+        \c$case_alt_22\ <= to_signed(131071,18) when \c$case_alt_selection_res_19\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_18\ <= (\c$r'_app_arg_18\(\c$r'_app_arg_18\'high downto 18),\c$r'_app_arg_18\(18-1 downto 0));
+
+        \r'_19\ <= \r'_projection_18\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_18\ <= (std_logic_vector(r_18));
+
+        r_18 <= resize(acc_39,19) + resize(acc_40,19);
+
+
+      end block;
+
+    fun_120 : block
+        signal result_23                     : signed(17 downto 0);
+        signal \c$case_alt_23\               : signed(17 downto 0);
+        signal \r'_20\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_19\             : std_logic_vector(18 downto 0);
+        signal r_19                          : signed(18 downto 0);
+        signal result_selection_res_20       : boolean;
+        signal \c$bv_61\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_20\ : boolean;
+        signal \c$bv_62\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_63\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_19\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_20 <= result_23;
+
+        \c$bv_61\ <= (\r'_20\);
+
+        result_selection_res_20 <= (( \c$r'_app_arg_19\(\c$r'_app_arg_19\'high) ) xor ( \c$bv_61\(\c$bv_61\'high) )) = '0';
+
+        result_23 <= signed(\r'_20\) when result_selection_res_20 else
+                     \c$case_alt_23\;
+
+        \c$bv_62\ <= ((std_logic_vector(acc_41)));
+
+        \c$bv_63\ <= ((std_logic_vector(acc_42)));
+
+        \c$case_alt_selection_res_20\ <= (( \c$bv_62\(\c$bv_62\'high) ) and ( \c$bv_63\(\c$bv_63\'high) )) = '0';
+
+        \c$case_alt_23\ <= to_signed(131071,18) when \c$case_alt_selection_res_20\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_19\ <= (\c$r'_app_arg_19\(\c$r'_app_arg_19\'high downto 18),\c$r'_app_arg_19\(18-1 downto 0));
+
+        \r'_20\ <= \r'_projection_19\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_19\ <= (std_logic_vector(r_19));
+
+        r_19 <= resize(acc_41,19) + resize(acc_42,19);
+
+
+      end block;
+
+    fun_121 : block
+        signal result_24                     : signed(17 downto 0);
+        signal \c$case_alt_24\               : signed(17 downto 0);
+        signal \r'_21\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_20\             : std_logic_vector(18 downto 0);
+        signal r_20                          : signed(18 downto 0);
+        signal result_selection_res_21       : boolean;
+        signal \c$bv_64\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_21\ : boolean;
+        signal \c$bv_65\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_66\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_20\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_21 <= result_24;
+
+        \c$bv_64\ <= (\r'_21\);
+
+        result_selection_res_21 <= (( \c$r'_app_arg_20\(\c$r'_app_arg_20\'high) ) xor ( \c$bv_64\(\c$bv_64\'high) )) = '0';
+
+        result_24 <= signed(\r'_21\) when result_selection_res_21 else
+                     \c$case_alt_24\;
+
+        \c$bv_65\ <= ((std_logic_vector(acc_43)));
+
+        \c$bv_66\ <= ((std_logic_vector(acc_44)));
+
+        \c$case_alt_selection_res_21\ <= (( \c$bv_65\(\c$bv_65\'high) ) and ( \c$bv_66\(\c$bv_66\'high) )) = '0';
+
+        \c$case_alt_24\ <= to_signed(131071,18) when \c$case_alt_selection_res_21\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_20\ <= (\c$r'_app_arg_20\(\c$r'_app_arg_20\'high downto 18),\c$r'_app_arg_20\(18-1 downto 0));
+
+        \r'_21\ <= \r'_projection_20\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_20\ <= (std_logic_vector(r_20));
+
+        r_20 <= resize(acc_43,19) + resize(acc_44,19);
+
+
+      end block;
+
+    fun_122 : block
+        signal result_25                     : signed(17 downto 0);
+        signal \c$case_alt_25\               : signed(17 downto 0);
+        signal \r'_22\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_21\             : std_logic_vector(18 downto 0);
+        signal r_21                          : signed(18 downto 0);
+        signal result_selection_res_22       : boolean;
+        signal \c$bv_67\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_22\ : boolean;
+        signal \c$bv_68\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_69\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_21\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_22 <= result_25;
+
+        \c$bv_67\ <= (\r'_22\);
+
+        result_selection_res_22 <= (( \c$r'_app_arg_21\(\c$r'_app_arg_21\'high) ) xor ( \c$bv_67\(\c$bv_67\'high) )) = '0';
+
+        result_25 <= signed(\r'_22\) when result_selection_res_22 else
+                     \c$case_alt_25\;
+
+        \c$bv_68\ <= ((std_logic_vector(acc_45)));
+
+        \c$bv_69\ <= ((std_logic_vector(acc_46)));
+
+        \c$case_alt_selection_res_22\ <= (( \c$bv_68\(\c$bv_68\'high) ) and ( \c$bv_69\(\c$bv_69\'high) )) = '0';
+
+        \c$case_alt_25\ <= to_signed(131071,18) when \c$case_alt_selection_res_22\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_21\ <= (\c$r'_app_arg_21\(\c$r'_app_arg_21\'high downto 18),\c$r'_app_arg_21\(18-1 downto 0));
+
+        \r'_22\ <= \r'_projection_21\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_21\ <= (std_logic_vector(r_21));
+
+        r_21 <= resize(acc_45,19) + resize(acc_46,19);
+
+
+      end block;
+
+    fun_123 : block
+        signal result_26                     : signed(17 downto 0);
+        signal \c$case_alt_26\               : signed(17 downto 0);
+        signal \r'_23\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_22\             : std_logic_vector(18 downto 0);
+        signal r_22                          : signed(18 downto 0);
+        signal result_selection_res_23       : boolean;
+        signal \c$bv_70\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_23\ : boolean;
+        signal \c$bv_71\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_72\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_22\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_23 <= result_26;
+
+        \c$bv_70\ <= (\r'_23\);
+
+        result_selection_res_23 <= (( \c$r'_app_arg_22\(\c$r'_app_arg_22\'high) ) xor ( \c$bv_70\(\c$bv_70\'high) )) = '0';
+
+        result_26 <= signed(\r'_23\) when result_selection_res_23 else
+                     \c$case_alt_26\;
+
+        \c$bv_71\ <= ((std_logic_vector(acc_47)));
+
+        \c$bv_72\ <= ((std_logic_vector(acc_48)));
+
+        \c$case_alt_selection_res_23\ <= (( \c$bv_71\(\c$bv_71\'high) ) and ( \c$bv_72\(\c$bv_72\'high) )) = '0';
+
+        \c$case_alt_26\ <= to_signed(131071,18) when \c$case_alt_selection_res_23\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_22\ <= (\c$r'_app_arg_22\(\c$r'_app_arg_22\'high downto 18),\c$r'_app_arg_22\(18-1 downto 0));
+
+        \r'_23\ <= \r'_projection_22\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_22\ <= (std_logic_vector(r_22));
+
+        r_22 <= resize(acc_47,19) + resize(acc_48,19);
+
+
+      end block;
+
+    fun_124 : block
+        signal result_27                     : signed(17 downto 0);
+        signal \c$case_alt_27\               : signed(17 downto 0);
+        signal \r'_24\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_23\             : std_logic_vector(18 downto 0);
+        signal r_23                          : signed(18 downto 0);
+        signal result_selection_res_24       : boolean;
+        signal \c$bv_73\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_24\ : boolean;
+        signal \c$bv_74\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_75\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_23\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_24 <= result_27;
+
+        \c$bv_73\ <= (\r'_24\);
+
+        result_selection_res_24 <= (( \c$r'_app_arg_23\(\c$r'_app_arg_23\'high) ) xor ( \c$bv_73\(\c$bv_73\'high) )) = '0';
+
+        result_27 <= signed(\r'_24\) when result_selection_res_24 else
+                     \c$case_alt_27\;
+
+        \c$bv_74\ <= ((std_logic_vector(acc_49)));
+
+        \c$bv_75\ <= ((std_logic_vector(acc_50)));
+
+        \c$case_alt_selection_res_24\ <= (( \c$bv_74\(\c$bv_74\'high) ) and ( \c$bv_75\(\c$bv_75\'high) )) = '0';
+
+        \c$case_alt_27\ <= to_signed(131071,18) when \c$case_alt_selection_res_24\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_23\ <= (\c$r'_app_arg_23\(\c$r'_app_arg_23\'high downto 18),\c$r'_app_arg_23\(18-1 downto 0));
+
+        \r'_24\ <= \r'_projection_23\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_23\ <= (std_logic_vector(r_23));
+
+        r_23 <= resize(acc_49,19) + resize(acc_50,19);
+
+
+      end block;
+
+    fun_125 : block
+        signal result_28                     : signed(17 downto 0);
+        signal \c$case_alt_28\               : signed(17 downto 0);
+        signal \r'_25\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_24\             : std_logic_vector(18 downto 0);
+        signal r_24                          : signed(18 downto 0);
+        signal result_selection_res_25       : boolean;
+        signal \c$bv_76\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_25\ : boolean;
+        signal \c$bv_77\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_78\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_24\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_25 <= result_28;
+
+        \c$bv_76\ <= (\r'_25\);
+
+        result_selection_res_25 <= (( \c$r'_app_arg_24\(\c$r'_app_arg_24\'high) ) xor ( \c$bv_76\(\c$bv_76\'high) )) = '0';
+
+        result_28 <= signed(\r'_25\) when result_selection_res_25 else
+                     \c$case_alt_28\;
+
+        \c$bv_77\ <= ((std_logic_vector(acc_51)));
+
+        \c$bv_78\ <= ((std_logic_vector(acc_52)));
+
+        \c$case_alt_selection_res_25\ <= (( \c$bv_77\(\c$bv_77\'high) ) and ( \c$bv_78\(\c$bv_78\'high) )) = '0';
+
+        \c$case_alt_28\ <= to_signed(131071,18) when \c$case_alt_selection_res_25\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_24\ <= (\c$r'_app_arg_24\(\c$r'_app_arg_24\'high downto 18),\c$r'_app_arg_24\(18-1 downto 0));
+
+        \r'_25\ <= \r'_projection_24\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_24\ <= (std_logic_vector(r_24));
+
+        r_24 <= resize(acc_51,19) + resize(acc_52,19);
+
+
+      end block;
+
+    fun_126 : block
+        signal result_29                     : signed(17 downto 0);
+        signal \c$case_alt_29\               : signed(17 downto 0);
+        signal \r'_26\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_25\             : std_logic_vector(18 downto 0);
+        signal r_25                          : signed(18 downto 0);
+        signal result_selection_res_26       : boolean;
+        signal \c$bv_79\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_26\ : boolean;
+        signal \c$bv_80\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_81\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_25\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_26 <= result_29;
+
+        \c$bv_79\ <= (\r'_26\);
+
+        result_selection_res_26 <= (( \c$r'_app_arg_25\(\c$r'_app_arg_25\'high) ) xor ( \c$bv_79\(\c$bv_79\'high) )) = '0';
+
+        result_29 <= signed(\r'_26\) when result_selection_res_26 else
+                     \c$case_alt_29\;
+
+        \c$bv_80\ <= ((std_logic_vector(acc_53)));
+
+        \c$bv_81\ <= ((std_logic_vector(acc_54)));
+
+        \c$case_alt_selection_res_26\ <= (( \c$bv_80\(\c$bv_80\'high) ) and ( \c$bv_81\(\c$bv_81\'high) )) = '0';
+
+        \c$case_alt_29\ <= to_signed(131071,18) when \c$case_alt_selection_res_26\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_25\ <= (\c$r'_app_arg_25\(\c$r'_app_arg_25\'high downto 18),\c$r'_app_arg_25\(18-1 downto 0));
+
+        \r'_26\ <= \r'_projection_25\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_25\ <= (std_logic_vector(r_25));
+
+        r_25 <= resize(acc_53,19) + resize(acc_54,19);
+
+
+      end block;
+
+    fun_127 : block
+        signal result_30                     : signed(17 downto 0);
+        signal \c$case_alt_30\               : signed(17 downto 0);
+        signal \r'_27\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_26\             : std_logic_vector(18 downto 0);
+        signal r_26                          : signed(18 downto 0);
+        signal result_selection_res_27       : boolean;
+        signal \c$bv_82\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_27\ : boolean;
+        signal \c$bv_83\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_84\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_26\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_27 <= result_30;
+
+        \c$bv_82\ <= (\r'_27\);
+
+        result_selection_res_27 <= (( \c$r'_app_arg_26\(\c$r'_app_arg_26\'high) ) xor ( \c$bv_82\(\c$bv_82\'high) )) = '0';
+
+        result_30 <= signed(\r'_27\) when result_selection_res_27 else
+                     \c$case_alt_30\;
+
+        \c$bv_83\ <= ((std_logic_vector(acc_55)));
+
+        \c$bv_84\ <= ((std_logic_vector(acc_56)));
+
+        \c$case_alt_selection_res_27\ <= (( \c$bv_83\(\c$bv_83\'high) ) and ( \c$bv_84\(\c$bv_84\'high) )) = '0';
+
+        \c$case_alt_30\ <= to_signed(131071,18) when \c$case_alt_selection_res_27\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_26\ <= (\c$r'_app_arg_26\(\c$r'_app_arg_26\'high downto 18),\c$r'_app_arg_26\(18-1 downto 0));
+
+        \r'_27\ <= \r'_projection_26\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_26\ <= (std_logic_vector(r_26));
+
+        r_26 <= resize(acc_55,19) + resize(acc_56,19);
+
+
+      end block;
+
+    fun_128 : block
+        signal result_31                     : signed(17 downto 0);
+        signal \c$case_alt_31\               : signed(17 downto 0);
+        signal \r'_28\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_27\             : std_logic_vector(18 downto 0);
+        signal r_27                          : signed(18 downto 0);
+        signal result_selection_res_28       : boolean;
+        signal \c$bv_85\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_28\ : boolean;
+        signal \c$bv_86\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_87\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_27\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_28 <= result_31;
+
+        \c$bv_85\ <= (\r'_28\);
+
+        result_selection_res_28 <= (( \c$r'_app_arg_27\(\c$r'_app_arg_27\'high) ) xor ( \c$bv_85\(\c$bv_85\'high) )) = '0';
+
+        result_31 <= signed(\r'_28\) when result_selection_res_28 else
+                     \c$case_alt_31\;
+
+        \c$bv_86\ <= ((std_logic_vector(acc_57)));
+
+        \c$bv_87\ <= ((std_logic_vector(acc_58)));
+
+        \c$case_alt_selection_res_28\ <= (( \c$bv_86\(\c$bv_86\'high) ) and ( \c$bv_87\(\c$bv_87\'high) )) = '0';
+
+        \c$case_alt_31\ <= to_signed(131071,18) when \c$case_alt_selection_res_28\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_27\ <= (\c$r'_app_arg_27\(\c$r'_app_arg_27\'high downto 18),\c$r'_app_arg_27\(18-1 downto 0));
+
+        \r'_28\ <= \r'_projection_27\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_27\ <= (std_logic_vector(r_27));
+
+        r_27 <= resize(acc_57,19) + resize(acc_58,19);
+
+
+      end block;
+
+    fun_129 : block
+        signal result_32                     : signed(17 downto 0);
+        signal \c$case_alt_32\               : signed(17 downto 0);
+        signal \r'_29\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_28\             : std_logic_vector(18 downto 0);
+        signal r_28                          : signed(18 downto 0);
+        signal result_selection_res_29       : boolean;
+        signal \c$bv_88\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_29\ : boolean;
+        signal \c$bv_89\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_90\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_28\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_29 <= result_32;
+
+        \c$bv_88\ <= (\r'_29\);
+
+        result_selection_res_29 <= (( \c$r'_app_arg_28\(\c$r'_app_arg_28\'high) ) xor ( \c$bv_88\(\c$bv_88\'high) )) = '0';
+
+        result_32 <= signed(\r'_29\) when result_selection_res_29 else
+                     \c$case_alt_32\;
+
+        \c$bv_89\ <= ((std_logic_vector(acc_59)));
+
+        \c$bv_90\ <= ((std_logic_vector(acc_60)));
+
+        \c$case_alt_selection_res_29\ <= (( \c$bv_89\(\c$bv_89\'high) ) and ( \c$bv_90\(\c$bv_90\'high) )) = '0';
+
+        \c$case_alt_32\ <= to_signed(131071,18) when \c$case_alt_selection_res_29\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_28\ <= (\c$r'_app_arg_28\(\c$r'_app_arg_28\'high downto 18),\c$r'_app_arg_28\(18-1 downto 0));
+
+        \r'_29\ <= \r'_projection_28\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_28\ <= (std_logic_vector(r_28));
+
+        r_28 <= resize(acc_59,19) + resize(acc_60,19);
+
+
+      end block;
+
+    fun_130 : block
+        signal result_33                     : signed(17 downto 0);
+        signal \c$case_alt_33\               : signed(17 downto 0);
+        signal \r'_30\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_29\             : std_logic_vector(18 downto 0);
+        signal r_29                          : signed(18 downto 0);
+        signal result_selection_res_30       : boolean;
+        signal \c$bv_91\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_30\ : boolean;
+        signal \c$bv_92\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_93\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_29\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_30 <= result_33;
+
+        \c$bv_91\ <= (\r'_30\);
+
+        result_selection_res_30 <= (( \c$r'_app_arg_29\(\c$r'_app_arg_29\'high) ) xor ( \c$bv_91\(\c$bv_91\'high) )) = '0';
+
+        result_33 <= signed(\r'_30\) when result_selection_res_30 else
+                     \c$case_alt_33\;
+
+        \c$bv_92\ <= ((std_logic_vector(acc_61)));
+
+        \c$bv_93\ <= ((std_logic_vector(acc_62)));
+
+        \c$case_alt_selection_res_30\ <= (( \c$bv_92\(\c$bv_92\'high) ) and ( \c$bv_93\(\c$bv_93\'high) )) = '0';
+
+        \c$case_alt_33\ <= to_signed(131071,18) when \c$case_alt_selection_res_30\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_29\ <= (\c$r'_app_arg_29\(\c$r'_app_arg_29\'high downto 18),\c$r'_app_arg_29\(18-1 downto 0));
+
+        \r'_30\ <= \r'_projection_29\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_29\ <= (std_logic_vector(r_29));
+
+        r_29 <= resize(acc_61,19) + resize(acc_62,19);
+
+
+      end block;
+
+    fun_131 : block
+        signal result_34                     : signed(17 downto 0);
+        signal \c$case_alt_34\               : signed(17 downto 0);
+        signal \r'_31\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_30\             : std_logic_vector(18 downto 0);
+        signal r_30                          : signed(18 downto 0);
+        signal result_selection_res_31       : boolean;
+        signal \c$bv_94\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_31\ : boolean;
+        signal \c$bv_95\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_96\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_30\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_31 <= result_34;
+
+        \c$bv_94\ <= (\r'_31\);
+
+        result_selection_res_31 <= (( \c$r'_app_arg_30\(\c$r'_app_arg_30\'high) ) xor ( \c$bv_94\(\c$bv_94\'high) )) = '0';
+
+        result_34 <= signed(\r'_31\) when result_selection_res_31 else
+                     \c$case_alt_34\;
+
+        \c$bv_95\ <= ((std_logic_vector(acc_63)));
+
+        \c$bv_96\ <= ((std_logic_vector(acc_64)));
+
+        \c$case_alt_selection_res_31\ <= (( \c$bv_95\(\c$bv_95\'high) ) and ( \c$bv_96\(\c$bv_96\'high) )) = '0';
+
+        \c$case_alt_34\ <= to_signed(131071,18) when \c$case_alt_selection_res_31\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_30\ <= (\c$r'_app_arg_30\(\c$r'_app_arg_30\'high downto 18),\c$r'_app_arg_30\(18-1 downto 0));
+
+        \r'_31\ <= \r'_projection_30\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_30\ <= (std_logic_vector(r_30));
+
+        r_30 <= resize(acc_63,19) + resize(acc_64,19);
+
+
+      end block;
+
+    fun_132 : block
+        signal result_35                     : signed(17 downto 0);
+        signal \c$case_alt_35\               : signed(17 downto 0);
+        signal \r'_32\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_31\             : std_logic_vector(18 downto 0);
+        signal r_31                          : signed(18 downto 0);
+        signal result_selection_res_32       : boolean;
+        signal \c$bv_97\                     : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_32\ : boolean;
+        signal \c$bv_98\                     : std_logic_vector(17 downto 0);
+        signal \c$bv_99\                     : std_logic_vector(17 downto 0);
+        signal \r'_projection_31\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_32 <= result_35;
+
+        \c$bv_97\ <= (\r'_32\);
+
+        result_selection_res_32 <= (( \c$r'_app_arg_31\(\c$r'_app_arg_31\'high) ) xor ( \c$bv_97\(\c$bv_97\'high) )) = '0';
+
+        result_35 <= signed(\r'_32\) when result_selection_res_32 else
+                     \c$case_alt_35\;
+
+        \c$bv_98\ <= ((std_logic_vector(acc_65)));
+
+        \c$bv_99\ <= ((std_logic_vector(acc_66)));
+
+        \c$case_alt_selection_res_32\ <= (( \c$bv_98\(\c$bv_98\'high) ) and ( \c$bv_99\(\c$bv_99\'high) )) = '0';
+
+        \c$case_alt_35\ <= to_signed(131071,18) when \c$case_alt_selection_res_32\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_31\ <= (\c$r'_app_arg_31\(\c$r'_app_arg_31\'high downto 18),\c$r'_app_arg_31\(18-1 downto 0));
+
+        \r'_32\ <= \r'_projection_31\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_31\ <= (std_logic_vector(r_31));
+
+        r_31 <= resize(acc_65,19) + resize(acc_66,19);
+
+
+      end block;
+
+    fun_133 : block
+        signal result_36                     : signed(17 downto 0);
+        signal \c$case_alt_36\               : signed(17 downto 0);
+        signal \r'_33\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_32\             : std_logic_vector(18 downto 0);
+        signal r_32                          : signed(18 downto 0);
+        signal result_selection_res_33       : boolean;
+        signal \c$bv_100\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_33\ : boolean;
+        signal \c$bv_101\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_102\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_32\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_33 <= result_36;
+
+        \c$bv_100\ <= (\r'_33\);
+
+        result_selection_res_33 <= (( \c$r'_app_arg_32\(\c$r'_app_arg_32\'high) ) xor ( \c$bv_100\(\c$bv_100\'high) )) = '0';
+
+        result_36 <= signed(\r'_33\) when result_selection_res_33 else
+                     \c$case_alt_36\;
+
+        \c$bv_101\ <= ((std_logic_vector(acc_67)));
+
+        \c$bv_102\ <= ((std_logic_vector(acc_68)));
+
+        \c$case_alt_selection_res_33\ <= (( \c$bv_101\(\c$bv_101\'high) ) and ( \c$bv_102\(\c$bv_102\'high) )) = '0';
+
+        \c$case_alt_36\ <= to_signed(131071,18) when \c$case_alt_selection_res_33\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_32\ <= (\c$r'_app_arg_32\(\c$r'_app_arg_32\'high downto 18),\c$r'_app_arg_32\(18-1 downto 0));
+
+        \r'_33\ <= \r'_projection_32\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_32\ <= (std_logic_vector(r_32));
+
+        r_32 <= resize(acc_67,19) + resize(acc_68,19);
+
+
+      end block;
+
+    fun_134 : block
+        signal result_37                     : signed(17 downto 0);
+        signal \c$case_alt_37\               : signed(17 downto 0);
+        signal \r'_34\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_33\             : std_logic_vector(18 downto 0);
+        signal r_33                          : signed(18 downto 0);
+        signal result_selection_res_34       : boolean;
+        signal \c$bv_103\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_34\ : boolean;
+        signal \c$bv_104\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_105\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_33\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_34 <= result_37;
+
+        \c$bv_103\ <= (\r'_34\);
+
+        result_selection_res_34 <= (( \c$r'_app_arg_33\(\c$r'_app_arg_33\'high) ) xor ( \c$bv_103\(\c$bv_103\'high) )) = '0';
+
+        result_37 <= signed(\r'_34\) when result_selection_res_34 else
+                     \c$case_alt_37\;
+
+        \c$bv_104\ <= ((std_logic_vector(acc_69)));
+
+        \c$bv_105\ <= ((std_logic_vector(acc_70)));
+
+        \c$case_alt_selection_res_34\ <= (( \c$bv_104\(\c$bv_104\'high) ) and ( \c$bv_105\(\c$bv_105\'high) )) = '0';
+
+        \c$case_alt_37\ <= to_signed(131071,18) when \c$case_alt_selection_res_34\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_33\ <= (\c$r'_app_arg_33\(\c$r'_app_arg_33\'high downto 18),\c$r'_app_arg_33\(18-1 downto 0));
+
+        \r'_34\ <= \r'_projection_33\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_33\ <= (std_logic_vector(r_33));
+
+        r_33 <= resize(acc_69,19) + resize(acc_70,19);
+
+
+      end block;
+
+    fun_135 : block
+        signal result_38                     : signed(17 downto 0);
+        signal \c$case_alt_38\               : signed(17 downto 0);
+        signal \r'_35\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_34\             : std_logic_vector(18 downto 0);
+        signal r_34                          : signed(18 downto 0);
+        signal result_selection_res_35       : boolean;
+        signal \c$bv_106\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_35\ : boolean;
+        signal \c$bv_107\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_108\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_34\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_35 <= result_38;
+
+        \c$bv_106\ <= (\r'_35\);
+
+        result_selection_res_35 <= (( \c$r'_app_arg_34\(\c$r'_app_arg_34\'high) ) xor ( \c$bv_106\(\c$bv_106\'high) )) = '0';
+
+        result_38 <= signed(\r'_35\) when result_selection_res_35 else
+                     \c$case_alt_38\;
+
+        \c$bv_107\ <= ((std_logic_vector(acc_71)));
+
+        \c$bv_108\ <= ((std_logic_vector(acc_72)));
+
+        \c$case_alt_selection_res_35\ <= (( \c$bv_107\(\c$bv_107\'high) ) and ( \c$bv_108\(\c$bv_108\'high) )) = '0';
+
+        \c$case_alt_38\ <= to_signed(131071,18) when \c$case_alt_selection_res_35\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_34\ <= (\c$r'_app_arg_34\(\c$r'_app_arg_34\'high downto 18),\c$r'_app_arg_34\(18-1 downto 0));
+
+        \r'_35\ <= \r'_projection_34\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_34\ <= (std_logic_vector(r_34));
+
+        r_34 <= resize(acc_71,19) + resize(acc_72,19);
+
+
+      end block;
+
+    fun_136 : block
+        signal result_39                     : signed(17 downto 0);
+        signal \c$case_alt_39\               : signed(17 downto 0);
+        signal \r'_36\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_35\             : std_logic_vector(18 downto 0);
+        signal r_35                          : signed(18 downto 0);
+        signal result_selection_res_36       : boolean;
+        signal \c$bv_109\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_36\ : boolean;
+        signal \c$bv_110\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_111\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_35\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_36 <= result_39;
+
+        \c$bv_109\ <= (\r'_36\);
+
+        result_selection_res_36 <= (( \c$r'_app_arg_35\(\c$r'_app_arg_35\'high) ) xor ( \c$bv_109\(\c$bv_109\'high) )) = '0';
+
+        result_39 <= signed(\r'_36\) when result_selection_res_36 else
+                     \c$case_alt_39\;
+
+        \c$bv_110\ <= ((std_logic_vector(acc_73)));
+
+        \c$bv_111\ <= ((std_logic_vector(acc_74)));
+
+        \c$case_alt_selection_res_36\ <= (( \c$bv_110\(\c$bv_110\'high) ) and ( \c$bv_111\(\c$bv_111\'high) )) = '0';
+
+        \c$case_alt_39\ <= to_signed(131071,18) when \c$case_alt_selection_res_36\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_35\ <= (\c$r'_app_arg_35\(\c$r'_app_arg_35\'high downto 18),\c$r'_app_arg_35\(18-1 downto 0));
+
+        \r'_36\ <= \r'_projection_35\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_35\ <= (std_logic_vector(r_35));
+
+        r_35 <= resize(acc_73,19) + resize(acc_74,19);
+
+
+      end block;
+
+    fun_137 : block
+        signal result_40                     : signed(17 downto 0);
+        signal \c$case_alt_40\               : signed(17 downto 0);
+        signal \r'_37\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_36\             : std_logic_vector(18 downto 0);
+        signal r_36                          : signed(18 downto 0);
+        signal result_selection_res_37       : boolean;
+        signal \c$bv_112\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_37\ : boolean;
+        signal \c$bv_113\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_114\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_36\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_37 <= result_40;
+
+        \c$bv_112\ <= (\r'_37\);
+
+        result_selection_res_37 <= (( \c$r'_app_arg_36\(\c$r'_app_arg_36\'high) ) xor ( \c$bv_112\(\c$bv_112\'high) )) = '0';
+
+        result_40 <= signed(\r'_37\) when result_selection_res_37 else
+                     \c$case_alt_40\;
+
+        \c$bv_113\ <= ((std_logic_vector(acc_75)));
+
+        \c$bv_114\ <= ((std_logic_vector(acc_76)));
+
+        \c$case_alt_selection_res_37\ <= (( \c$bv_113\(\c$bv_113\'high) ) and ( \c$bv_114\(\c$bv_114\'high) )) = '0';
+
+        \c$case_alt_40\ <= to_signed(131071,18) when \c$case_alt_selection_res_37\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_36\ <= (\c$r'_app_arg_36\(\c$r'_app_arg_36\'high downto 18),\c$r'_app_arg_36\(18-1 downto 0));
+
+        \r'_37\ <= \r'_projection_36\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_36\ <= (std_logic_vector(r_36));
+
+        r_36 <= resize(acc_75,19) + resize(acc_76,19);
+
+
+      end block;
+
+    fun_138 : block
+        signal result_41                     : signed(17 downto 0);
+        signal \c$case_alt_41\               : signed(17 downto 0);
+        signal \r'_38\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_37\             : std_logic_vector(18 downto 0);
+        signal r_37                          : signed(18 downto 0);
+        signal result_selection_res_38       : boolean;
+        signal \c$bv_115\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_38\ : boolean;
+        signal \c$bv_116\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_117\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_37\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_38 <= result_41;
+
+        \c$bv_115\ <= (\r'_38\);
+
+        result_selection_res_38 <= (( \c$r'_app_arg_37\(\c$r'_app_arg_37\'high) ) xor ( \c$bv_115\(\c$bv_115\'high) )) = '0';
+
+        result_41 <= signed(\r'_38\) when result_selection_res_38 else
+                     \c$case_alt_41\;
+
+        \c$bv_116\ <= ((std_logic_vector(acc_77)));
+
+        \c$bv_117\ <= ((std_logic_vector(acc_78)));
+
+        \c$case_alt_selection_res_38\ <= (( \c$bv_116\(\c$bv_116\'high) ) and ( \c$bv_117\(\c$bv_117\'high) )) = '0';
+
+        \c$case_alt_41\ <= to_signed(131071,18) when \c$case_alt_selection_res_38\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_37\ <= (\c$r'_app_arg_37\(\c$r'_app_arg_37\'high downto 18),\c$r'_app_arg_37\(18-1 downto 0));
+
+        \r'_38\ <= \r'_projection_37\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_37\ <= (std_logic_vector(r_37));
+
+        r_37 <= resize(acc_77,19) + resize(acc_78,19);
+
+
+      end block;
+
+    fun_139 : block
+        signal result_42                     : signed(17 downto 0);
+        signal \c$case_alt_42\               : signed(17 downto 0);
+        signal \r'_39\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_38\             : std_logic_vector(18 downto 0);
+        signal r_38                          : signed(18 downto 0);
+        signal result_selection_res_39       : boolean;
+        signal \c$bv_118\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_39\ : boolean;
+        signal \c$bv_119\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_120\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_38\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_39 <= result_42;
+
+        \c$bv_118\ <= (\r'_39\);
+
+        result_selection_res_39 <= (( \c$r'_app_arg_38\(\c$r'_app_arg_38\'high) ) xor ( \c$bv_118\(\c$bv_118\'high) )) = '0';
+
+        result_42 <= signed(\r'_39\) when result_selection_res_39 else
+                     \c$case_alt_42\;
+
+        \c$bv_119\ <= ((std_logic_vector(acc_79)));
+
+        \c$bv_120\ <= ((std_logic_vector(acc_80)));
+
+        \c$case_alt_selection_res_39\ <= (( \c$bv_119\(\c$bv_119\'high) ) and ( \c$bv_120\(\c$bv_120\'high) )) = '0';
+
+        \c$case_alt_42\ <= to_signed(131071,18) when \c$case_alt_selection_res_39\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_38\ <= (\c$r'_app_arg_38\(\c$r'_app_arg_38\'high downto 18),\c$r'_app_arg_38\(18-1 downto 0));
+
+        \r'_39\ <= \r'_projection_38\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_38\ <= (std_logic_vector(r_38));
+
+        r_38 <= resize(acc_79,19) + resize(acc_80,19);
+
+
+      end block;
+
+    fun_140 : block
+        signal result_43                     : signed(17 downto 0);
+        signal \c$case_alt_43\               : signed(17 downto 0);
+        signal \r'_40\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_39\             : std_logic_vector(18 downto 0);
+        signal r_39                          : signed(18 downto 0);
+        signal result_selection_res_40       : boolean;
+        signal \c$bv_121\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_40\ : boolean;
+        signal \c$bv_122\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_123\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_39\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_40 <= result_43;
+
+        \c$bv_121\ <= (\r'_40\);
+
+        result_selection_res_40 <= (( \c$r'_app_arg_39\(\c$r'_app_arg_39\'high) ) xor ( \c$bv_121\(\c$bv_121\'high) )) = '0';
+
+        result_43 <= signed(\r'_40\) when result_selection_res_40 else
+                     \c$case_alt_43\;
+
+        \c$bv_122\ <= ((std_logic_vector(acc_81)));
+
+        \c$bv_123\ <= ((std_logic_vector(acc_82)));
+
+        \c$case_alt_selection_res_40\ <= (( \c$bv_122\(\c$bv_122\'high) ) and ( \c$bv_123\(\c$bv_123\'high) )) = '0';
+
+        \c$case_alt_43\ <= to_signed(131071,18) when \c$case_alt_selection_res_40\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_39\ <= (\c$r'_app_arg_39\(\c$r'_app_arg_39\'high downto 18),\c$r'_app_arg_39\(18-1 downto 0));
+
+        \r'_40\ <= \r'_projection_39\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_39\ <= (std_logic_vector(r_39));
+
+        r_39 <= resize(acc_81,19) + resize(acc_82,19);
+
+
+      end block;
+
+    fun_141 : block
+        signal result_44                     : signed(17 downto 0);
+        signal \c$case_alt_44\               : signed(17 downto 0);
+        signal \r'_41\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_40\             : std_logic_vector(18 downto 0);
+        signal r_40                          : signed(18 downto 0);
+        signal result_selection_res_41       : boolean;
+        signal \c$bv_124\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_41\ : boolean;
+        signal \c$bv_125\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_126\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_40\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_41 <= result_44;
+
+        \c$bv_124\ <= (\r'_41\);
+
+        result_selection_res_41 <= (( \c$r'_app_arg_40\(\c$r'_app_arg_40\'high) ) xor ( \c$bv_124\(\c$bv_124\'high) )) = '0';
+
+        result_44 <= signed(\r'_41\) when result_selection_res_41 else
+                     \c$case_alt_44\;
+
+        \c$bv_125\ <= ((std_logic_vector(acc_83)));
+
+        \c$bv_126\ <= ((std_logic_vector(acc_84)));
+
+        \c$case_alt_selection_res_41\ <= (( \c$bv_125\(\c$bv_125\'high) ) and ( \c$bv_126\(\c$bv_126\'high) )) = '0';
+
+        \c$case_alt_44\ <= to_signed(131071,18) when \c$case_alt_selection_res_41\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_40\ <= (\c$r'_app_arg_40\(\c$r'_app_arg_40\'high downto 18),\c$r'_app_arg_40\(18-1 downto 0));
+
+        \r'_41\ <= \r'_projection_40\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_40\ <= (std_logic_vector(r_40));
+
+        r_40 <= resize(acc_83,19) + resize(acc_84,19);
+
+
+      end block;
+
+    fun_142 : block
+        signal result_45                     : signed(17 downto 0);
+        signal \c$case_alt_45\               : signed(17 downto 0);
+        signal \r'_42\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_41\             : std_logic_vector(18 downto 0);
+        signal r_41                          : signed(18 downto 0);
+        signal result_selection_res_42       : boolean;
+        signal \c$bv_127\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_42\ : boolean;
+        signal \c$bv_128\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_129\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_41\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_42 <= result_45;
+
+        \c$bv_127\ <= (\r'_42\);
+
+        result_selection_res_42 <= (( \c$r'_app_arg_41\(\c$r'_app_arg_41\'high) ) xor ( \c$bv_127\(\c$bv_127\'high) )) = '0';
+
+        result_45 <= signed(\r'_42\) when result_selection_res_42 else
+                     \c$case_alt_45\;
+
+        \c$bv_128\ <= ((std_logic_vector(acc_85)));
+
+        \c$bv_129\ <= ((std_logic_vector(acc_86)));
+
+        \c$case_alt_selection_res_42\ <= (( \c$bv_128\(\c$bv_128\'high) ) and ( \c$bv_129\(\c$bv_129\'high) )) = '0';
+
+        \c$case_alt_45\ <= to_signed(131071,18) when \c$case_alt_selection_res_42\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_41\ <= (\c$r'_app_arg_41\(\c$r'_app_arg_41\'high downto 18),\c$r'_app_arg_41\(18-1 downto 0));
+
+        \r'_42\ <= \r'_projection_41\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_41\ <= (std_logic_vector(r_41));
+
+        r_41 <= resize(acc_85,19) + resize(acc_86,19);
+
+
+      end block;
+
+    fun_143 : block
+        signal result_46                     : signed(17 downto 0);
+        signal \c$case_alt_46\               : signed(17 downto 0);
+        signal \r'_43\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_42\             : std_logic_vector(18 downto 0);
+        signal r_42                          : signed(18 downto 0);
+        signal result_selection_res_43       : boolean;
+        signal \c$bv_130\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_43\ : boolean;
+        signal \c$bv_131\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_132\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_42\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_43 <= result_46;
+
+        \c$bv_130\ <= (\r'_43\);
+
+        result_selection_res_43 <= (( \c$r'_app_arg_42\(\c$r'_app_arg_42\'high) ) xor ( \c$bv_130\(\c$bv_130\'high) )) = '0';
+
+        result_46 <= signed(\r'_43\) when result_selection_res_43 else
+                     \c$case_alt_46\;
+
+        \c$bv_131\ <= ((std_logic_vector(acc_87)));
+
+        \c$bv_132\ <= ((std_logic_vector(acc_88)));
+
+        \c$case_alt_selection_res_43\ <= (( \c$bv_131\(\c$bv_131\'high) ) and ( \c$bv_132\(\c$bv_132\'high) )) = '0';
+
+        \c$case_alt_46\ <= to_signed(131071,18) when \c$case_alt_selection_res_43\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_42\ <= (\c$r'_app_arg_42\(\c$r'_app_arg_42\'high downto 18),\c$r'_app_arg_42\(18-1 downto 0));
+
+        \r'_43\ <= \r'_projection_42\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_42\ <= (std_logic_vector(r_42));
+
+        r_42 <= resize(acc_87,19) + resize(acc_88,19);
+
+
+      end block;
+
+    fun_144 : block
+        signal result_47                     : signed(17 downto 0);
+        signal \c$case_alt_47\               : signed(17 downto 0);
+        signal \r'_44\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_43\             : std_logic_vector(18 downto 0);
+        signal r_43                          : signed(18 downto 0);
+        signal result_selection_res_44       : boolean;
+        signal \c$bv_133\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_44\ : boolean;
+        signal \c$bv_134\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_135\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_43\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_44 <= result_47;
+
+        \c$bv_133\ <= (\r'_44\);
+
+        result_selection_res_44 <= (( \c$r'_app_arg_43\(\c$r'_app_arg_43\'high) ) xor ( \c$bv_133\(\c$bv_133\'high) )) = '0';
+
+        result_47 <= signed(\r'_44\) when result_selection_res_44 else
+                     \c$case_alt_47\;
+
+        \c$bv_134\ <= ((std_logic_vector(acc_89)));
+
+        \c$bv_135\ <= ((std_logic_vector(acc_90)));
+
+        \c$case_alt_selection_res_44\ <= (( \c$bv_134\(\c$bv_134\'high) ) and ( \c$bv_135\(\c$bv_135\'high) )) = '0';
+
+        \c$case_alt_47\ <= to_signed(131071,18) when \c$case_alt_selection_res_44\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_43\ <= (\c$r'_app_arg_43\(\c$r'_app_arg_43\'high downto 18),\c$r'_app_arg_43\(18-1 downto 0));
+
+        \r'_44\ <= \r'_projection_43\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_43\ <= (std_logic_vector(r_43));
+
+        r_43 <= resize(acc_89,19) + resize(acc_90,19);
+
+
+      end block;
+
+    fun_145 : block
+        signal result_48                     : signed(17 downto 0);
+        signal \c$case_alt_48\               : signed(17 downto 0);
+        signal \r'_45\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_44\             : std_logic_vector(18 downto 0);
+        signal r_44                          : signed(18 downto 0);
+        signal result_selection_res_45       : boolean;
+        signal \c$bv_136\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_45\ : boolean;
+        signal \c$bv_137\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_138\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_44\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_45 <= result_48;
+
+        \c$bv_136\ <= (\r'_45\);
+
+        result_selection_res_45 <= (( \c$r'_app_arg_44\(\c$r'_app_arg_44\'high) ) xor ( \c$bv_136\(\c$bv_136\'high) )) = '0';
+
+        result_48 <= signed(\r'_45\) when result_selection_res_45 else
+                     \c$case_alt_48\;
+
+        \c$bv_137\ <= ((std_logic_vector(acc_91)));
+
+        \c$bv_138\ <= ((std_logic_vector(acc_92)));
+
+        \c$case_alt_selection_res_45\ <= (( \c$bv_137\(\c$bv_137\'high) ) and ( \c$bv_138\(\c$bv_138\'high) )) = '0';
+
+        \c$case_alt_48\ <= to_signed(131071,18) when \c$case_alt_selection_res_45\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_44\ <= (\c$r'_app_arg_44\(\c$r'_app_arg_44\'high downto 18),\c$r'_app_arg_44\(18-1 downto 0));
+
+        \r'_45\ <= \r'_projection_44\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_44\ <= (std_logic_vector(r_44));
+
+        r_44 <= resize(acc_91,19) + resize(acc_92,19);
+
+
+      end block;
+
+    fun_146 : block
+        signal result_49                     : signed(17 downto 0);
+        signal \c$case_alt_49\               : signed(17 downto 0);
+        signal \r'_46\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_45\             : std_logic_vector(18 downto 0);
+        signal r_45                          : signed(18 downto 0);
+        signal result_selection_res_46       : boolean;
+        signal \c$bv_139\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_46\ : boolean;
+        signal \c$bv_140\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_141\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_45\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_46 <= result_49;
+
+        \c$bv_139\ <= (\r'_46\);
+
+        result_selection_res_46 <= (( \c$r'_app_arg_45\(\c$r'_app_arg_45\'high) ) xor ( \c$bv_139\(\c$bv_139\'high) )) = '0';
+
+        result_49 <= signed(\r'_46\) when result_selection_res_46 else
+                     \c$case_alt_49\;
+
+        \c$bv_140\ <= ((std_logic_vector(acc_93)));
+
+        \c$bv_141\ <= ((std_logic_vector(acc_94)));
+
+        \c$case_alt_selection_res_46\ <= (( \c$bv_140\(\c$bv_140\'high) ) and ( \c$bv_141\(\c$bv_141\'high) )) = '0';
+
+        \c$case_alt_49\ <= to_signed(131071,18) when \c$case_alt_selection_res_46\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_45\ <= (\c$r'_app_arg_45\(\c$r'_app_arg_45\'high downto 18),\c$r'_app_arg_45\(18-1 downto 0));
+
+        \r'_46\ <= \r'_projection_45\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_45\ <= (std_logic_vector(r_45));
+
+        r_45 <= resize(acc_93,19) + resize(acc_94,19);
+
+
+      end block;
+
+    fun_147 : block
+        signal result_50                     : signed(17 downto 0);
+        signal \c$case_alt_50\               : signed(17 downto 0);
+        signal \r'_47\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_46\             : std_logic_vector(18 downto 0);
+        signal r_46                          : signed(18 downto 0);
+        signal result_selection_res_47       : boolean;
+        signal \c$bv_142\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_47\ : boolean;
+        signal \c$bv_143\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_144\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_46\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_47 <= result_50;
+
+        \c$bv_142\ <= (\r'_47\);
+
+        result_selection_res_47 <= (( \c$r'_app_arg_46\(\c$r'_app_arg_46\'high) ) xor ( \c$bv_142\(\c$bv_142\'high) )) = '0';
+
+        result_50 <= signed(\r'_47\) when result_selection_res_47 else
+                     \c$case_alt_50\;
+
+        \c$bv_143\ <= ((std_logic_vector(acc_95)));
+
+        \c$bv_144\ <= ((std_logic_vector(acc_96)));
+
+        \c$case_alt_selection_res_47\ <= (( \c$bv_143\(\c$bv_143\'high) ) and ( \c$bv_144\(\c$bv_144\'high) )) = '0';
+
+        \c$case_alt_50\ <= to_signed(131071,18) when \c$case_alt_selection_res_47\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_46\ <= (\c$r'_app_arg_46\(\c$r'_app_arg_46\'high downto 18),\c$r'_app_arg_46\(18-1 downto 0));
+
+        \r'_47\ <= \r'_projection_46\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_46\ <= (std_logic_vector(r_46));
+
+        r_46 <= resize(acc_95,19) + resize(acc_96,19);
+
+
+      end block;
+
+    fun_148 : block
+        signal result_51                     : signed(17 downto 0);
+        signal \c$case_alt_51\               : signed(17 downto 0);
+        signal \r'_48\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_47\             : std_logic_vector(18 downto 0);
+        signal r_47                          : signed(18 downto 0);
+        signal result_selection_res_48       : boolean;
+        signal \c$bv_145\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_48\ : boolean;
+        signal \c$bv_146\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_147\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_47\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_48 <= result_51;
+
+        \c$bv_145\ <= (\r'_48\);
+
+        result_selection_res_48 <= (( \c$r'_app_arg_47\(\c$r'_app_arg_47\'high) ) xor ( \c$bv_145\(\c$bv_145\'high) )) = '0';
+
+        result_51 <= signed(\r'_48\) when result_selection_res_48 else
+                     \c$case_alt_51\;
+
+        \c$bv_146\ <= ((std_logic_vector(acc_97)));
+
+        \c$bv_147\ <= ((std_logic_vector(acc_98)));
+
+        \c$case_alt_selection_res_48\ <= (( \c$bv_146\(\c$bv_146\'high) ) and ( \c$bv_147\(\c$bv_147\'high) )) = '0';
+
+        \c$case_alt_51\ <= to_signed(131071,18) when \c$case_alt_selection_res_48\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_47\ <= (\c$r'_app_arg_47\(\c$r'_app_arg_47\'high downto 18),\c$r'_app_arg_47\(18-1 downto 0));
+
+        \r'_48\ <= \r'_projection_47\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_47\ <= (std_logic_vector(r_47));
+
+        r_47 <= resize(acc_97,19) + resize(acc_98,19);
+
+
+      end block;
+
+    fun_149 : block
+        signal result_52                     : signed(17 downto 0);
+        signal \c$case_alt_52\               : signed(17 downto 0);
+        signal \r'_49\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_48\             : std_logic_vector(18 downto 0);
+        signal r_48                          : signed(18 downto 0);
+        signal result_selection_res_49       : boolean;
+        signal \c$bv_148\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_49\ : boolean;
+        signal \c$bv_149\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_150\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_48\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_1_49 <= result_52;
+
+        \c$bv_148\ <= (\r'_49\);
+
+        result_selection_res_49 <= (( \c$r'_app_arg_48\(\c$r'_app_arg_48\'high) ) xor ( \c$bv_148\(\c$bv_148\'high) )) = '0';
+
+        result_52 <= signed(\r'_49\) when result_selection_res_49 else
+                     \c$case_alt_52\;
+
+        \c$bv_149\ <= ((std_logic_vector(acc_99)));
+
+        \c$bv_150\ <= ((std_logic_vector(acc_100)));
+
+        \c$case_alt_selection_res_49\ <= (( \c$bv_149\(\c$bv_149\'high) ) and ( \c$bv_150\(\c$bv_150\'high) )) = '0';
+
+        \c$case_alt_52\ <= to_signed(131071,18) when \c$case_alt_selection_res_49\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_48\ <= (\c$r'_app_arg_48\(\c$r'_app_arg_48\'high downto 18),\c$r'_app_arg_48\(18-1 downto 0));
+
+        \r'_49\ <= \r'_projection_48\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_48\ <= (std_logic_vector(r_48));
+
+        r_48 <= resize(acc_99,19) + resize(acc_100,19);
+
+
+      end block;
+
+    fun_150 : block
+        signal result_53                     : signed(17 downto 0);
+        signal \c$case_alt_53\               : signed(17 downto 0);
+        signal \r'_50\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_49\             : std_logic_vector(18 downto 0);
+        signal r_49                          : signed(18 downto 0);
+        signal result_selection_res_50       : boolean;
+        signal \c$bv_151\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_50\ : boolean;
+        signal \c$bv_152\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_153\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_49\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_0 <= result_53;
+
+        \c$bv_151\ <= (\r'_50\);
+
+        result_selection_res_50 <= (( \c$r'_app_arg_49\(\c$r'_app_arg_49\'high) ) xor ( \c$bv_151\(\c$bv_151\'high) )) = '0';
+
+        result_53 <= signed(\r'_50\) when result_selection_res_50 else
+                     \c$case_alt_53\;
+
+        \c$bv_152\ <= ((std_logic_vector(acc_1_0)));
+
+        \c$bv_153\ <= ((std_logic_vector(acc_1_1)));
+
+        \c$case_alt_selection_res_50\ <= (( \c$bv_152\(\c$bv_152\'high) ) and ( \c$bv_153\(\c$bv_153\'high) )) = '0';
+
+        \c$case_alt_53\ <= to_signed(131071,18) when \c$case_alt_selection_res_50\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_49\ <= (\c$r'_app_arg_49\(\c$r'_app_arg_49\'high downto 18),\c$r'_app_arg_49\(18-1 downto 0));
+
+        \r'_50\ <= \r'_projection_49\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_49\ <= (std_logic_vector(r_49));
+
+        r_49 <= resize(acc_1_0,19) + resize(acc_1_1,19);
+
+
+      end block;
+
+    fun_151 : block
+        signal result_54                     : signed(17 downto 0);
+        signal \c$case_alt_54\               : signed(17 downto 0);
+        signal \r'_51\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_50\             : std_logic_vector(18 downto 0);
+        signal r_50                          : signed(18 downto 0);
+        signal result_selection_res_51       : boolean;
+        signal \c$bv_154\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_51\ : boolean;
+        signal \c$bv_155\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_156\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_50\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_1 <= result_54;
+
+        \c$bv_154\ <= (\r'_51\);
+
+        result_selection_res_51 <= (( \c$r'_app_arg_50\(\c$r'_app_arg_50\'high) ) xor ( \c$bv_154\(\c$bv_154\'high) )) = '0';
+
+        result_54 <= signed(\r'_51\) when result_selection_res_51 else
+                     \c$case_alt_54\;
+
+        \c$bv_155\ <= ((std_logic_vector(acc_1_2)));
+
+        \c$bv_156\ <= ((std_logic_vector(acc_1_3)));
+
+        \c$case_alt_selection_res_51\ <= (( \c$bv_155\(\c$bv_155\'high) ) and ( \c$bv_156\(\c$bv_156\'high) )) = '0';
+
+        \c$case_alt_54\ <= to_signed(131071,18) when \c$case_alt_selection_res_51\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_50\ <= (\c$r'_app_arg_50\(\c$r'_app_arg_50\'high downto 18),\c$r'_app_arg_50\(18-1 downto 0));
+
+        \r'_51\ <= \r'_projection_50\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_50\ <= (std_logic_vector(r_50));
+
+        r_50 <= resize(acc_1_2,19) + resize(acc_1_3,19);
+
+
+      end block;
+
+    fun_152 : block
+        signal result_55                     : signed(17 downto 0);
+        signal \c$case_alt_55\               : signed(17 downto 0);
+        signal \r'_52\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_51\             : std_logic_vector(18 downto 0);
+        signal r_51                          : signed(18 downto 0);
+        signal result_selection_res_52       : boolean;
+        signal \c$bv_157\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_52\ : boolean;
+        signal \c$bv_158\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_159\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_51\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_2 <= result_55;
+
+        \c$bv_157\ <= (\r'_52\);
+
+        result_selection_res_52 <= (( \c$r'_app_arg_51\(\c$r'_app_arg_51\'high) ) xor ( \c$bv_157\(\c$bv_157\'high) )) = '0';
+
+        result_55 <= signed(\r'_52\) when result_selection_res_52 else
+                     \c$case_alt_55\;
+
+        \c$bv_158\ <= ((std_logic_vector(acc_1_4)));
+
+        \c$bv_159\ <= ((std_logic_vector(acc_1_5)));
+
+        \c$case_alt_selection_res_52\ <= (( \c$bv_158\(\c$bv_158\'high) ) and ( \c$bv_159\(\c$bv_159\'high) )) = '0';
+
+        \c$case_alt_55\ <= to_signed(131071,18) when \c$case_alt_selection_res_52\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_51\ <= (\c$r'_app_arg_51\(\c$r'_app_arg_51\'high downto 18),\c$r'_app_arg_51\(18-1 downto 0));
+
+        \r'_52\ <= \r'_projection_51\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_51\ <= (std_logic_vector(r_51));
+
+        r_51 <= resize(acc_1_4,19) + resize(acc_1_5,19);
+
+
+      end block;
+
+    fun_153 : block
+        signal result_56                     : signed(17 downto 0);
+        signal \c$case_alt_56\               : signed(17 downto 0);
+        signal \r'_53\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_52\             : std_logic_vector(18 downto 0);
+        signal r_52                          : signed(18 downto 0);
+        signal result_selection_res_53       : boolean;
+        signal \c$bv_160\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_53\ : boolean;
+        signal \c$bv_161\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_162\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_52\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_3 <= result_56;
+
+        \c$bv_160\ <= (\r'_53\);
+
+        result_selection_res_53 <= (( \c$r'_app_arg_52\(\c$r'_app_arg_52\'high) ) xor ( \c$bv_160\(\c$bv_160\'high) )) = '0';
+
+        result_56 <= signed(\r'_53\) when result_selection_res_53 else
+                     \c$case_alt_56\;
+
+        \c$bv_161\ <= ((std_logic_vector(acc_1_6)));
+
+        \c$bv_162\ <= ((std_logic_vector(acc_1_7)));
+
+        \c$case_alt_selection_res_53\ <= (( \c$bv_161\(\c$bv_161\'high) ) and ( \c$bv_162\(\c$bv_162\'high) )) = '0';
+
+        \c$case_alt_56\ <= to_signed(131071,18) when \c$case_alt_selection_res_53\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_52\ <= (\c$r'_app_arg_52\(\c$r'_app_arg_52\'high downto 18),\c$r'_app_arg_52\(18-1 downto 0));
+
+        \r'_53\ <= \r'_projection_52\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_52\ <= (std_logic_vector(r_52));
+
+        r_52 <= resize(acc_1_6,19) + resize(acc_1_7,19);
+
+
+      end block;
+
+    fun_154 : block
+        signal result_57                     : signed(17 downto 0);
+        signal \c$case_alt_57\               : signed(17 downto 0);
+        signal \r'_54\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_53\             : std_logic_vector(18 downto 0);
+        signal r_53                          : signed(18 downto 0);
+        signal result_selection_res_54       : boolean;
+        signal \c$bv_163\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_54\ : boolean;
+        signal \c$bv_164\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_165\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_53\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_4 <= result_57;
+
+        \c$bv_163\ <= (\r'_54\);
+
+        result_selection_res_54 <= (( \c$r'_app_arg_53\(\c$r'_app_arg_53\'high) ) xor ( \c$bv_163\(\c$bv_163\'high) )) = '0';
+
+        result_57 <= signed(\r'_54\) when result_selection_res_54 else
+                     \c$case_alt_57\;
+
+        \c$bv_164\ <= ((std_logic_vector(acc_1_8)));
+
+        \c$bv_165\ <= ((std_logic_vector(acc_1_9)));
+
+        \c$case_alt_selection_res_54\ <= (( \c$bv_164\(\c$bv_164\'high) ) and ( \c$bv_165\(\c$bv_165\'high) )) = '0';
+
+        \c$case_alt_57\ <= to_signed(131071,18) when \c$case_alt_selection_res_54\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_53\ <= (\c$r'_app_arg_53\(\c$r'_app_arg_53\'high downto 18),\c$r'_app_arg_53\(18-1 downto 0));
+
+        \r'_54\ <= \r'_projection_53\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_53\ <= (std_logic_vector(r_53));
+
+        r_53 <= resize(acc_1_8,19) + resize(acc_1_9,19);
+
+
+      end block;
+
+    fun_155 : block
+        signal result_58                     : signed(17 downto 0);
+        signal \c$case_alt_58\               : signed(17 downto 0);
+        signal \r'_55\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_54\             : std_logic_vector(18 downto 0);
+        signal r_54                          : signed(18 downto 0);
+        signal result_selection_res_55       : boolean;
+        signal \c$bv_166\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_55\ : boolean;
+        signal \c$bv_167\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_168\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_54\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_5 <= result_58;
+
+        \c$bv_166\ <= (\r'_55\);
+
+        result_selection_res_55 <= (( \c$r'_app_arg_54\(\c$r'_app_arg_54\'high) ) xor ( \c$bv_166\(\c$bv_166\'high) )) = '0';
+
+        result_58 <= signed(\r'_55\) when result_selection_res_55 else
+                     \c$case_alt_58\;
+
+        \c$bv_167\ <= ((std_logic_vector(acc_1_10)));
+
+        \c$bv_168\ <= ((std_logic_vector(acc_1_11)));
+
+        \c$case_alt_selection_res_55\ <= (( \c$bv_167\(\c$bv_167\'high) ) and ( \c$bv_168\(\c$bv_168\'high) )) = '0';
+
+        \c$case_alt_58\ <= to_signed(131071,18) when \c$case_alt_selection_res_55\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_54\ <= (\c$r'_app_arg_54\(\c$r'_app_arg_54\'high downto 18),\c$r'_app_arg_54\(18-1 downto 0));
+
+        \r'_55\ <= \r'_projection_54\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_54\ <= (std_logic_vector(r_54));
+
+        r_54 <= resize(acc_1_10,19) + resize(acc_1_11,19);
+
+
+      end block;
+
+    fun_156 : block
+        signal result_59                     : signed(17 downto 0);
+        signal \c$case_alt_59\               : signed(17 downto 0);
+        signal \r'_56\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_55\             : std_logic_vector(18 downto 0);
+        signal r_55                          : signed(18 downto 0);
+        signal result_selection_res_56       : boolean;
+        signal \c$bv_169\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_56\ : boolean;
+        signal \c$bv_170\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_171\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_55\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_6 <= result_59;
+
+        \c$bv_169\ <= (\r'_56\);
+
+        result_selection_res_56 <= (( \c$r'_app_arg_55\(\c$r'_app_arg_55\'high) ) xor ( \c$bv_169\(\c$bv_169\'high) )) = '0';
+
+        result_59 <= signed(\r'_56\) when result_selection_res_56 else
+                     \c$case_alt_59\;
+
+        \c$bv_170\ <= ((std_logic_vector(acc_1_12)));
+
+        \c$bv_171\ <= ((std_logic_vector(acc_1_13)));
+
+        \c$case_alt_selection_res_56\ <= (( \c$bv_170\(\c$bv_170\'high) ) and ( \c$bv_171\(\c$bv_171\'high) )) = '0';
+
+        \c$case_alt_59\ <= to_signed(131071,18) when \c$case_alt_selection_res_56\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_55\ <= (\c$r'_app_arg_55\(\c$r'_app_arg_55\'high downto 18),\c$r'_app_arg_55\(18-1 downto 0));
+
+        \r'_56\ <= \r'_projection_55\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_55\ <= (std_logic_vector(r_55));
+
+        r_55 <= resize(acc_1_12,19) + resize(acc_1_13,19);
+
+
+      end block;
+
+    fun_157 : block
+        signal result_60                     : signed(17 downto 0);
+        signal \c$case_alt_60\               : signed(17 downto 0);
+        signal \r'_57\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_56\             : std_logic_vector(18 downto 0);
+        signal r_56                          : signed(18 downto 0);
+        signal result_selection_res_57       : boolean;
+        signal \c$bv_172\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_57\ : boolean;
+        signal \c$bv_173\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_174\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_56\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_7 <= result_60;
+
+        \c$bv_172\ <= (\r'_57\);
+
+        result_selection_res_57 <= (( \c$r'_app_arg_56\(\c$r'_app_arg_56\'high) ) xor ( \c$bv_172\(\c$bv_172\'high) )) = '0';
+
+        result_60 <= signed(\r'_57\) when result_selection_res_57 else
+                     \c$case_alt_60\;
+
+        \c$bv_173\ <= ((std_logic_vector(acc_1_14)));
+
+        \c$bv_174\ <= ((std_logic_vector(acc_1_15)));
+
+        \c$case_alt_selection_res_57\ <= (( \c$bv_173\(\c$bv_173\'high) ) and ( \c$bv_174\(\c$bv_174\'high) )) = '0';
+
+        \c$case_alt_60\ <= to_signed(131071,18) when \c$case_alt_selection_res_57\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_56\ <= (\c$r'_app_arg_56\(\c$r'_app_arg_56\'high downto 18),\c$r'_app_arg_56\(18-1 downto 0));
+
+        \r'_57\ <= \r'_projection_56\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_56\ <= (std_logic_vector(r_56));
+
+        r_56 <= resize(acc_1_14,19) + resize(acc_1_15,19);
+
+
+      end block;
+
+    fun_158 : block
+        signal result_61                     : signed(17 downto 0);
+        signal \c$case_alt_61\               : signed(17 downto 0);
+        signal \r'_58\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_57\             : std_logic_vector(18 downto 0);
+        signal r_57                          : signed(18 downto 0);
+        signal result_selection_res_58       : boolean;
+        signal \c$bv_175\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_58\ : boolean;
+        signal \c$bv_176\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_177\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_57\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_8 <= result_61;
+
+        \c$bv_175\ <= (\r'_58\);
+
+        result_selection_res_58 <= (( \c$r'_app_arg_57\(\c$r'_app_arg_57\'high) ) xor ( \c$bv_175\(\c$bv_175\'high) )) = '0';
+
+        result_61 <= signed(\r'_58\) when result_selection_res_58 else
+                     \c$case_alt_61\;
+
+        \c$bv_176\ <= ((std_logic_vector(acc_1_16)));
+
+        \c$bv_177\ <= ((std_logic_vector(acc_1_17)));
+
+        \c$case_alt_selection_res_58\ <= (( \c$bv_176\(\c$bv_176\'high) ) and ( \c$bv_177\(\c$bv_177\'high) )) = '0';
+
+        \c$case_alt_61\ <= to_signed(131071,18) when \c$case_alt_selection_res_58\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_57\ <= (\c$r'_app_arg_57\(\c$r'_app_arg_57\'high downto 18),\c$r'_app_arg_57\(18-1 downto 0));
+
+        \r'_58\ <= \r'_projection_57\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_57\ <= (std_logic_vector(r_57));
+
+        r_57 <= resize(acc_1_16,19) + resize(acc_1_17,19);
+
+
+      end block;
+
+    fun_159 : block
+        signal result_62                     : signed(17 downto 0);
+        signal \c$case_alt_62\               : signed(17 downto 0);
+        signal \r'_59\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_58\             : std_logic_vector(18 downto 0);
+        signal r_58                          : signed(18 downto 0);
+        signal result_selection_res_59       : boolean;
+        signal \c$bv_178\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_59\ : boolean;
+        signal \c$bv_179\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_180\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_58\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_9 <= result_62;
+
+        \c$bv_178\ <= (\r'_59\);
+
+        result_selection_res_59 <= (( \c$r'_app_arg_58\(\c$r'_app_arg_58\'high) ) xor ( \c$bv_178\(\c$bv_178\'high) )) = '0';
+
+        result_62 <= signed(\r'_59\) when result_selection_res_59 else
+                     \c$case_alt_62\;
+
+        \c$bv_179\ <= ((std_logic_vector(acc_1_18)));
+
+        \c$bv_180\ <= ((std_logic_vector(acc_1_19)));
+
+        \c$case_alt_selection_res_59\ <= (( \c$bv_179\(\c$bv_179\'high) ) and ( \c$bv_180\(\c$bv_180\'high) )) = '0';
+
+        \c$case_alt_62\ <= to_signed(131071,18) when \c$case_alt_selection_res_59\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_58\ <= (\c$r'_app_arg_58\(\c$r'_app_arg_58\'high downto 18),\c$r'_app_arg_58\(18-1 downto 0));
+
+        \r'_59\ <= \r'_projection_58\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_58\ <= (std_logic_vector(r_58));
+
+        r_58 <= resize(acc_1_18,19) + resize(acc_1_19,19);
+
+
+      end block;
+
+    fun_160 : block
+        signal result_63                     : signed(17 downto 0);
+        signal \c$case_alt_63\               : signed(17 downto 0);
+        signal \r'_60\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_59\             : std_logic_vector(18 downto 0);
+        signal r_59                          : signed(18 downto 0);
+        signal result_selection_res_60       : boolean;
+        signal \c$bv_181\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_60\ : boolean;
+        signal \c$bv_182\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_183\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_59\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_10 <= result_63;
+
+        \c$bv_181\ <= (\r'_60\);
+
+        result_selection_res_60 <= (( \c$r'_app_arg_59\(\c$r'_app_arg_59\'high) ) xor ( \c$bv_181\(\c$bv_181\'high) )) = '0';
+
+        result_63 <= signed(\r'_60\) when result_selection_res_60 else
+                     \c$case_alt_63\;
+
+        \c$bv_182\ <= ((std_logic_vector(acc_1_20)));
+
+        \c$bv_183\ <= ((std_logic_vector(acc_1_21)));
+
+        \c$case_alt_selection_res_60\ <= (( \c$bv_182\(\c$bv_182\'high) ) and ( \c$bv_183\(\c$bv_183\'high) )) = '0';
+
+        \c$case_alt_63\ <= to_signed(131071,18) when \c$case_alt_selection_res_60\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_59\ <= (\c$r'_app_arg_59\(\c$r'_app_arg_59\'high downto 18),\c$r'_app_arg_59\(18-1 downto 0));
+
+        \r'_60\ <= \r'_projection_59\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_59\ <= (std_logic_vector(r_59));
+
+        r_59 <= resize(acc_1_20,19) + resize(acc_1_21,19);
+
+
+      end block;
+
+    fun_161 : block
+        signal result_64                     : signed(17 downto 0);
+        signal \c$case_alt_64\               : signed(17 downto 0);
+        signal \r'_61\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_60\             : std_logic_vector(18 downto 0);
+        signal r_60                          : signed(18 downto 0);
+        signal result_selection_res_61       : boolean;
+        signal \c$bv_184\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_61\ : boolean;
+        signal \c$bv_185\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_186\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_60\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_11 <= result_64;
+
+        \c$bv_184\ <= (\r'_61\);
+
+        result_selection_res_61 <= (( \c$r'_app_arg_60\(\c$r'_app_arg_60\'high) ) xor ( \c$bv_184\(\c$bv_184\'high) )) = '0';
+
+        result_64 <= signed(\r'_61\) when result_selection_res_61 else
+                     \c$case_alt_64\;
+
+        \c$bv_185\ <= ((std_logic_vector(acc_1_22)));
+
+        \c$bv_186\ <= ((std_logic_vector(acc_1_23)));
+
+        \c$case_alt_selection_res_61\ <= (( \c$bv_185\(\c$bv_185\'high) ) and ( \c$bv_186\(\c$bv_186\'high) )) = '0';
+
+        \c$case_alt_64\ <= to_signed(131071,18) when \c$case_alt_selection_res_61\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_60\ <= (\c$r'_app_arg_60\(\c$r'_app_arg_60\'high downto 18),\c$r'_app_arg_60\(18-1 downto 0));
+
+        \r'_61\ <= \r'_projection_60\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_60\ <= (std_logic_vector(r_60));
+
+        r_60 <= resize(acc_1_22,19) + resize(acc_1_23,19);
+
+
+      end block;
+
+    fun_162 : block
+        signal result_65                     : signed(17 downto 0);
+        signal \c$case_alt_65\               : signed(17 downto 0);
+        signal \r'_62\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_61\             : std_logic_vector(18 downto 0);
+        signal r_61                          : signed(18 downto 0);
+        signal result_selection_res_62       : boolean;
+        signal \c$bv_187\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_62\ : boolean;
+        signal \c$bv_188\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_189\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_61\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_12 <= result_65;
+
+        \c$bv_187\ <= (\r'_62\);
+
+        result_selection_res_62 <= (( \c$r'_app_arg_61\(\c$r'_app_arg_61\'high) ) xor ( \c$bv_187\(\c$bv_187\'high) )) = '0';
+
+        result_65 <= signed(\r'_62\) when result_selection_res_62 else
+                     \c$case_alt_65\;
+
+        \c$bv_188\ <= ((std_logic_vector(acc_1_24)));
+
+        \c$bv_189\ <= ((std_logic_vector(acc_1_25)));
+
+        \c$case_alt_selection_res_62\ <= (( \c$bv_188\(\c$bv_188\'high) ) and ( \c$bv_189\(\c$bv_189\'high) )) = '0';
+
+        \c$case_alt_65\ <= to_signed(131071,18) when \c$case_alt_selection_res_62\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_61\ <= (\c$r'_app_arg_61\(\c$r'_app_arg_61\'high downto 18),\c$r'_app_arg_61\(18-1 downto 0));
+
+        \r'_62\ <= \r'_projection_61\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_61\ <= (std_logic_vector(r_61));
+
+        r_61 <= resize(acc_1_24,19) + resize(acc_1_25,19);
+
+
+      end block;
+
+    fun_163 : block
+        signal result_66                     : signed(17 downto 0);
+        signal \c$case_alt_66\               : signed(17 downto 0);
+        signal \r'_63\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_62\             : std_logic_vector(18 downto 0);
+        signal r_62                          : signed(18 downto 0);
+        signal result_selection_res_63       : boolean;
+        signal \c$bv_190\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_63\ : boolean;
+        signal \c$bv_191\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_192\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_62\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_13 <= result_66;
+
+        \c$bv_190\ <= (\r'_63\);
+
+        result_selection_res_63 <= (( \c$r'_app_arg_62\(\c$r'_app_arg_62\'high) ) xor ( \c$bv_190\(\c$bv_190\'high) )) = '0';
+
+        result_66 <= signed(\r'_63\) when result_selection_res_63 else
+                     \c$case_alt_66\;
+
+        \c$bv_191\ <= ((std_logic_vector(acc_1_26)));
+
+        \c$bv_192\ <= ((std_logic_vector(acc_1_27)));
+
+        \c$case_alt_selection_res_63\ <= (( \c$bv_191\(\c$bv_191\'high) ) and ( \c$bv_192\(\c$bv_192\'high) )) = '0';
+
+        \c$case_alt_66\ <= to_signed(131071,18) when \c$case_alt_selection_res_63\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_62\ <= (\c$r'_app_arg_62\(\c$r'_app_arg_62\'high downto 18),\c$r'_app_arg_62\(18-1 downto 0));
+
+        \r'_63\ <= \r'_projection_62\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_62\ <= (std_logic_vector(r_62));
+
+        r_62 <= resize(acc_1_26,19) + resize(acc_1_27,19);
+
+
+      end block;
+
+    fun_164 : block
+        signal result_67                     : signed(17 downto 0);
+        signal \c$case_alt_67\               : signed(17 downto 0);
+        signal \r'_64\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_63\             : std_logic_vector(18 downto 0);
+        signal r_63                          : signed(18 downto 0);
+        signal result_selection_res_64       : boolean;
+        signal \c$bv_193\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_64\ : boolean;
+        signal \c$bv_194\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_195\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_63\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_14 <= result_67;
+
+        \c$bv_193\ <= (\r'_64\);
+
+        result_selection_res_64 <= (( \c$r'_app_arg_63\(\c$r'_app_arg_63\'high) ) xor ( \c$bv_193\(\c$bv_193\'high) )) = '0';
+
+        result_67 <= signed(\r'_64\) when result_selection_res_64 else
+                     \c$case_alt_67\;
+
+        \c$bv_194\ <= ((std_logic_vector(acc_1_28)));
+
+        \c$bv_195\ <= ((std_logic_vector(acc_1_29)));
+
+        \c$case_alt_selection_res_64\ <= (( \c$bv_194\(\c$bv_194\'high) ) and ( \c$bv_195\(\c$bv_195\'high) )) = '0';
+
+        \c$case_alt_67\ <= to_signed(131071,18) when \c$case_alt_selection_res_64\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_63\ <= (\c$r'_app_arg_63\(\c$r'_app_arg_63\'high downto 18),\c$r'_app_arg_63\(18-1 downto 0));
+
+        \r'_64\ <= \r'_projection_63\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_63\ <= (std_logic_vector(r_63));
+
+        r_63 <= resize(acc_1_28,19) + resize(acc_1_29,19);
+
+
+      end block;
+
+    fun_165 : block
+        signal result_68                     : signed(17 downto 0);
+        signal \c$case_alt_68\               : signed(17 downto 0);
+        signal \r'_65\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_64\             : std_logic_vector(18 downto 0);
+        signal r_64                          : signed(18 downto 0);
+        signal result_selection_res_65       : boolean;
+        signal \c$bv_196\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_65\ : boolean;
+        signal \c$bv_197\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_198\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_64\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_15 <= result_68;
+
+        \c$bv_196\ <= (\r'_65\);
+
+        result_selection_res_65 <= (( \c$r'_app_arg_64\(\c$r'_app_arg_64\'high) ) xor ( \c$bv_196\(\c$bv_196\'high) )) = '0';
+
+        result_68 <= signed(\r'_65\) when result_selection_res_65 else
+                     \c$case_alt_68\;
+
+        \c$bv_197\ <= ((std_logic_vector(acc_1_30)));
+
+        \c$bv_198\ <= ((std_logic_vector(acc_1_31)));
+
+        \c$case_alt_selection_res_65\ <= (( \c$bv_197\(\c$bv_197\'high) ) and ( \c$bv_198\(\c$bv_198\'high) )) = '0';
+
+        \c$case_alt_68\ <= to_signed(131071,18) when \c$case_alt_selection_res_65\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_64\ <= (\c$r'_app_arg_64\(\c$r'_app_arg_64\'high downto 18),\c$r'_app_arg_64\(18-1 downto 0));
+
+        \r'_65\ <= \r'_projection_64\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_64\ <= (std_logic_vector(r_64));
+
+        r_64 <= resize(acc_1_30,19) + resize(acc_1_31,19);
+
+
+      end block;
+
+    fun_166 : block
+        signal result_69                     : signed(17 downto 0);
+        signal \c$case_alt_69\               : signed(17 downto 0);
+        signal \r'_66\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_65\             : std_logic_vector(18 downto 0);
+        signal r_65                          : signed(18 downto 0);
+        signal result_selection_res_66       : boolean;
+        signal \c$bv_199\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_66\ : boolean;
+        signal \c$bv_200\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_201\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_65\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_16 <= result_69;
+
+        \c$bv_199\ <= (\r'_66\);
+
+        result_selection_res_66 <= (( \c$r'_app_arg_65\(\c$r'_app_arg_65\'high) ) xor ( \c$bv_199\(\c$bv_199\'high) )) = '0';
+
+        result_69 <= signed(\r'_66\) when result_selection_res_66 else
+                     \c$case_alt_69\;
+
+        \c$bv_200\ <= ((std_logic_vector(acc_1_32)));
+
+        \c$bv_201\ <= ((std_logic_vector(acc_1_33)));
+
+        \c$case_alt_selection_res_66\ <= (( \c$bv_200\(\c$bv_200\'high) ) and ( \c$bv_201\(\c$bv_201\'high) )) = '0';
+
+        \c$case_alt_69\ <= to_signed(131071,18) when \c$case_alt_selection_res_66\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_65\ <= (\c$r'_app_arg_65\(\c$r'_app_arg_65\'high downto 18),\c$r'_app_arg_65\(18-1 downto 0));
+
+        \r'_66\ <= \r'_projection_65\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_65\ <= (std_logic_vector(r_65));
+
+        r_65 <= resize(acc_1_32,19) + resize(acc_1_33,19);
+
+
+      end block;
+
+    fun_167 : block
+        signal result_70                     : signed(17 downto 0);
+        signal \c$case_alt_70\               : signed(17 downto 0);
+        signal \r'_67\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_66\             : std_logic_vector(18 downto 0);
+        signal r_66                          : signed(18 downto 0);
+        signal result_selection_res_67       : boolean;
+        signal \c$bv_202\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_67\ : boolean;
+        signal \c$bv_203\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_204\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_66\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_17 <= result_70;
+
+        \c$bv_202\ <= (\r'_67\);
+
+        result_selection_res_67 <= (( \c$r'_app_arg_66\(\c$r'_app_arg_66\'high) ) xor ( \c$bv_202\(\c$bv_202\'high) )) = '0';
+
+        result_70 <= signed(\r'_67\) when result_selection_res_67 else
+                     \c$case_alt_70\;
+
+        \c$bv_203\ <= ((std_logic_vector(acc_1_34)));
+
+        \c$bv_204\ <= ((std_logic_vector(acc_1_35)));
+
+        \c$case_alt_selection_res_67\ <= (( \c$bv_203\(\c$bv_203\'high) ) and ( \c$bv_204\(\c$bv_204\'high) )) = '0';
+
+        \c$case_alt_70\ <= to_signed(131071,18) when \c$case_alt_selection_res_67\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_66\ <= (\c$r'_app_arg_66\(\c$r'_app_arg_66\'high downto 18),\c$r'_app_arg_66\(18-1 downto 0));
+
+        \r'_67\ <= \r'_projection_66\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_66\ <= (std_logic_vector(r_66));
+
+        r_66 <= resize(acc_1_34,19) + resize(acc_1_35,19);
+
+
+      end block;
+
+    fun_168 : block
+        signal result_71                     : signed(17 downto 0);
+        signal \c$case_alt_71\               : signed(17 downto 0);
+        signal \r'_68\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_67\             : std_logic_vector(18 downto 0);
+        signal r_67                          : signed(18 downto 0);
+        signal result_selection_res_68       : boolean;
+        signal \c$bv_205\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_68\ : boolean;
+        signal \c$bv_206\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_207\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_67\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_18 <= result_71;
+
+        \c$bv_205\ <= (\r'_68\);
+
+        result_selection_res_68 <= (( \c$r'_app_arg_67\(\c$r'_app_arg_67\'high) ) xor ( \c$bv_205\(\c$bv_205\'high) )) = '0';
+
+        result_71 <= signed(\r'_68\) when result_selection_res_68 else
+                     \c$case_alt_71\;
+
+        \c$bv_206\ <= ((std_logic_vector(acc_1_36)));
+
+        \c$bv_207\ <= ((std_logic_vector(acc_1_37)));
+
+        \c$case_alt_selection_res_68\ <= (( \c$bv_206\(\c$bv_206\'high) ) and ( \c$bv_207\(\c$bv_207\'high) )) = '0';
+
+        \c$case_alt_71\ <= to_signed(131071,18) when \c$case_alt_selection_res_68\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_67\ <= (\c$r'_app_arg_67\(\c$r'_app_arg_67\'high downto 18),\c$r'_app_arg_67\(18-1 downto 0));
+
+        \r'_68\ <= \r'_projection_67\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_67\ <= (std_logic_vector(r_67));
+
+        r_67 <= resize(acc_1_36,19) + resize(acc_1_37,19);
+
+
+      end block;
+
+    fun_169 : block
+        signal result_72                     : signed(17 downto 0);
+        signal \c$case_alt_72\               : signed(17 downto 0);
+        signal \r'_69\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_68\             : std_logic_vector(18 downto 0);
+        signal r_68                          : signed(18 downto 0);
+        signal result_selection_res_69       : boolean;
+        signal \c$bv_208\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_69\ : boolean;
+        signal \c$bv_209\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_210\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_68\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_19 <= result_72;
+
+        \c$bv_208\ <= (\r'_69\);
+
+        result_selection_res_69 <= (( \c$r'_app_arg_68\(\c$r'_app_arg_68\'high) ) xor ( \c$bv_208\(\c$bv_208\'high) )) = '0';
+
+        result_72 <= signed(\r'_69\) when result_selection_res_69 else
+                     \c$case_alt_72\;
+
+        \c$bv_209\ <= ((std_logic_vector(acc_1_38)));
+
+        \c$bv_210\ <= ((std_logic_vector(acc_1_39)));
+
+        \c$case_alt_selection_res_69\ <= (( \c$bv_209\(\c$bv_209\'high) ) and ( \c$bv_210\(\c$bv_210\'high) )) = '0';
+
+        \c$case_alt_72\ <= to_signed(131071,18) when \c$case_alt_selection_res_69\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_68\ <= (\c$r'_app_arg_68\(\c$r'_app_arg_68\'high downto 18),\c$r'_app_arg_68\(18-1 downto 0));
+
+        \r'_69\ <= \r'_projection_68\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_68\ <= (std_logic_vector(r_68));
+
+        r_68 <= resize(acc_1_38,19) + resize(acc_1_39,19);
+
+
+      end block;
+
+    fun_170 : block
+        signal result_73                     : signed(17 downto 0);
+        signal \c$case_alt_73\               : signed(17 downto 0);
+        signal \r'_70\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_69\             : std_logic_vector(18 downto 0);
+        signal r_69                          : signed(18 downto 0);
+        signal result_selection_res_70       : boolean;
+        signal \c$bv_211\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_70\ : boolean;
+        signal \c$bv_212\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_213\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_69\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_20 <= result_73;
+
+        \c$bv_211\ <= (\r'_70\);
+
+        result_selection_res_70 <= (( \c$r'_app_arg_69\(\c$r'_app_arg_69\'high) ) xor ( \c$bv_211\(\c$bv_211\'high) )) = '0';
+
+        result_73 <= signed(\r'_70\) when result_selection_res_70 else
+                     \c$case_alt_73\;
+
+        \c$bv_212\ <= ((std_logic_vector(acc_1_40)));
+
+        \c$bv_213\ <= ((std_logic_vector(acc_1_41)));
+
+        \c$case_alt_selection_res_70\ <= (( \c$bv_212\(\c$bv_212\'high) ) and ( \c$bv_213\(\c$bv_213\'high) )) = '0';
+
+        \c$case_alt_73\ <= to_signed(131071,18) when \c$case_alt_selection_res_70\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_69\ <= (\c$r'_app_arg_69\(\c$r'_app_arg_69\'high downto 18),\c$r'_app_arg_69\(18-1 downto 0));
+
+        \r'_70\ <= \r'_projection_69\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_69\ <= (std_logic_vector(r_69));
+
+        r_69 <= resize(acc_1_40,19) + resize(acc_1_41,19);
+
+
+      end block;
+
+    fun_171 : block
+        signal result_74                     : signed(17 downto 0);
+        signal \c$case_alt_74\               : signed(17 downto 0);
+        signal \r'_71\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_70\             : std_logic_vector(18 downto 0);
+        signal r_70                          : signed(18 downto 0);
+        signal result_selection_res_71       : boolean;
+        signal \c$bv_214\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_71\ : boolean;
+        signal \c$bv_215\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_216\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_70\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_21 <= result_74;
+
+        \c$bv_214\ <= (\r'_71\);
+
+        result_selection_res_71 <= (( \c$r'_app_arg_70\(\c$r'_app_arg_70\'high) ) xor ( \c$bv_214\(\c$bv_214\'high) )) = '0';
+
+        result_74 <= signed(\r'_71\) when result_selection_res_71 else
+                     \c$case_alt_74\;
+
+        \c$bv_215\ <= ((std_logic_vector(acc_1_42)));
+
+        \c$bv_216\ <= ((std_logic_vector(acc_1_43)));
+
+        \c$case_alt_selection_res_71\ <= (( \c$bv_215\(\c$bv_215\'high) ) and ( \c$bv_216\(\c$bv_216\'high) )) = '0';
+
+        \c$case_alt_74\ <= to_signed(131071,18) when \c$case_alt_selection_res_71\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_70\ <= (\c$r'_app_arg_70\(\c$r'_app_arg_70\'high downto 18),\c$r'_app_arg_70\(18-1 downto 0));
+
+        \r'_71\ <= \r'_projection_70\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_70\ <= (std_logic_vector(r_70));
+
+        r_70 <= resize(acc_1_42,19) + resize(acc_1_43,19);
+
+
+      end block;
+
+    fun_172 : block
+        signal result_75                     : signed(17 downto 0);
+        signal \c$case_alt_75\               : signed(17 downto 0);
+        signal \r'_72\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_71\             : std_logic_vector(18 downto 0);
+        signal r_71                          : signed(18 downto 0);
+        signal result_selection_res_72       : boolean;
+        signal \c$bv_217\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_72\ : boolean;
+        signal \c$bv_218\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_219\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_71\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_22 <= result_75;
+
+        \c$bv_217\ <= (\r'_72\);
+
+        result_selection_res_72 <= (( \c$r'_app_arg_71\(\c$r'_app_arg_71\'high) ) xor ( \c$bv_217\(\c$bv_217\'high) )) = '0';
+
+        result_75 <= signed(\r'_72\) when result_selection_res_72 else
+                     \c$case_alt_75\;
+
+        \c$bv_218\ <= ((std_logic_vector(acc_1_44)));
+
+        \c$bv_219\ <= ((std_logic_vector(acc_1_45)));
+
+        \c$case_alt_selection_res_72\ <= (( \c$bv_218\(\c$bv_218\'high) ) and ( \c$bv_219\(\c$bv_219\'high) )) = '0';
+
+        \c$case_alt_75\ <= to_signed(131071,18) when \c$case_alt_selection_res_72\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_71\ <= (\c$r'_app_arg_71\(\c$r'_app_arg_71\'high downto 18),\c$r'_app_arg_71\(18-1 downto 0));
+
+        \r'_72\ <= \r'_projection_71\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_71\ <= (std_logic_vector(r_71));
+
+        r_71 <= resize(acc_1_44,19) + resize(acc_1_45,19);
+
+
+      end block;
+
+    fun_173 : block
+        signal result_76                     : signed(17 downto 0);
+        signal \c$case_alt_76\               : signed(17 downto 0);
+        signal \r'_73\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_72\             : std_logic_vector(18 downto 0);
+        signal r_72                          : signed(18 downto 0);
+        signal result_selection_res_73       : boolean;
+        signal \c$bv_220\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_73\ : boolean;
+        signal \c$bv_221\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_222\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_72\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_23 <= result_76;
+
+        \c$bv_220\ <= (\r'_73\);
+
+        result_selection_res_73 <= (( \c$r'_app_arg_72\(\c$r'_app_arg_72\'high) ) xor ( \c$bv_220\(\c$bv_220\'high) )) = '0';
+
+        result_76 <= signed(\r'_73\) when result_selection_res_73 else
+                     \c$case_alt_76\;
+
+        \c$bv_221\ <= ((std_logic_vector(acc_1_46)));
+
+        \c$bv_222\ <= ((std_logic_vector(acc_1_47)));
+
+        \c$case_alt_selection_res_73\ <= (( \c$bv_221\(\c$bv_221\'high) ) and ( \c$bv_222\(\c$bv_222\'high) )) = '0';
+
+        \c$case_alt_76\ <= to_signed(131071,18) when \c$case_alt_selection_res_73\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_72\ <= (\c$r'_app_arg_72\(\c$r'_app_arg_72\'high downto 18),\c$r'_app_arg_72\(18-1 downto 0));
+
+        \r'_73\ <= \r'_projection_72\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_72\ <= (std_logic_vector(r_72));
+
+        r_72 <= resize(acc_1_46,19) + resize(acc_1_47,19);
+
+
+      end block;
+
+    fun_174 : block
+        signal result_77                     : signed(17 downto 0);
+        signal \c$case_alt_77\               : signed(17 downto 0);
+        signal \r'_74\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_73\             : std_logic_vector(18 downto 0);
+        signal r_73                          : signed(18 downto 0);
+        signal result_selection_res_74       : boolean;
+        signal \c$bv_223\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_74\ : boolean;
+        signal \c$bv_224\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_225\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_73\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_2_24 <= result_77;
+
+        \c$bv_223\ <= (\r'_74\);
+
+        result_selection_res_74 <= (( \c$r'_app_arg_73\(\c$r'_app_arg_73\'high) ) xor ( \c$bv_223\(\c$bv_223\'high) )) = '0';
+
+        result_77 <= signed(\r'_74\) when result_selection_res_74 else
+                     \c$case_alt_77\;
+
+        \c$bv_224\ <= ((std_logic_vector(acc_1_48)));
+
+        \c$bv_225\ <= ((std_logic_vector(acc_1_49)));
+
+        \c$case_alt_selection_res_74\ <= (( \c$bv_224\(\c$bv_224\'high) ) and ( \c$bv_225\(\c$bv_225\'high) )) = '0';
+
+        \c$case_alt_77\ <= to_signed(131071,18) when \c$case_alt_selection_res_74\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_73\ <= (\c$r'_app_arg_73\(\c$r'_app_arg_73\'high downto 18),\c$r'_app_arg_73\(18-1 downto 0));
+
+        \r'_74\ <= \r'_projection_73\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_73\ <= (std_logic_vector(r_73));
+
+        r_73 <= resize(acc_1_48,19) + resize(acc_1_49,19);
+
+
+      end block;
+
+    fun_175 : block
+        signal result_78                     : signed(17 downto 0);
+        signal \c$case_alt_78\               : signed(17 downto 0);
+        signal \r'_75\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_74\             : std_logic_vector(18 downto 0);
+        signal r_74                          : signed(18 downto 0);
+        signal result_selection_res_75       : boolean;
+        signal \c$bv_226\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_75\ : boolean;
+        signal \c$bv_227\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_228\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_74\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_0 <= result_78;
+
+        \c$bv_226\ <= (\r'_75\);
+
+        result_selection_res_75 <= (( \c$r'_app_arg_74\(\c$r'_app_arg_74\'high) ) xor ( \c$bv_226\(\c$bv_226\'high) )) = '0';
+
+        result_78 <= signed(\r'_75\) when result_selection_res_75 else
+                     \c$case_alt_78\;
+
+        \c$bv_227\ <= ((std_logic_vector(acc_2_0)));
+
+        \c$bv_228\ <= ((std_logic_vector(acc_2_1)));
+
+        \c$case_alt_selection_res_75\ <= (( \c$bv_227\(\c$bv_227\'high) ) and ( \c$bv_228\(\c$bv_228\'high) )) = '0';
+
+        \c$case_alt_78\ <= to_signed(131071,18) when \c$case_alt_selection_res_75\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_74\ <= (\c$r'_app_arg_74\(\c$r'_app_arg_74\'high downto 18),\c$r'_app_arg_74\(18-1 downto 0));
+
+        \r'_75\ <= \r'_projection_74\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_74\ <= (std_logic_vector(r_74));
+
+        r_74 <= resize(acc_2_0,19) + resize(acc_2_1,19);
+
+
+      end block;
+
+    fun_176 : block
+        signal result_79                     : signed(17 downto 0);
+        signal \c$case_alt_79\               : signed(17 downto 0);
+        signal \r'_76\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_75\             : std_logic_vector(18 downto 0);
+        signal r_75                          : signed(18 downto 0);
+        signal result_selection_res_76       : boolean;
+        signal \c$bv_229\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_76\ : boolean;
+        signal \c$bv_230\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_231\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_75\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_1 <= result_79;
+
+        \c$bv_229\ <= (\r'_76\);
+
+        result_selection_res_76 <= (( \c$r'_app_arg_75\(\c$r'_app_arg_75\'high) ) xor ( \c$bv_229\(\c$bv_229\'high) )) = '0';
+
+        result_79 <= signed(\r'_76\) when result_selection_res_76 else
+                     \c$case_alt_79\;
+
+        \c$bv_230\ <= ((std_logic_vector(acc_2_2)));
+
+        \c$bv_231\ <= ((std_logic_vector(acc_2_3)));
+
+        \c$case_alt_selection_res_76\ <= (( \c$bv_230\(\c$bv_230\'high) ) and ( \c$bv_231\(\c$bv_231\'high) )) = '0';
+
+        \c$case_alt_79\ <= to_signed(131071,18) when \c$case_alt_selection_res_76\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_75\ <= (\c$r'_app_arg_75\(\c$r'_app_arg_75\'high downto 18),\c$r'_app_arg_75\(18-1 downto 0));
+
+        \r'_76\ <= \r'_projection_75\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_75\ <= (std_logic_vector(r_75));
+
+        r_75 <= resize(acc_2_2,19) + resize(acc_2_3,19);
+
+
+      end block;
+
+    fun_177 : block
+        signal result_80                     : signed(17 downto 0);
+        signal \c$case_alt_80\               : signed(17 downto 0);
+        signal \r'_77\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_76\             : std_logic_vector(18 downto 0);
+        signal r_76                          : signed(18 downto 0);
+        signal result_selection_res_77       : boolean;
+        signal \c$bv_232\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_77\ : boolean;
+        signal \c$bv_233\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_234\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_76\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_2 <= result_80;
+
+        \c$bv_232\ <= (\r'_77\);
+
+        result_selection_res_77 <= (( \c$r'_app_arg_76\(\c$r'_app_arg_76\'high) ) xor ( \c$bv_232\(\c$bv_232\'high) )) = '0';
+
+        result_80 <= signed(\r'_77\) when result_selection_res_77 else
+                     \c$case_alt_80\;
+
+        \c$bv_233\ <= ((std_logic_vector(acc_2_4)));
+
+        \c$bv_234\ <= ((std_logic_vector(acc_2_5)));
+
+        \c$case_alt_selection_res_77\ <= (( \c$bv_233\(\c$bv_233\'high) ) and ( \c$bv_234\(\c$bv_234\'high) )) = '0';
+
+        \c$case_alt_80\ <= to_signed(131071,18) when \c$case_alt_selection_res_77\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_76\ <= (\c$r'_app_arg_76\(\c$r'_app_arg_76\'high downto 18),\c$r'_app_arg_76\(18-1 downto 0));
+
+        \r'_77\ <= \r'_projection_76\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_76\ <= (std_logic_vector(r_76));
+
+        r_76 <= resize(acc_2_4,19) + resize(acc_2_5,19);
+
+
+      end block;
+
+    fun_178 : block
+        signal result_81                     : signed(17 downto 0);
+        signal \c$case_alt_81\               : signed(17 downto 0);
+        signal \r'_78\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_77\             : std_logic_vector(18 downto 0);
+        signal r_77                          : signed(18 downto 0);
+        signal result_selection_res_78       : boolean;
+        signal \c$bv_235\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_78\ : boolean;
+        signal \c$bv_236\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_237\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_77\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_3 <= result_81;
+
+        \c$bv_235\ <= (\r'_78\);
+
+        result_selection_res_78 <= (( \c$r'_app_arg_77\(\c$r'_app_arg_77\'high) ) xor ( \c$bv_235\(\c$bv_235\'high) )) = '0';
+
+        result_81 <= signed(\r'_78\) when result_selection_res_78 else
+                     \c$case_alt_81\;
+
+        \c$bv_236\ <= ((std_logic_vector(acc_2_6)));
+
+        \c$bv_237\ <= ((std_logic_vector(acc_2_7)));
+
+        \c$case_alt_selection_res_78\ <= (( \c$bv_236\(\c$bv_236\'high) ) and ( \c$bv_237\(\c$bv_237\'high) )) = '0';
+
+        \c$case_alt_81\ <= to_signed(131071,18) when \c$case_alt_selection_res_78\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_77\ <= (\c$r'_app_arg_77\(\c$r'_app_arg_77\'high downto 18),\c$r'_app_arg_77\(18-1 downto 0));
+
+        \r'_78\ <= \r'_projection_77\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_77\ <= (std_logic_vector(r_77));
+
+        r_77 <= resize(acc_2_6,19) + resize(acc_2_7,19);
+
+
+      end block;
+
+    fun_179 : block
+        signal result_82                     : signed(17 downto 0);
+        signal \c$case_alt_82\               : signed(17 downto 0);
+        signal \r'_79\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_78\             : std_logic_vector(18 downto 0);
+        signal r_78                          : signed(18 downto 0);
+        signal result_selection_res_79       : boolean;
+        signal \c$bv_238\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_79\ : boolean;
+        signal \c$bv_239\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_240\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_78\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_4 <= result_82;
+
+        \c$bv_238\ <= (\r'_79\);
+
+        result_selection_res_79 <= (( \c$r'_app_arg_78\(\c$r'_app_arg_78\'high) ) xor ( \c$bv_238\(\c$bv_238\'high) )) = '0';
+
+        result_82 <= signed(\r'_79\) when result_selection_res_79 else
+                     \c$case_alt_82\;
+
+        \c$bv_239\ <= ((std_logic_vector(acc_2_8)));
+
+        \c$bv_240\ <= ((std_logic_vector(acc_2_9)));
+
+        \c$case_alt_selection_res_79\ <= (( \c$bv_239\(\c$bv_239\'high) ) and ( \c$bv_240\(\c$bv_240\'high) )) = '0';
+
+        \c$case_alt_82\ <= to_signed(131071,18) when \c$case_alt_selection_res_79\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_78\ <= (\c$r'_app_arg_78\(\c$r'_app_arg_78\'high downto 18),\c$r'_app_arg_78\(18-1 downto 0));
+
+        \r'_79\ <= \r'_projection_78\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_78\ <= (std_logic_vector(r_78));
+
+        r_78 <= resize(acc_2_8,19) + resize(acc_2_9,19);
+
+
+      end block;
+
+    fun_180 : block
+        signal result_83                     : signed(17 downto 0);
+        signal \c$case_alt_83\               : signed(17 downto 0);
+        signal \r'_80\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_79\             : std_logic_vector(18 downto 0);
+        signal r_79                          : signed(18 downto 0);
+        signal result_selection_res_80       : boolean;
+        signal \c$bv_241\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_80\ : boolean;
+        signal \c$bv_242\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_243\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_79\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_5 <= result_83;
+
+        \c$bv_241\ <= (\r'_80\);
+
+        result_selection_res_80 <= (( \c$r'_app_arg_79\(\c$r'_app_arg_79\'high) ) xor ( \c$bv_241\(\c$bv_241\'high) )) = '0';
+
+        result_83 <= signed(\r'_80\) when result_selection_res_80 else
+                     \c$case_alt_83\;
+
+        \c$bv_242\ <= ((std_logic_vector(acc_2_10)));
+
+        \c$bv_243\ <= ((std_logic_vector(acc_2_11)));
+
+        \c$case_alt_selection_res_80\ <= (( \c$bv_242\(\c$bv_242\'high) ) and ( \c$bv_243\(\c$bv_243\'high) )) = '0';
+
+        \c$case_alt_83\ <= to_signed(131071,18) when \c$case_alt_selection_res_80\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_79\ <= (\c$r'_app_arg_79\(\c$r'_app_arg_79\'high downto 18),\c$r'_app_arg_79\(18-1 downto 0));
+
+        \r'_80\ <= \r'_projection_79\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_79\ <= (std_logic_vector(r_79));
+
+        r_79 <= resize(acc_2_10,19) + resize(acc_2_11,19);
+
+
+      end block;
+
+    fun_181 : block
+        signal result_84                     : signed(17 downto 0);
+        signal \c$case_alt_84\               : signed(17 downto 0);
+        signal \r'_81\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_80\             : std_logic_vector(18 downto 0);
+        signal r_80                          : signed(18 downto 0);
+        signal result_selection_res_81       : boolean;
+        signal \c$bv_244\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_81\ : boolean;
+        signal \c$bv_245\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_246\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_80\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_6 <= result_84;
+
+        \c$bv_244\ <= (\r'_81\);
+
+        result_selection_res_81 <= (( \c$r'_app_arg_80\(\c$r'_app_arg_80\'high) ) xor ( \c$bv_244\(\c$bv_244\'high) )) = '0';
+
+        result_84 <= signed(\r'_81\) when result_selection_res_81 else
+                     \c$case_alt_84\;
+
+        \c$bv_245\ <= ((std_logic_vector(acc_2_12)));
+
+        \c$bv_246\ <= ((std_logic_vector(acc_2_13)));
+
+        \c$case_alt_selection_res_81\ <= (( \c$bv_245\(\c$bv_245\'high) ) and ( \c$bv_246\(\c$bv_246\'high) )) = '0';
+
+        \c$case_alt_84\ <= to_signed(131071,18) when \c$case_alt_selection_res_81\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_80\ <= (\c$r'_app_arg_80\(\c$r'_app_arg_80\'high downto 18),\c$r'_app_arg_80\(18-1 downto 0));
+
+        \r'_81\ <= \r'_projection_80\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_80\ <= (std_logic_vector(r_80));
+
+        r_80 <= resize(acc_2_12,19) + resize(acc_2_13,19);
+
+
+      end block;
+
+    fun_182 : block
+        signal result_85                     : signed(17 downto 0);
+        signal \c$case_alt_85\               : signed(17 downto 0);
+        signal \r'_82\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_81\             : std_logic_vector(18 downto 0);
+        signal r_81                          : signed(18 downto 0);
+        signal result_selection_res_82       : boolean;
+        signal \c$bv_247\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_82\ : boolean;
+        signal \c$bv_248\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_249\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_81\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_7 <= result_85;
+
+        \c$bv_247\ <= (\r'_82\);
+
+        result_selection_res_82 <= (( \c$r'_app_arg_81\(\c$r'_app_arg_81\'high) ) xor ( \c$bv_247\(\c$bv_247\'high) )) = '0';
+
+        result_85 <= signed(\r'_82\) when result_selection_res_82 else
+                     \c$case_alt_85\;
+
+        \c$bv_248\ <= ((std_logic_vector(acc_2_14)));
+
+        \c$bv_249\ <= ((std_logic_vector(acc_2_15)));
+
+        \c$case_alt_selection_res_82\ <= (( \c$bv_248\(\c$bv_248\'high) ) and ( \c$bv_249\(\c$bv_249\'high) )) = '0';
+
+        \c$case_alt_85\ <= to_signed(131071,18) when \c$case_alt_selection_res_82\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_81\ <= (\c$r'_app_arg_81\(\c$r'_app_arg_81\'high downto 18),\c$r'_app_arg_81\(18-1 downto 0));
+
+        \r'_82\ <= \r'_projection_81\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_81\ <= (std_logic_vector(r_81));
+
+        r_81 <= resize(acc_2_14,19) + resize(acc_2_15,19);
+
+
+      end block;
+
+    fun_183 : block
+        signal result_86                     : signed(17 downto 0);
+        signal \c$case_alt_86\               : signed(17 downto 0);
+        signal \r'_83\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_82\             : std_logic_vector(18 downto 0);
+        signal r_82                          : signed(18 downto 0);
+        signal result_selection_res_83       : boolean;
+        signal \c$bv_250\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_83\ : boolean;
+        signal \c$bv_251\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_252\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_82\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_8 <= result_86;
+
+        \c$bv_250\ <= (\r'_83\);
+
+        result_selection_res_83 <= (( \c$r'_app_arg_82\(\c$r'_app_arg_82\'high) ) xor ( \c$bv_250\(\c$bv_250\'high) )) = '0';
+
+        result_86 <= signed(\r'_83\) when result_selection_res_83 else
+                     \c$case_alt_86\;
+
+        \c$bv_251\ <= ((std_logic_vector(acc_2_16)));
+
+        \c$bv_252\ <= ((std_logic_vector(acc_2_17)));
+
+        \c$case_alt_selection_res_83\ <= (( \c$bv_251\(\c$bv_251\'high) ) and ( \c$bv_252\(\c$bv_252\'high) )) = '0';
+
+        \c$case_alt_86\ <= to_signed(131071,18) when \c$case_alt_selection_res_83\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_82\ <= (\c$r'_app_arg_82\(\c$r'_app_arg_82\'high downto 18),\c$r'_app_arg_82\(18-1 downto 0));
+
+        \r'_83\ <= \r'_projection_82\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_82\ <= (std_logic_vector(r_82));
+
+        r_82 <= resize(acc_2_16,19) + resize(acc_2_17,19);
+
+
+      end block;
+
+    fun_184 : block
+        signal result_87                     : signed(17 downto 0);
+        signal \c$case_alt_87\               : signed(17 downto 0);
+        signal \r'_84\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_83\             : std_logic_vector(18 downto 0);
+        signal r_83                          : signed(18 downto 0);
+        signal result_selection_res_84       : boolean;
+        signal \c$bv_253\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_84\ : boolean;
+        signal \c$bv_254\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_255\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_83\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_9 <= result_87;
+
+        \c$bv_253\ <= (\r'_84\);
+
+        result_selection_res_84 <= (( \c$r'_app_arg_83\(\c$r'_app_arg_83\'high) ) xor ( \c$bv_253\(\c$bv_253\'high) )) = '0';
+
+        result_87 <= signed(\r'_84\) when result_selection_res_84 else
+                     \c$case_alt_87\;
+
+        \c$bv_254\ <= ((std_logic_vector(acc_2_18)));
+
+        \c$bv_255\ <= ((std_logic_vector(acc_2_19)));
+
+        \c$case_alt_selection_res_84\ <= (( \c$bv_254\(\c$bv_254\'high) ) and ( \c$bv_255\(\c$bv_255\'high) )) = '0';
+
+        \c$case_alt_87\ <= to_signed(131071,18) when \c$case_alt_selection_res_84\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_83\ <= (\c$r'_app_arg_83\(\c$r'_app_arg_83\'high downto 18),\c$r'_app_arg_83\(18-1 downto 0));
+
+        \r'_84\ <= \r'_projection_83\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_83\ <= (std_logic_vector(r_83));
+
+        r_83 <= resize(acc_2_18,19) + resize(acc_2_19,19);
+
+
+      end block;
+
+    fun_185 : block
+        signal result_88                     : signed(17 downto 0);
+        signal \c$case_alt_88\               : signed(17 downto 0);
+        signal \r'_85\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_84\             : std_logic_vector(18 downto 0);
+        signal r_84                          : signed(18 downto 0);
+        signal result_selection_res_85       : boolean;
+        signal \c$bv_256\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_85\ : boolean;
+        signal \c$bv_257\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_258\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_84\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_10 <= result_88;
+
+        \c$bv_256\ <= (\r'_85\);
+
+        result_selection_res_85 <= (( \c$r'_app_arg_84\(\c$r'_app_arg_84\'high) ) xor ( \c$bv_256\(\c$bv_256\'high) )) = '0';
+
+        result_88 <= signed(\r'_85\) when result_selection_res_85 else
+                     \c$case_alt_88\;
+
+        \c$bv_257\ <= ((std_logic_vector(acc_2_20)));
+
+        \c$bv_258\ <= ((std_logic_vector(acc_2_21)));
+
+        \c$case_alt_selection_res_85\ <= (( \c$bv_257\(\c$bv_257\'high) ) and ( \c$bv_258\(\c$bv_258\'high) )) = '0';
+
+        \c$case_alt_88\ <= to_signed(131071,18) when \c$case_alt_selection_res_85\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_84\ <= (\c$r'_app_arg_84\(\c$r'_app_arg_84\'high downto 18),\c$r'_app_arg_84\(18-1 downto 0));
+
+        \r'_85\ <= \r'_projection_84\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_84\ <= (std_logic_vector(r_84));
+
+        r_84 <= resize(acc_2_20,19) + resize(acc_2_21,19);
+
+
+      end block;
+
+    fun_186 : block
+        signal result_89                     : signed(17 downto 0);
+        signal \c$case_alt_89\               : signed(17 downto 0);
+        signal \r'_86\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_85\             : std_logic_vector(18 downto 0);
+        signal r_85                          : signed(18 downto 0);
+        signal result_selection_res_86       : boolean;
+        signal \c$bv_259\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_86\ : boolean;
+        signal \c$bv_260\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_261\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_85\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_3_11 <= result_89;
+
+        \c$bv_259\ <= (\r'_86\);
+
+        result_selection_res_86 <= (( \c$r'_app_arg_85\(\c$r'_app_arg_85\'high) ) xor ( \c$bv_259\(\c$bv_259\'high) )) = '0';
+
+        result_89 <= signed(\r'_86\) when result_selection_res_86 else
+                     \c$case_alt_89\;
+
+        \c$bv_260\ <= ((std_logic_vector(acc_2_22)));
+
+        \c$bv_261\ <= ((std_logic_vector(acc_2_23)));
+
+        \c$case_alt_selection_res_86\ <= (( \c$bv_260\(\c$bv_260\'high) ) and ( \c$bv_261\(\c$bv_261\'high) )) = '0';
+
+        \c$case_alt_89\ <= to_signed(131071,18) when \c$case_alt_selection_res_86\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_85\ <= (\c$r'_app_arg_85\(\c$r'_app_arg_85\'high downto 18),\c$r'_app_arg_85\(18-1 downto 0));
+
+        \r'_86\ <= \r'_projection_85\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_85\ <= (std_logic_vector(r_85));
+
+        r_85 <= resize(acc_2_22,19) + resize(acc_2_23,19);
+
+
+      end block;
+
+    fun_187 : block
+        signal result_90                     : signed(17 downto 0);
+        signal \c$case_alt_90\               : signed(17 downto 0);
+        signal \r'_87\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_86\             : std_logic_vector(18 downto 0);
+        signal r_86                          : signed(18 downto 0);
+        signal result_selection_res_87       : boolean;
+        signal \c$bv_262\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_87\ : boolean;
+        signal \c$bv_263\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_264\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_86\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_0 <= result_90;
+
+        \c$bv_262\ <= (\r'_87\);
+
+        result_selection_res_87 <= (( \c$r'_app_arg_86\(\c$r'_app_arg_86\'high) ) xor ( \c$bv_262\(\c$bv_262\'high) )) = '0';
+
+        result_90 <= signed(\r'_87\) when result_selection_res_87 else
+                     \c$case_alt_90\;
+
+        \c$bv_263\ <= ((std_logic_vector(acc_3_0)));
+
+        \c$bv_264\ <= ((std_logic_vector(acc_3_1)));
+
+        \c$case_alt_selection_res_87\ <= (( \c$bv_263\(\c$bv_263\'high) ) and ( \c$bv_264\(\c$bv_264\'high) )) = '0';
+
+        \c$case_alt_90\ <= to_signed(131071,18) when \c$case_alt_selection_res_87\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_86\ <= (\c$r'_app_arg_86\(\c$r'_app_arg_86\'high downto 18),\c$r'_app_arg_86\(18-1 downto 0));
+
+        \r'_87\ <= \r'_projection_86\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_86\ <= (std_logic_vector(r_86));
+
+        r_86 <= resize(acc_3_0,19) + resize(acc_3_1,19);
+
+
+      end block;
+
+    fun_188 : block
+        signal result_91                     : signed(17 downto 0);
+        signal \c$case_alt_91\               : signed(17 downto 0);
+        signal \r'_88\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_87\             : std_logic_vector(18 downto 0);
+        signal r_87                          : signed(18 downto 0);
+        signal result_selection_res_88       : boolean;
+        signal \c$bv_265\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_88\ : boolean;
+        signal \c$bv_266\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_267\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_87\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_1 <= result_91;
+
+        \c$bv_265\ <= (\r'_88\);
+
+        result_selection_res_88 <= (( \c$r'_app_arg_87\(\c$r'_app_arg_87\'high) ) xor ( \c$bv_265\(\c$bv_265\'high) )) = '0';
+
+        result_91 <= signed(\r'_88\) when result_selection_res_88 else
+                     \c$case_alt_91\;
+
+        \c$bv_266\ <= ((std_logic_vector(acc_3_2)));
+
+        \c$bv_267\ <= ((std_logic_vector(acc_3_3)));
+
+        \c$case_alt_selection_res_88\ <= (( \c$bv_266\(\c$bv_266\'high) ) and ( \c$bv_267\(\c$bv_267\'high) )) = '0';
+
+        \c$case_alt_91\ <= to_signed(131071,18) when \c$case_alt_selection_res_88\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_87\ <= (\c$r'_app_arg_87\(\c$r'_app_arg_87\'high downto 18),\c$r'_app_arg_87\(18-1 downto 0));
+
+        \r'_88\ <= \r'_projection_87\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_87\ <= (std_logic_vector(r_87));
+
+        r_87 <= resize(acc_3_2,19) + resize(acc_3_3,19);
+
+
+      end block;
+
+    fun_189 : block
+        signal result_92                     : signed(17 downto 0);
+        signal \c$case_alt_92\               : signed(17 downto 0);
+        signal \r'_89\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_88\             : std_logic_vector(18 downto 0);
+        signal r_88                          : signed(18 downto 0);
+        signal result_selection_res_89       : boolean;
+        signal \c$bv_268\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_89\ : boolean;
+        signal \c$bv_269\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_270\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_88\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_2 <= result_92;
+
+        \c$bv_268\ <= (\r'_89\);
+
+        result_selection_res_89 <= (( \c$r'_app_arg_88\(\c$r'_app_arg_88\'high) ) xor ( \c$bv_268\(\c$bv_268\'high) )) = '0';
+
+        result_92 <= signed(\r'_89\) when result_selection_res_89 else
+                     \c$case_alt_92\;
+
+        \c$bv_269\ <= ((std_logic_vector(acc_3_4)));
+
+        \c$bv_270\ <= ((std_logic_vector(acc_3_5)));
+
+        \c$case_alt_selection_res_89\ <= (( \c$bv_269\(\c$bv_269\'high) ) and ( \c$bv_270\(\c$bv_270\'high) )) = '0';
+
+        \c$case_alt_92\ <= to_signed(131071,18) when \c$case_alt_selection_res_89\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_88\ <= (\c$r'_app_arg_88\(\c$r'_app_arg_88\'high downto 18),\c$r'_app_arg_88\(18-1 downto 0));
+
+        \r'_89\ <= \r'_projection_88\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_88\ <= (std_logic_vector(r_88));
+
+        r_88 <= resize(acc_3_4,19) + resize(acc_3_5,19);
+
+
+      end block;
+
+    fun_190 : block
+        signal result_93                     : signed(17 downto 0);
+        signal \c$case_alt_93\               : signed(17 downto 0);
+        signal \r'_90\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_89\             : std_logic_vector(18 downto 0);
+        signal r_89                          : signed(18 downto 0);
+        signal result_selection_res_90       : boolean;
+        signal \c$bv_271\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_90\ : boolean;
+        signal \c$bv_272\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_273\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_89\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_3 <= result_93;
+
+        \c$bv_271\ <= (\r'_90\);
+
+        result_selection_res_90 <= (( \c$r'_app_arg_89\(\c$r'_app_arg_89\'high) ) xor ( \c$bv_271\(\c$bv_271\'high) )) = '0';
+
+        result_93 <= signed(\r'_90\) when result_selection_res_90 else
+                     \c$case_alt_93\;
+
+        \c$bv_272\ <= ((std_logic_vector(acc_3_6)));
+
+        \c$bv_273\ <= ((std_logic_vector(acc_3_7)));
+
+        \c$case_alt_selection_res_90\ <= (( \c$bv_272\(\c$bv_272\'high) ) and ( \c$bv_273\(\c$bv_273\'high) )) = '0';
+
+        \c$case_alt_93\ <= to_signed(131071,18) when \c$case_alt_selection_res_90\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_89\ <= (\c$r'_app_arg_89\(\c$r'_app_arg_89\'high downto 18),\c$r'_app_arg_89\(18-1 downto 0));
+
+        \r'_90\ <= \r'_projection_89\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_89\ <= (std_logic_vector(r_89));
+
+        r_89 <= resize(acc_3_6,19) + resize(acc_3_7,19);
+
+
+      end block;
+
+    fun_191 : block
+        signal result_94                     : signed(17 downto 0);
+        signal \c$case_alt_94\               : signed(17 downto 0);
+        signal \r'_91\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_90\             : std_logic_vector(18 downto 0);
+        signal r_90                          : signed(18 downto 0);
+        signal result_selection_res_91       : boolean;
+        signal \c$bv_274\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_91\ : boolean;
+        signal \c$bv_275\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_276\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_90\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_4 <= result_94;
+
+        \c$bv_274\ <= (\r'_91\);
+
+        result_selection_res_91 <= (( \c$r'_app_arg_90\(\c$r'_app_arg_90\'high) ) xor ( \c$bv_274\(\c$bv_274\'high) )) = '0';
+
+        result_94 <= signed(\r'_91\) when result_selection_res_91 else
+                     \c$case_alt_94\;
+
+        \c$bv_275\ <= ((std_logic_vector(acc_3_8)));
+
+        \c$bv_276\ <= ((std_logic_vector(acc_3_9)));
+
+        \c$case_alt_selection_res_91\ <= (( \c$bv_275\(\c$bv_275\'high) ) and ( \c$bv_276\(\c$bv_276\'high) )) = '0';
+
+        \c$case_alt_94\ <= to_signed(131071,18) when \c$case_alt_selection_res_91\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_90\ <= (\c$r'_app_arg_90\(\c$r'_app_arg_90\'high downto 18),\c$r'_app_arg_90\(18-1 downto 0));
+
+        \r'_91\ <= \r'_projection_90\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_90\ <= (std_logic_vector(r_90));
+
+        r_90 <= resize(acc_3_8,19) + resize(acc_3_9,19);
+
+
+      end block;
+
+    fun_192 : block
+        signal result_95                     : signed(17 downto 0);
+        signal \c$case_alt_95\               : signed(17 downto 0);
+        signal \r'_92\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_91\             : std_logic_vector(18 downto 0);
+        signal r_91                          : signed(18 downto 0);
+        signal result_selection_res_92       : boolean;
+        signal \c$bv_277\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_92\ : boolean;
+        signal \c$bv_278\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_279\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_91\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_4_5 <= result_95;
+
+        \c$bv_277\ <= (\r'_92\);
+
+        result_selection_res_92 <= (( \c$r'_app_arg_91\(\c$r'_app_arg_91\'high) ) xor ( \c$bv_277\(\c$bv_277\'high) )) = '0';
+
+        result_95 <= signed(\r'_92\) when result_selection_res_92 else
+                     \c$case_alt_95\;
+
+        \c$bv_278\ <= ((std_logic_vector(acc_3_10)));
+
+        \c$bv_279\ <= ((std_logic_vector(acc_3_11)));
+
+        \c$case_alt_selection_res_92\ <= (( \c$bv_278\(\c$bv_278\'high) ) and ( \c$bv_279\(\c$bv_279\'high) )) = '0';
+
+        \c$case_alt_95\ <= to_signed(131071,18) when \c$case_alt_selection_res_92\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_91\ <= (\c$r'_app_arg_91\(\c$r'_app_arg_91\'high downto 18),\c$r'_app_arg_91\(18-1 downto 0));
+
+        \r'_92\ <= \r'_projection_91\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_91\ <= (std_logic_vector(r_91));
+
+        r_91 <= resize(acc_3_10,19) + resize(acc_3_11,19);
+
+
+      end block;
+
+    fun_193 : block
+        signal result_96                     : signed(17 downto 0);
+        signal \c$case_alt_96\               : signed(17 downto 0);
+        signal \r'_93\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_92\             : std_logic_vector(18 downto 0);
+        signal r_92                          : signed(18 downto 0);
+        signal result_selection_res_93       : boolean;
+        signal \c$bv_280\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_93\ : boolean;
+        signal \c$bv_281\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_282\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_92\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_5_0 <= result_96;
+
+        \c$bv_280\ <= (\r'_93\);
+
+        result_selection_res_93 <= (( \c$r'_app_arg_92\(\c$r'_app_arg_92\'high) ) xor ( \c$bv_280\(\c$bv_280\'high) )) = '0';
+
+        result_96 <= signed(\r'_93\) when result_selection_res_93 else
+                     \c$case_alt_96\;
+
+        \c$bv_281\ <= ((std_logic_vector(acc_4_0)));
+
+        \c$bv_282\ <= ((std_logic_vector(acc_4_1)));
+
+        \c$case_alt_selection_res_93\ <= (( \c$bv_281\(\c$bv_281\'high) ) and ( \c$bv_282\(\c$bv_282\'high) )) = '0';
+
+        \c$case_alt_96\ <= to_signed(131071,18) when \c$case_alt_selection_res_93\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_92\ <= (\c$r'_app_arg_92\(\c$r'_app_arg_92\'high downto 18),\c$r'_app_arg_92\(18-1 downto 0));
+
+        \r'_93\ <= \r'_projection_92\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_92\ <= (std_logic_vector(r_92));
+
+        r_92 <= resize(acc_4_0,19) + resize(acc_4_1,19);
+
+
+      end block;
+
+    fun_194 : block
+        signal result_97                     : signed(17 downto 0);
+        signal \c$case_alt_97\               : signed(17 downto 0);
+        signal \r'_94\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_93\             : std_logic_vector(18 downto 0);
+        signal r_93                          : signed(18 downto 0);
+        signal result_selection_res_94       : boolean;
+        signal \c$bv_283\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_94\ : boolean;
+        signal \c$bv_284\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_285\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_93\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_5_1 <= result_97;
+
+        \c$bv_283\ <= (\r'_94\);
+
+        result_selection_res_94 <= (( \c$r'_app_arg_93\(\c$r'_app_arg_93\'high) ) xor ( \c$bv_283\(\c$bv_283\'high) )) = '0';
+
+        result_97 <= signed(\r'_94\) when result_selection_res_94 else
+                     \c$case_alt_97\;
+
+        \c$bv_284\ <= ((std_logic_vector(acc_4_2)));
+
+        \c$bv_285\ <= ((std_logic_vector(acc_4_3)));
+
+        \c$case_alt_selection_res_94\ <= (( \c$bv_284\(\c$bv_284\'high) ) and ( \c$bv_285\(\c$bv_285\'high) )) = '0';
+
+        \c$case_alt_97\ <= to_signed(131071,18) when \c$case_alt_selection_res_94\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_93\ <= (\c$r'_app_arg_93\(\c$r'_app_arg_93\'high downto 18),\c$r'_app_arg_93\(18-1 downto 0));
+
+        \r'_94\ <= \r'_projection_93\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_93\ <= (std_logic_vector(r_93));
+
+        r_93 <= resize(acc_4_2,19) + resize(acc_4_3,19);
+
+
+      end block;
+
+    fun_195 : block
+        signal result_98                     : signed(17 downto 0);
+        signal \c$case_alt_98\               : signed(17 downto 0);
+        signal \r'_95\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_94\             : std_logic_vector(18 downto 0);
+        signal r_94                          : signed(18 downto 0);
+        signal result_selection_res_95       : boolean;
+        signal \c$bv_286\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_95\ : boolean;
+        signal \c$bv_287\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_288\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_94\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_5_2 <= result_98;
+
+        \c$bv_286\ <= (\r'_95\);
+
+        result_selection_res_95 <= (( \c$r'_app_arg_94\(\c$r'_app_arg_94\'high) ) xor ( \c$bv_286\(\c$bv_286\'high) )) = '0';
+
+        result_98 <= signed(\r'_95\) when result_selection_res_95 else
+                     \c$case_alt_98\;
+
+        \c$bv_287\ <= ((std_logic_vector(acc_4_4)));
+
+        \c$bv_288\ <= ((std_logic_vector(acc_4_5)));
+
+        \c$case_alt_selection_res_95\ <= (( \c$bv_287\(\c$bv_287\'high) ) and ( \c$bv_288\(\c$bv_288\'high) )) = '0';
+
+        \c$case_alt_98\ <= to_signed(131071,18) when \c$case_alt_selection_res_95\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_94\ <= (\c$r'_app_arg_94\(\c$r'_app_arg_94\'high downto 18),\c$r'_app_arg_94\(18-1 downto 0));
+
+        \r'_95\ <= \r'_projection_94\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_94\ <= (std_logic_vector(r_94));
+
+        r_94 <= resize(acc_4_4,19) + resize(acc_4_5,19);
+
+
+      end block;
+
+    fun_196 : block
+        signal result_99                     : signed(17 downto 0);
+        signal \c$case_alt_99\               : signed(17 downto 0);
+        signal \r'_96\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_95\             : std_logic_vector(18 downto 0);
+        signal r_95                          : signed(18 downto 0);
+        signal result_selection_res_96       : boolean;
+        signal \c$bv_289\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_96\ : boolean;
+        signal \c$bv_290\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_291\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_95\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_6_0 <= result_99;
+
+        \c$bv_289\ <= (\r'_96\);
+
+        result_selection_res_96 <= (( \c$r'_app_arg_95\(\c$r'_app_arg_95\'high) ) xor ( \c$bv_289\(\c$bv_289\'high) )) = '0';
+
+        result_99 <= signed(\r'_96\) when result_selection_res_96 else
+                     \c$case_alt_99\;
+
+        \c$bv_290\ <= ((std_logic_vector(acc_5_0)));
+
+        \c$bv_291\ <= ((std_logic_vector(acc_5_1)));
+
+        \c$case_alt_selection_res_96\ <= (( \c$bv_290\(\c$bv_290\'high) ) and ( \c$bv_291\(\c$bv_291\'high) )) = '0';
+
+        \c$case_alt_99\ <= to_signed(131071,18) when \c$case_alt_selection_res_96\ else
+                           to_signed(-131072,18);
+
+        \r'_projection_95\ <= (\c$r'_app_arg_95\(\c$r'_app_arg_95\'high downto 18),\c$r'_app_arg_95\(18-1 downto 0));
+
+        \r'_96\ <= \r'_projection_95\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_95\ <= (std_logic_vector(r_95));
+
+        r_95 <= resize(acc_5_0,19) + resize(acc_5_1,19);
+
+
+      end block;
+
+    fun_197 : block
+        signal result_100                    : signed(17 downto 0);
+        signal \c$case_alt_100\              : signed(17 downto 0);
+        signal \r'_97\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_96\             : std_logic_vector(18 downto 0);
+        signal r_96                          : signed(18 downto 0);
+        signal result_selection_res_97       : boolean;
+        signal \c$bv_292\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_97\ : boolean;
+        signal \c$bv_293\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_294\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_96\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_6_1 <= result_100;
+
+        \c$bv_292\ <= (\r'_97\);
+
+        result_selection_res_97 <= (( \c$r'_app_arg_96\(\c$r'_app_arg_96\'high) ) xor ( \c$bv_292\(\c$bv_292\'high) )) = '0';
+
+        result_100 <= signed(\r'_97\) when result_selection_res_97 else
+                      \c$case_alt_100\;
+
+        \c$bv_293\ <= ((std_logic_vector(acc_5_2)));
+
+        \c$bv_294\ <= ((std_logic_vector(acc_2_24)));
+
+        \c$case_alt_selection_res_97\ <= (( \c$bv_293\(\c$bv_293\'high) ) and ( \c$bv_294\(\c$bv_294\'high) )) = '0';
+
+        \c$case_alt_100\ <= to_signed(131071,18) when \c$case_alt_selection_res_97\ else
+                            to_signed(-131072,18);
+
+        \r'_projection_96\ <= (\c$r'_app_arg_96\(\c$r'_app_arg_96\'high downto 18),\c$r'_app_arg_96\(18-1 downto 0));
+
+        \r'_97\ <= \r'_projection_96\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_96\ <= (std_logic_vector(r_96));
+
+        r_96 <= resize(acc_5_2,19) + resize(acc_2_24,19);
+
+
+      end block;
+
+    fun_198 : block
+        signal result_101                    : signed(17 downto 0);
+        signal \c$case_alt_101\              : signed(17 downto 0);
+        signal \r'_98\                       : std_logic_vector(17 downto 0);
+        signal \c$r'_app_arg_97\             : std_logic_vector(18 downto 0);
+        signal r_97                          : signed(18 downto 0);
+        signal result_selection_res_98       : boolean;
+        signal \c$bv_295\                    : std_logic_vector(17 downto 0);
+        signal \c$case_alt_selection_res_98\ : boolean;
+        signal \c$bv_296\                    : std_logic_vector(17 downto 0);
+        signal \c$bv_297\                    : std_logic_vector(17 downto 0);
+        signal \r'_projection_97\            : fir1_100_types.Tuple2_0;
+      begin
+        acc_7_0 <= result_101;
+
+        \c$bv_295\ <= (\r'_98\);
+
+        result_selection_res_98 <= (( \c$r'_app_arg_97\(\c$r'_app_arg_97\'high) ) xor ( \c$bv_295\(\c$bv_295\'high) )) = '0';
+
+        result_101 <= signed(\r'_98\) when result_selection_res_98 else
+                      \c$case_alt_101\;
+
+        \c$bv_296\ <= ((std_logic_vector(acc_6_0)));
+
+        \c$bv_297\ <= ((std_logic_vector(acc_6_1)));
+
+        \c$case_alt_selection_res_98\ <= (( \c$bv_296\(\c$bv_296\'high) ) and ( \c$bv_297\(\c$bv_297\'high) )) = '0';
+
+        \c$case_alt_101\ <= to_signed(131071,18) when \c$case_alt_selection_res_98\ else
+                            to_signed(-131072,18);
+
+        \r'_projection_97\ <= (\c$r'_app_arg_97\(\c$r'_app_arg_97\'high downto 18),\c$r'_app_arg_97\(18-1 downto 0));
+
+        \r'_98\ <= \r'_projection_97\.Tuple2_0_sel1_std_logic_vector_1;
+
+        \c$r'_app_arg_97\ <= (std_logic_vector(r_97));
+
+        r_97 <= resize(acc_6_0,19) + resize(acc_6_1,19);
+
+
+      end block;
+
+
+  end block;
+
+
+end;
+

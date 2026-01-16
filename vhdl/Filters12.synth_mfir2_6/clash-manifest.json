@@ -1,0 +1,86 @@
+{
+    "components": [
+        "mfir2_6"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "mfir2_6.sdc",
+            "sha256": "13d4c1aafcc09a84d81d3b60d513cb901384a10e27e5a5a16572a600f15895f3"
+        },
+        {
+            "name": "mfir2_6_types.vhdl",
+            "sha256": "527ccc3f12c4a90d12e65e342f62442e9baaabd24e8cdb94f16afdd9d2559a02"
+        },
+        {
+            "name": "mfir2_6.vhdl",
+            "sha256": "b2950a156d48ff09e54b26330acc3a70a06cefc2102d58384a526a1d98a2b271"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "f8c5abb935808ebb68f3dde08eabeb66fd38af398edf82d09d1acc3f87ee2a2f",
+    "top_component": {
+        "name": "mfir2_6",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": true,
+                "name": "clk",
+                "type_name": "clk.mfir2_6_types.clk_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": false,
+                "name": "rst",
+                "type_name": "rst.mfir2_6_types.rst_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "x",
+                "type_name": "signed(7 downto 0)",
+                "width": 8
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "o",
+                "type_name": "signed(7 downto 0)",
+                "width": 8
+            }
+        ]
+    },
+    "version": "unstable"
+}

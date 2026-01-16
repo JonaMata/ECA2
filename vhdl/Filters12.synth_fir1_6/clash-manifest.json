@@ -1,0 +1,66 @@
+{
+    "components": [
+        "fir1_6"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "fir1_6_types.vhdl",
+            "sha256": "8eb9565d75cfaf430a1431fef717dee7ac93b52951144bc86b21097e58b7d2da"
+        },
+        {
+            "name": "fir1_6.vhdl",
+            "sha256": "90eae178a89463911a42de48d6860402348256aa3e837d222efd7869f5720ba1"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "54c24cde1be25ea613874dffe9071f28eaedbe2bb2487f1a8ad499d1ada10c10",
+    "top_component": {
+        "name": "fir1_6",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "xs",
+                "type_name": "std_logic_vector(47 downto 0)",
+                "width": 48
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "o",
+                "type_name": "signed(7 downto 0)",
+                "width": 8
+            }
+        ]
+    },
+    "version": "unstable"
+}
