@@ -1,0 +1,39 @@
+{
+    "name": "eda.edaproject",
+    "inputFiles": [
+        {
+            "path": "./src/miir1_types.vhdl",
+            "type": "design"
+        },
+        {
+            "path": "./src/miir1.vhdl",
+            "type": "design"
+        }
+    ],
+    "outputFiles": [
+        {
+            "path": "./logs/rtl.log",
+            "targetId": "default",
+            "stale": false
+        }
+    ],
+    "configuration": {
+        "targets": [
+            {
+                "id": "default",
+                "name": "ECP5 - LFE5U-25 - caBGA381",
+                "vendor": "lattice",
+                "family": "ecp5",
+                "device": "lfe5u-25",
+                "package": "caBGA381",
+                "directory": "./out/eda.edaproject/default/",
+                "yosys": {
+                    "options": {
+                        "topLevelModule": "miir1"
+                    }
+                }
+            }
+        ],
+        "activeTargetId": "default"
+    }
+}

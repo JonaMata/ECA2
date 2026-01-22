@@ -50,7 +50,7 @@ fir1_100 xs = sum $ zipWith (*) filterCoef xs
 -----------------------------------------------------------
 
 fir2 :: Vec 6 (Signed 8) -> Signed 8 -> (Vec 6 (Signed 8), Signed 8)
-fir2 state x = ((x:>(take d5 state), out))
+fir2 state x = ((x+>>state, out))
   where
     out = sum $ zipWith (*) hs state
 
@@ -64,7 +64,7 @@ simMfir2_6 = simulateN @System 20 mfir2_6 [1..20]
 -- FIR2 N = 100
 -----------------------------------------------------------
 fir2_100 :: Vec 100 (SFixed 5 13) -> SFixed 5 13 -> (Vec 100 (SFixed 5 13), SFixed 5 13)
-fir2_100 state x = ((x:>(take d99 state), out))
+fir2_100 state x = ((x+>>state, out))
   where
     out = sum $ zipWith (*) filterCoef state
 
@@ -80,7 +80,7 @@ simMfir2_100 = simulateN @System (L.length inputSignal) mfir2_100 inputSignal
 -----------------------------------------------------------
 
 fir3 :: Vec 6 (Signed 8) -> Signed 8 -> (Vec 6 (Signed 8), Signed 8)
-fir3 state x = (((x:>(take d5 state)), out))
+fir3 state x = (((x+>>state), out))
   where
     out = sum $ zipWith (*) (take d3 hs) mirror_added_state
     mirror_added_state = zipWith (+) (take d3 state) (take d3 (reverse state))
@@ -96,7 +96,7 @@ simMfir3_6 = simulateN @System 20 mfir3_6 [1..20]
 -----------------------------------------------------------
 
 fir3_100 :: Vec 100 (SFixed 5 13) -> SFixed 5 13 -> (Vec 100 (SFixed 5 13), SFixed 5 13)
-fir3_100 state x = (((x:>(take d99 state)), out))
+fir3_100 state x = (x+>>state, out)
   where
     out = sum $ zipWith (*) (take d50 filterCoef) mirror_added_state
     mirror_added_state = zipWith (+) (take d50 state) (take d50 (reverse state))
@@ -114,7 +114,7 @@ simMfir3_100 = simulateN @System (L.length inputSignal) mfir3_100 inputSignal
 fir3t :: Vec 6 (Signed 8) -> Signed 8 -> (Vec 6 (Signed 8), Signed 8)
 fir3t state x = (new_state, last state)
   where
-    new_state = zipWith (+) ((0:>take d5 state)) (hs_map++(reverse hs_map))
+    new_state = zipWith (+) (0+>>state) (hs_map++(reverse hs_map))
     hs_map = map (x*) (take d3 hs)
 
 mfir3t_6 :: HiddenClockResetEnable dom => Signal dom (Signed 8) -> Signal dom (Signed 8)
@@ -130,14 +130,15 @@ simMfir3t_6 = simulateN @System 20 mfir3t_6 [1..20]
 bs = (0.0623348 :> 0.1870044 :> 0.1870044 :> 0.0623348 :> Nil)
 as = (0.9853304 :> -0.5929545 :> 0.1089457 :> Nil)
 
+
 iir1 :: Vec 3 (SFixed 5 13) -> SFixed 5 13 -> (Vec 3 (SFixed 5 13), SFixed 5 13)
 iir1 state x = (new_state, out)
   where
-    out = state!!0+ b_side!!0
+    out = state!!0 + b_side!!0
     a_side = map (out*) as
     b_side = map (x*) bs
     ab_sum = zipWith (+) (tail b_side) (a_side)
-    new_state = zipWith (+) (ab_sum) ((tail state)++0:>Nil)
+    new_state = zipWith (+) (ab_sum) (state<<+0)
 
 miir1 :: HiddenClockResetEnable dom => Signal dom (SFixed 5 13) -> Signal dom (SFixed 5 13)
 miir1 = mealy iir1 (repeat 0)
@@ -156,7 +157,7 @@ iir2 state x = (new_state, out)
   where
     out = sum $ zipWith (*) bs (intermediate:>state)
     intermediate = x + (sum $ zipWith (*) as state)
-    new_state = (intermediate:>(take d2 state))
+    new_state = (intermediate+>>state)
 
 miir2 :: HiddenClockResetEnable dom => Signal dom (SFixed 5 13) -> Signal dom (SFixed 5 13)
 miir2 = mealy iir2 (repeat 0)
