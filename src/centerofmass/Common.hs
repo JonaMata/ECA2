@@ -33,7 +33,7 @@ wf path im = writeFile path (pre L.++ printimage i)
     i = toList $ map toList im
     w = L.length ((L.!!) i 0) -- length of first row is image width
     h = L.length i
-    mx = show $ L.maximum $ L.maximum i
+    mx = show $ L.maximum $ L.map L.maximum i
 
 -- The blocks2D function takes an image (vector of vector of grayscale pixels) and chops
 --  it into different blocks. for exampe:
@@ -102,7 +102,6 @@ wfL path i = writeFile path (pre L.++ printimage i)
     w = L.length (i L.!! 0) -- length of first row is image width
     h = L.length i
     mx = show $ L.maximum $ L.map L.maximum i
-
 
 blocks2DL ::
   Int         -- window width and height

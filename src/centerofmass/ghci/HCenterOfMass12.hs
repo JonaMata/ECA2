@@ -1,4 +1,4 @@
-module HCenterOfMassXX where
+module HCenterOfMass12 where
 
 import Image
 import Data.List

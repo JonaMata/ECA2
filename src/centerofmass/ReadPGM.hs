@@ -19,6 +19,8 @@ readPGM path = do
   let ls = stripComments (lines content)
       (sP2:sDims:sMaxVal:sPixels) = case ls of
         ("P2\r":_) -> ls
+        ("P2\r\r":_) -> ls
+        ("P2\r\n":_) -> ls
         ("P2\n":_) -> ls
         ("P2":_) -> ls
         (format:_) -> error $ "only P2 format supported, format: " L.++ (show format)
