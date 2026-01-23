@@ -1,6 +1,6 @@
 {
     "components": [
-        "miir1"
+        "miir2"
     ],
     "dependencies": {
         "transitive": []
@@ -30,32 +30,32 @@
     },
     "files": [
         {
-            "name": "miir1.sdc",
+            "name": "miir2.sdc",
             "sha256": "13d4c1aafcc09a84d81d3b60d513cb901384a10e27e5a5a16572a600f15895f3"
         },
         {
-            "name": "miir1_types.vhdl",
-            "sha256": "5fc10b00a746e60c1647b0881fc34c5e390fc2a9d3e5eadc530dfcbdf46ee623"
+            "name": "miir2_types.vhdl",
+            "sha256": "bebb99dfe26e00dd66b25ddfbb5305d46550abef2e9d0e38a63d5712e17f2c33"
         },
         {
-            "name": "miir1.vhdl",
-            "sha256": "b897e1e579f8eccb8125dff6d816c3ff54c2ae9d252371e7890d53d5c2b6fadc"
+            "name": "miir2.vhdl",
+            "sha256": "9db2881e574aa8784ec6174e2b0e0e0aaf432b7d636b16c2e896b42b7946c3a3"
         }
     ],
     "flags": [
         20,
         20
     ],
-    "hash": "6f0b2f0f46eddadc70f832d32c511bbce7466e4417a082b2b628887b76715aa7",
+    "hash": "9f1968b1b2d91eee26721139952cc6a83995d70216d1531920a499684d0dbcfb",
     "top_component": {
-        "name": "miir1",
+        "name": "miir2",
         "ports_flat": [
             {
                 "direction": "in",
                 "domain": "System",
                 "is_clock": true,
                 "name": "clk",
-                "type_name": "clk.miir1_types.clk_System",
+                "type_name": "clk.miir2_types.clk_System",
                 "width": 1
             },
             {
@@ -63,7 +63,7 @@
                 "domain": "System",
                 "is_clock": false,
                 "name": "rst",
-                "type_name": "rst.miir1_types.rst_System",
+                "type_name": "rst.miir2_types.rst_System",
                 "width": 1
             },
             {

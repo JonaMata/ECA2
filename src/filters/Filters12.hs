@@ -1,5 +1,6 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore #-}
+
 {-
 Student information:
   Student 1
@@ -246,7 +247,7 @@ synth_mfir3_100 clk rst = withClockResetEnable clk rst enableGen mfir3_100
 synth_mfir3t_6 :: Clk -> Rst -> Sig (Signed 8) -> Sig (Signed 8)
 synth_mfir3t_6 clk rst = withClockResetEnable clk rst enableGen mfir3t_6
 -}
-
+{-
 -- Assignment 8
 {-# ANN synth_miir1
   (Synthesize
@@ -256,7 +257,7 @@ synth_mfir3t_6 clk rst = withClockResetEnable clk rst enableGen mfir3t_6
     }) #-}
 synth_miir1 :: Clk -> Rst -> Sig (SFixed 5 13) -> Sig (SFixed 5 13)
 synth_miir1 clk rst = withClockResetEnable clk rst enableGen miir1
-
+-}
 {-
 -- Assignment 9
 {-# ANN synth_miir2
