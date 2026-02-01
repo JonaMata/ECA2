@@ -95,7 +95,7 @@ axisComSer state (s_axi, m_axis_tready) = (state', (m_axi, s_axis_tready))
     imgBuf' = case (state, handshake) of
       (((imgBuf, i), _), True) ->
         (replace (div i 8) (replace (mod i 8) s_axi_tdata (imgBuf!!div i 8)) imgBuf,
-          mod (i+1) 64)
+          if s_axi_tlast then 0 else mod (i+1) 64)
       ((cur, _), _) -> cur
     send' = case (state, m_axis_tready, s_axi_tlast) of
       ((_, Just _), True, _) -> Nothing
