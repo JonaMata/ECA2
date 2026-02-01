@@ -110,7 +110,9 @@ axisComSer state (s_axi, m_axis_tready) = (state', (m_axi, s_axis_tready))
     m_axi = case send' of
       Just coords -> Just (Axi4Stream coords True 0b1)
       _           -> Nothing
-    s_axis_tready = True
+    s_axis_tready = case (send', s_axi_tlast, m_axis_tready) of
+      (Just _, True, False)    -> False
+      _            -> True
     handshake = case (s_axi, s_axis_tready) of
       (Just _, True) -> True
       _              -> False
