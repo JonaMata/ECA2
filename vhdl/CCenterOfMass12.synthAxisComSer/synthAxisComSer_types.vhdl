@@ -6,48 +6,51 @@ package synthAxisComSer_types is
 
 
 
-  type Tuple2_2 is record
-    Tuple2_2_sel0_unsigned_0 : unsigned(3 downto 0);
-    Tuple2_2_sel1_unsigned_1 : unsigned(3 downto 0);
+  type Tuple2_3 is record
+    Tuple2_3_sel0_unsigned_0 : unsigned(3 downto 0);
+    Tuple2_3_sel1_unsigned_1 : unsigned(3 downto 0);
   end record;
+  subtype Maybe_0 is std_logic_vector(8 downto 0);
   subtype clk_System is std_logic;
   type array_of_signed_32 is array (integer range <>) of signed(31 downto 0);
   subtype rst_System is std_logic;
-  subtype index_8 is unsigned(2 downto 0);
-  type Tuple2_4 is record
-    Tuple2_4_sel0_index_8_0 : index_8;
-    Tuple2_4_sel1_index_8_1 : index_8;
-  end record;
   type Tuple2 is record
     Tuple2_sel0_signed_0 : signed(31 downto 0);
     Tuple2_sel1_signed_1 : signed(31 downto 0);
   end record;
 
-  type Axi4Stream_0 is record
-    Axi4Stream_0_sel0_tData : signed(31 downto 0);
-    Axi4Stream_0_sel1_tLast : boolean;
-    Axi4Stream_0_sel2_tKeep : std_logic_vector(3 downto 0);
+  type Axi4Stream is record
+    Axi4Stream_sel0_tData : signed(31 downto 0);
+    Axi4Stream_sel1_tLast : boolean;
+    Axi4Stream_sel2_tKeep : std_logic_vector(3 downto 0);
   end record;
   type array_of_array_of_8_signed_32 is array (integer range <>) of array_of_signed_32(0 to 7);
-  type Axi4Stream is record
-    Axi4Stream_sel0_tData_0 : Tuple2_2;
-    Axi4Stream_sel1_tLast_0 : boolean;
-    Axi4Stream_sel2_tKeep_0 : std_logic_vector(0 downto 0);
+  type Axi4Stream_0 is record
+    Axi4Stream_0_sel0_tData_0 : Tuple2_3;
+    Axi4Stream_0_sel1_tLast_0 : boolean;
+    Axi4Stream_0_sel2_tKeep_0 : std_logic_vector(0 downto 0);
   end record;
   subtype Maybe is std_logic_vector(10 downto 0);
-  subtype Maybe_0 is std_logic_vector(37 downto 0);
+  type Tuple2_4 is record
+    Tuple2_4_sel0_array_of_array_of_8_signed_32 : array_of_array_of_8_signed_32(0 to 7);
+    Tuple2_4_sel1_signed : signed(63 downto 0);
+  end record;
   type Tuple2_0 is record
-    Tuple2_0_sel0_Maybe_0 : Maybe_0;
-    Tuple2_0_sel1_boolean : boolean;
+    Tuple2_0_sel0_Tuple2_4 : Tuple2_4;
+    Tuple2_0_sel1_Maybe_0 : Maybe_0;
   end record;
-  subtype StateComSer is std_logic_vector(2054 downto 0);
-  type Tuple2_3 is record
-    Tuple2_3_sel0_Maybe : Maybe;
-    Tuple2_3_sel1_boolean : boolean;
-  end record;
+  subtype Maybe_1 is std_logic_vector(37 downto 0);
   type Tuple2_1 is record
-    Tuple2_1_sel0_StateComSer : StateComSer;
-    Tuple2_1_sel1_Tuple2_3 : Tuple2_3;
+    Tuple2_1_sel0_Maybe_1 : Maybe_1;
+    Tuple2_1_sel1_boolean : boolean;
+  end record;
+  type Tuple2_5 is record
+    Tuple2_5_sel0_Maybe : Maybe;
+    Tuple2_5_sel1_boolean : boolean;
+  end record;
+  type Tuple2_2 is record
+    Tuple2_2_sel0_Tuple2_0 : Tuple2_0;
+    Tuple2_2_sel1_Tuple2_5 : Tuple2_5;
   end record;
   function toSLV (u : in unsigned) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return unsigned;
@@ -55,32 +58,34 @@ package synthAxisComSer_types is
   function fromSLV (slv : in std_logic_vector) return std_logic_vector;
   function toSLV (s : in signed) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return signed;
-  function toSLV (p : Tuple2_2) return std_logic_vector;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_2;
+  function toSLV (p : Tuple2_3) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_3;
   function toSLV (sl : in std_logic) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return std_logic;
   function toSLV (value :  array_of_signed_32) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return array_of_signed_32;
-  function toSLV (p : Tuple2_4) return std_logic_vector;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_4;
   function toSLV (p : Tuple2) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return Tuple2;
   function toSLV (b : in boolean) return std_logic_vector;
   function fromSLV (sl : in std_logic_vector) return boolean;
   function tagToEnum (s : in signed) return boolean;
   function dataToTag (b : in boolean) return signed;
-  function toSLV (p : Axi4Stream_0) return std_logic_vector;
-  function fromSLV (slv : in std_logic_vector) return Axi4Stream_0;
-  function toSLV (value :  array_of_array_of_8_signed_32) return std_logic_vector;
-  function fromSLV (slv : in std_logic_vector) return array_of_array_of_8_signed_32;
   function toSLV (p : Axi4Stream) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return Axi4Stream;
+  function toSLV (value :  array_of_array_of_8_signed_32) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return array_of_array_of_8_signed_32;
+  function toSLV (p : Axi4Stream_0) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return Axi4Stream_0;
+  function toSLV (p : Tuple2_4) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_4;
   function toSLV (p : Tuple2_0) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return Tuple2_0;
-  function toSLV (p : Tuple2_3) return std_logic_vector;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_3;
   function toSLV (p : Tuple2_1) return std_logic_vector;
   function fromSLV (slv : in std_logic_vector) return Tuple2_1;
+  function toSLV (p : Tuple2_5) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_5;
+  function toSLV (p : Tuple2_2) return std_logic_vector;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_2;
 end;
 
 package body synthAxisComSer_types is
@@ -110,11 +115,11 @@ package body synthAxisComSer_types is
   begin
     return signed(islv);
   end;
-  function toSLV (p : Tuple2_2) return std_logic_vector is
+  function toSLV (p : Tuple2_3) return std_logic_vector is
   begin
-    return (toSLV(p.Tuple2_2_sel0_unsigned_0) & toSLV(p.Tuple2_2_sel1_unsigned_1));
+    return (toSLV(p.Tuple2_3_sel0_unsigned_0) & toSLV(p.Tuple2_3_sel1_unsigned_1));
   end;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_2 is
+  function fromSLV (slv : in std_logic_vector) return Tuple2_3 is
   alias islv : std_logic_vector(0 to slv'length - 1) is slv;
   begin
     return (fromSLV(islv(0 to 3)),fromSLV(islv(4 to 7)));
@@ -145,15 +150,6 @@ package body synthAxisComSer_types is
       result(i) := fromSLV(islv(i * 32 to (i+1) * 32 - 1));
     end loop;
     return result;
-  end;
-  function toSLV (p : Tuple2_4) return std_logic_vector is
-  begin
-    return (toSLV(p.Tuple2_4_sel0_index_8_0) & toSLV(p.Tuple2_4_sel1_index_8_1));
-  end;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_4 is
-  alias islv : std_logic_vector(0 to slv'length - 1) is slv;
-  begin
-    return (fromSLV(islv(0 to 2)),fromSLV(islv(3 to 5)));
   end;
   function toSLV (p : Tuple2) return std_logic_vector is
   begin
@@ -196,11 +192,11 @@ package body synthAxisComSer_types is
       return to_signed(0,64);
     end if;
   end;
-  function toSLV (p : Axi4Stream_0) return std_logic_vector is
+  function toSLV (p : Axi4Stream) return std_logic_vector is
   begin
-    return (toSLV(p.Axi4Stream_0_sel0_tData) & toSLV(p.Axi4Stream_0_sel1_tLast) & toSLV(p.Axi4Stream_0_sel2_tKeep));
+    return (toSLV(p.Axi4Stream_sel0_tData) & toSLV(p.Axi4Stream_sel1_tLast) & toSLV(p.Axi4Stream_sel2_tKeep));
   end;
-  function fromSLV (slv : in std_logic_vector) return Axi4Stream_0 is
+  function fromSLV (slv : in std_logic_vector) return Axi4Stream is
   alias islv : std_logic_vector(0 to slv'length - 1) is slv;
   begin
     return (fromSLV(islv(0 to 31)),fromSLV(islv(32 to 32)),fromSLV(islv(33 to 36)));
@@ -223,41 +219,59 @@ package body synthAxisComSer_types is
     end loop;
     return result;
   end;
-  function toSLV (p : Axi4Stream) return std_logic_vector is
+  function toSLV (p : Axi4Stream_0) return std_logic_vector is
   begin
-    return (toSLV(p.Axi4Stream_sel0_tData_0) & toSLV(p.Axi4Stream_sel1_tLast_0) & toSLV(p.Axi4Stream_sel2_tKeep_0));
+    return (toSLV(p.Axi4Stream_0_sel0_tData_0) & toSLV(p.Axi4Stream_0_sel1_tLast_0) & toSLV(p.Axi4Stream_0_sel2_tKeep_0));
   end;
-  function fromSLV (slv : in std_logic_vector) return Axi4Stream is
+  function fromSLV (slv : in std_logic_vector) return Axi4Stream_0 is
   alias islv : std_logic_vector(0 to slv'length - 1) is slv;
   begin
     return (fromSLV(islv(0 to 7)),fromSLV(islv(8 to 8)),fromSLV(islv(9 to 9)));
   end;
+  function toSLV (p : Tuple2_4) return std_logic_vector is
+  begin
+    return (toSLV(p.Tuple2_4_sel0_array_of_array_of_8_signed_32) & toSLV(p.Tuple2_4_sel1_signed));
+  end;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_4 is
+  alias islv : std_logic_vector(0 to slv'length - 1) is slv;
+  begin
+    return (fromSLV(islv(0 to 2047)),fromSLV(islv(2048 to 2111)));
+  end;
   function toSLV (p : Tuple2_0) return std_logic_vector is
   begin
-    return (toSLV(p.Tuple2_0_sel0_Maybe_0) & toSLV(p.Tuple2_0_sel1_boolean));
+    return (toSLV(p.Tuple2_0_sel0_Tuple2_4) & toSLV(p.Tuple2_0_sel1_Maybe_0));
   end;
   function fromSLV (slv : in std_logic_vector) return Tuple2_0 is
   alias islv : std_logic_vector(0 to slv'length - 1) is slv;
   begin
-    return (fromSLV(islv(0 to 37)),fromSLV(islv(38 to 38)));
-  end;
-  function toSLV (p : Tuple2_3) return std_logic_vector is
-  begin
-    return (toSLV(p.Tuple2_3_sel0_Maybe) & toSLV(p.Tuple2_3_sel1_boolean));
-  end;
-  function fromSLV (slv : in std_logic_vector) return Tuple2_3 is
-  alias islv : std_logic_vector(0 to slv'length - 1) is slv;
-  begin
-    return (fromSLV(islv(0 to 10)),fromSLV(islv(11 to 11)));
+    return (fromSLV(islv(0 to 2111)),fromSLV(islv(2112 to 2120)));
   end;
   function toSLV (p : Tuple2_1) return std_logic_vector is
   begin
-    return (toSLV(p.Tuple2_1_sel0_StateComSer) & toSLV(p.Tuple2_1_sel1_Tuple2_3));
+    return (toSLV(p.Tuple2_1_sel0_Maybe_1) & toSLV(p.Tuple2_1_sel1_boolean));
   end;
   function fromSLV (slv : in std_logic_vector) return Tuple2_1 is
   alias islv : std_logic_vector(0 to slv'length - 1) is slv;
   begin
-    return (fromSLV(islv(0 to 2054)),fromSLV(islv(2055 to 2066)));
+    return (fromSLV(islv(0 to 37)),fromSLV(islv(38 to 38)));
+  end;
+  function toSLV (p : Tuple2_5) return std_logic_vector is
+  begin
+    return (toSLV(p.Tuple2_5_sel0_Maybe) & toSLV(p.Tuple2_5_sel1_boolean));
+  end;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_5 is
+  alias islv : std_logic_vector(0 to slv'length - 1) is slv;
+  begin
+    return (fromSLV(islv(0 to 10)),fromSLV(islv(11 to 11)));
+  end;
+  function toSLV (p : Tuple2_2) return std_logic_vector is
+  begin
+    return (toSLV(p.Tuple2_2_sel0_Tuple2_0) & toSLV(p.Tuple2_2_sel1_Tuple2_5));
+  end;
+  function fromSLV (slv : in std_logic_vector) return Tuple2_2 is
+  alias islv : std_logic_vector(0 to slv'length - 1) is slv;
+  begin
+    return (fromSLV(islv(0 to 2120)),fromSLV(islv(2121 to 2132)));
   end;
 end;
 

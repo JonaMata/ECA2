@@ -42,11 +42,7 @@ runImage mode pw ww path = do
                   -- SER -> let imAxis = makeAxisInpSer    ww' imCropped in simulateN @System (L.length imAxis) (mAxisCom       ww) imAxis
                   -- PAR -> let imAxis = makeAxisInpPar pw ww' imCropped in simulateN @System (L.length imAxis) (mAxisComPar pw ww) imAxis
                   SER -> let imAxis = makeAxisInpSer     8 imCropped in simulateN @System (L.length imAxis) (mAxisComSer) imAxis
-                  PAR -> let 
-                          imAxis = makeAxisInpPar d16 8 imCropped 
-                          flush = L.replicate 1 (Nothing, True) 
-                          imAxisFlushed = imAxis L.++ flush
-                        in simulateN @System (L.length imAxisFlushed) mAxisComPar imAxisFlushed
+                  PAR -> let imAxis = makeAxisInpPar d16 8 imCropped in simulateN @System (L.length imAxis) (mAxisComPar) imAxis
       coords = L.map tData (catMaybes $ L.map fst funOut)
   putStrLn $ L.concat ["Simulation done, output length: ", show (funOut)]
   putStrLn $ L.concat ["Simulation done, output length: ", show (L.length coords)]

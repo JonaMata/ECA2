@@ -8,168 +8,172 @@ use work.all;
 use work.synthAxisComSer_types.all;
 
 entity CCenterOfMass12_synthAxisComSer_axisComSer is
-  port(state  : in synthAxisComSer_types.StateComSer;
-       ds     : in synthAxisComSer_types.Tuple2_0;
-       result : out synthAxisComSer_types.Tuple2_1);
+  port(state  : in synthAxisComSer_types.Tuple2_0;
+       ds     : in synthAxisComSer_types.Tuple2_1;
+       result : out synthAxisComSer_types.Tuple2_2);
 end;
 
 architecture structural of CCenterOfMass12_synthAxisComSer_axisComSer is
-  signal \c$app_arg\                      : boolean;
-  signal \c$app_arg_0\                    : synthAxisComSer_types.Maybe;
-  signal \c$case_alt\                     : synthAxisComSer_types.Maybe;
-  signal \out\                            : synthAxisComSer_types.Tuple2_2;
-  signal \state'\                         : synthAxisComSer_types.StateComSer;
-  signal \c$state'_case_alt\              : synthAxisComSer_types.StateComSer;
-  signal m_axis_tready                    : boolean;
-  signal \c$state'_case_alt_0\            : synthAxisComSer_types.StateComSer;
-  signal result_0                         : synthAxisComSer_types.StateComSer;
-  signal result_1                         : synthAxisComSer_types.StateComSer;
-  signal \c$state'_app_arg\               : signed(63 downto 0);
-  signal x1                               : signed(31 downto 0);
-  signal \c$state'_app_arg_0\             : signed(63 downto 0);
-  signal y1                               : signed(31 downto 0);
-  signal \c$state'_case_scrut\            : synthAxisComSer_types.Tuple2;
-  signal \c$state'_app_arg_1\             : signed(31 downto 0);
-  signal wild6                            : synthAxisComSer_types.array_of_signed_32(0 to 7);
-  signal thrImg                           : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
-  signal \imgBuf'\                        : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
-  signal \c$state'_app_arg_2\             : synthAxisComSer_types.index_8;
-  signal \c$state'_app_arg_3\             : synthAxisComSer_types.index_8;
-  signal \c$state'_case_scrut_0\          : boolean;
-  signal \c$imgBuf'_app_arg\              : synthAxisComSer_types.array_of_signed_32(0 to 7);
-  signal s_axi                            : synthAxisComSer_types.Maybe_0;
-  signal x                                : synthAxisComSer_types.index_8;
-  signal \c$imgBuf'_case_alt\             : synthAxisComSer_types.array_of_signed_32(0 to 7);
-  signal \c$imgBuf'_case_scrut\           : signed(63 downto 0);
-  signal y                                : synthAxisComSer_types.index_8;
-  signal imgBuf                           : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
-  signal result_selection_2               : boolean;
-  signal result_selection_res             : boolean;
-  signal \c$imgBuf'_case_alt_selection_1\ : signed(63 downto 0);
+  signal \c$app_arg\                 : boolean;
+  signal \c$case_alt\                : boolean;
+  signal \c$case_alt_0\              : boolean;
+  signal \c$app_arg_0\               : synthAxisComSer_types.Maybe;
+  signal coords                      : synthAxisComSer_types.Tuple2_3;
+  signal \c$case_alt_1\              : synthAxisComSer_types.Tuple2_4;
+  signal result_0                    : synthAxisComSer_types.Tuple2_4;
+  signal \c$case_alt_2\              : synthAxisComSer_types.Tuple2_4;
+  signal \c$case_alt_3\              : synthAxisComSer_types.Tuple2_4;
+  signal \c$$j_case_alt\             : signed(63 downto 0);
+  signal \c$$j_case_alt_0\           : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
+  signal \c$$j_app_arg\              : synthAxisComSer_types.array_of_signed_32(0 to 7);
+  signal \c$$j_case_alt_1\           : synthAxisComSer_types.array_of_signed_32(0 to 7);
+  signal result_1                    : synthAxisComSer_types.Maybe_0;
+  signal \c$send'_case_alt\          : synthAxisComSer_types.Maybe_0;
+  signal \c$app_arg_1\               : signed(31 downto 0);
+  signal \c$app_arg_2\               : signed(63 downto 0);
+  signal \c$app_arg_3\               : signed(63 downto 0);
+  signal \c$case_scrut\              : synthAxisComSer_types.Tuple2;
+  signal result_2                    : synthAxisComSer_types.Tuple2_3;
+  signal \c$case_alt_4\              : synthAxisComSer_types.Maybe_0;
+  signal \c$case_alt_5\              : synthAxisComSer_types.Maybe_0;
+  signal \c$case_alt_6\              : synthAxisComSer_types.Maybe_0;
+  signal \c$case_alt_7\              : synthAxisComSer_types.Maybe_0;
+  signal imgBuf                      : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
+  signal x                           : synthAxisComSer_types.Axi4Stream;
+  signal thrImg                      : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
+  signal wild8                       : synthAxisComSer_types.array_of_signed_32(0 to 7);
+  signal y                           : signed(31 downto 0);
+  signal x1                          : signed(31 downto 0);
+  signal m_axis_tready               : boolean;
+  signal s_axi                       : synthAxisComSer_types.Maybe_1;
+  signal \c$$j_case_scrut\           : signed(63 downto 0);
+  signal \c$$j_app_arg_0\            : signed(63 downto 0);
+  signal x_0                         : signed(63 downto 0);
+  signal i                           : signed(63 downto 0);
+  signal imgBuf_0                    : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
+  signal \c$case_alt_selection_3\    : boolean;
+  signal \c$case_alt_selection_8\    : boolean;
+  signal \c$$j_case_alt_selection_2\ : boolean;
+  signal \c$$j_case_alt_selection_5\ : signed(63 downto 0);
+  signal result_selection_2          : synthAxisComSer_types.Maybe_0;
+  signal result_selection_res        : boolean;
+  signal \c$case_alt_selection_12\   : boolean;
+  signal \c$case_alt_selection_17\   : synthAxisComSer_types.Maybe_0;
+  signal \c$shI\                     : signed(63 downto 0);
 
 begin
-  result <= ( Tuple2_1_sel0_StateComSer => \state'\
-            , Tuple2_1_sel1_Tuple2_3 => ( Tuple2_3_sel0_Maybe => \c$app_arg_0\
-            , Tuple2_3_sel1_boolean => \c$app_arg\ ) );
+  result <= ( Tuple2_2_sel0_Tuple2_0 => ( Tuple2_0_sel0_Tuple2_4 => \c$case_alt_1\
+            , Tuple2_0_sel1_Maybe_0 => result_1 )
+            , Tuple2_2_sel1_Tuple2_5 => ( Tuple2_5_sel0_Maybe => \c$app_arg_0\
+            , Tuple2_5_sel1_boolean => \c$app_arg\ ) );
 
-  with (state(2054 downto 2054)) select
+  with (result_1(8 downto 8)) select
     \c$app_arg\ <= true when "0",
-                   false when others;
-
-  \c$app_arg_0\ <= \c$case_alt\ when m_axis_tready else
-                   std_logic_vector'("0" & "----------");
-
-  with (\state'\(2054 downto 2054)) select
-    \c$case_alt\ <= std_logic_vector'("0" & "----------") when "0",
-                    std_logic_vector'("1" & (((std_logic_vector(\out\.Tuple2_2_sel0_unsigned_0)
-                     & std_logic_vector(\out\.Tuple2_2_sel1_unsigned_1))
-                     & synthAxisComSer_types.toSLV(true)
-                     & std_logic_vector'("1")))) when others;
-
-  \out\ <= synthAxisComSer_types.Tuple2_2'(synthaxiscomser_types.fromSLV(\state'\(2053 downto 2046)));
-
-  with (state(2054 downto 2054)) select
-    \state'\ <= \c$state'_case_alt_0\ when "0",
-                \c$state'_case_alt\ when others;
-
-  \c$state'_case_alt\ <= std_logic_vector'("0" & (synthAxisComSer_types.toSLV(synthAxisComSer_types.array_of_array_of_8_signed_32'(0 to 8-1 =>  (synthAxisComSer_types.array_of_signed_32'(0 to 8-1 =>  to_signed(0,32) )) ))) & ((std_logic_vector(to_unsigned(0,3))
-                          & std_logic_vector(to_unsigned(0,3))))) when m_axis_tready else
-                         state;
-
-  m_axis_tready <= ds.Tuple2_0_sel1_boolean;
+                   \c$case_alt\ when others;
 
   with (s_axi(37 downto 37)) select
-    \c$state'_case_alt_0\ <= state when "0",
-                             result_0 when others;
+    \c$case_alt\ <= true when "0",
+                    \c$case_alt_0\ when others;
 
-  result_selection_2 <= boolean'(synthaxiscomser_types.fromSLV(s_axi(4 downto 4)));
+  \c$case_alt_selection_3\ <= boolean'(synthaxiscomser_types.fromSLV(s_axi(4 downto 4)));
 
-  result_0 <= result_1 when result_selection_2 else
-              std_logic_vector'("0" & (((std_logic_vector(\imgBuf'\(0)(0)) &
-              std_logic_vector(\imgBuf'\(0)(1)) &
-              std_logic_vector(\imgBuf'\(0)(2)) &
-              std_logic_vector(\imgBuf'\(0)(3)) &
-              std_logic_vector(\imgBuf'\(0)(4)) &
-              std_logic_vector(\imgBuf'\(0)(5)) &
-              std_logic_vector(\imgBuf'\(0)(6)) &
-              std_logic_vector(\imgBuf'\(0)(7))) &
-              (std_logic_vector(\imgBuf'\(1)(0)) &
-              std_logic_vector(\imgBuf'\(1)(1)) &
-              std_logic_vector(\imgBuf'\(1)(2)) &
-              std_logic_vector(\imgBuf'\(1)(3)) &
-              std_logic_vector(\imgBuf'\(1)(4)) &
-              std_logic_vector(\imgBuf'\(1)(5)) &
-              std_logic_vector(\imgBuf'\(1)(6)) &
-              std_logic_vector(\imgBuf'\(1)(7))) &
-              (std_logic_vector(\imgBuf'\(2)(0)) &
-              std_logic_vector(\imgBuf'\(2)(1)) &
-              std_logic_vector(\imgBuf'\(2)(2)) &
-              std_logic_vector(\imgBuf'\(2)(3)) &
-              std_logic_vector(\imgBuf'\(2)(4)) &
-              std_logic_vector(\imgBuf'\(2)(5)) &
-              std_logic_vector(\imgBuf'\(2)(6)) &
-              std_logic_vector(\imgBuf'\(2)(7))) &
-              (std_logic_vector(\imgBuf'\(3)(0)) &
-              std_logic_vector(\imgBuf'\(3)(1)) &
-              std_logic_vector(\imgBuf'\(3)(2)) &
-              std_logic_vector(\imgBuf'\(3)(3)) &
-              std_logic_vector(\imgBuf'\(3)(4)) &
-              std_logic_vector(\imgBuf'\(3)(5)) &
-              std_logic_vector(\imgBuf'\(3)(6)) &
-              std_logic_vector(\imgBuf'\(3)(7))) &
-              (std_logic_vector(\imgBuf'\(4)(0)) &
-              std_logic_vector(\imgBuf'\(4)(1)) &
-              std_logic_vector(\imgBuf'\(4)(2)) &
-              std_logic_vector(\imgBuf'\(4)(3)) &
-              std_logic_vector(\imgBuf'\(4)(4)) &
-              std_logic_vector(\imgBuf'\(4)(5)) &
-              std_logic_vector(\imgBuf'\(4)(6)) &
-              std_logic_vector(\imgBuf'\(4)(7))) &
-              (std_logic_vector(\imgBuf'\(5)(0)) &
-              std_logic_vector(\imgBuf'\(5)(1)) &
-              std_logic_vector(\imgBuf'\(5)(2)) &
-              std_logic_vector(\imgBuf'\(5)(3)) &
-              std_logic_vector(\imgBuf'\(5)(4)) &
-              std_logic_vector(\imgBuf'\(5)(5)) &
-              std_logic_vector(\imgBuf'\(5)(6)) &
-              std_logic_vector(\imgBuf'\(5)(7))) &
-              (std_logic_vector(\imgBuf'\(6)(0)) &
-              std_logic_vector(\imgBuf'\(6)(1)) &
-              std_logic_vector(\imgBuf'\(6)(2)) &
-              std_logic_vector(\imgBuf'\(6)(3)) &
-              std_logic_vector(\imgBuf'\(6)(4)) &
-              std_logic_vector(\imgBuf'\(6)(5)) &
-              std_logic_vector(\imgBuf'\(6)(6)) &
-              std_logic_vector(\imgBuf'\(6)(7))) &
-              (std_logic_vector(\imgBuf'\(7)(0)) &
-              std_logic_vector(\imgBuf'\(7)(1)) &
-              std_logic_vector(\imgBuf'\(7)(2)) &
-              std_logic_vector(\imgBuf'\(7)(3)) &
-              std_logic_vector(\imgBuf'\(7)(4)) &
-              std_logic_vector(\imgBuf'\(7)(5)) &
-              std_logic_vector(\imgBuf'\(7)(6)) &
-              std_logic_vector(\imgBuf'\(7)(7))))) & ((std_logic_vector(\c$state'_app_arg_3\)
-               & std_logic_vector(\c$state'_app_arg_2\))));
+  \c$case_alt_0\ <= m_axis_tready when \c$case_alt_selection_3\ else
+                    true;
 
-  result_selection_res <= \c$state'_app_arg_1\ = to_signed(0,32);
+  with (result_1(8 downto 8)) select
+    \c$app_arg_0\ <= std_logic_vector'("0" & "----------") when "0",
+                     std_logic_vector'("1" & (((std_logic_vector(coords.Tuple2_3_sel0_unsigned_0)
+                      & std_logic_vector(coords.Tuple2_3_sel1_unsigned_1))
+                      & synthAxisComSer_types.toSLV(true)
+                      & std_logic_vector'("1")))) when others;
 
-  result_1 <= std_logic_vector'("1" & ((std_logic_vector(to_unsigned(4,4))
-               & std_logic_vector(to_unsigned(4,4)))) & "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------") when result_selection_res else
-              std_logic_vector'("1" & ((std_logic_vector(resize(unsigned(std_logic_vector(\c$state'_app_arg_0\)),4))
-               & std_logic_vector(resize(unsigned(std_logic_vector(\c$state'_app_arg\)),4)))) & "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+  coords <= synthAxisComSer_types.Tuple2_3'(synthaxiscomser_types.fromSLV(result_1(7 downto 0)));
 
-  \c$state'_app_arg\ <= resize(x1,64);
+  with (s_axi(37 downto 37)) select
+    \c$case_alt_1\ <= state.Tuple2_0_sel0_Tuple2_4 when "0",
+                      result_0 when others;
 
-  x1 <= \c$state'_case_scrut\.Tuple2_sel1_signed_1;
+  with (result_1(8 downto 8)) select
+    result_0 <= ( Tuple2_4_sel0_array_of_array_of_8_signed_32 => \c$$j_case_alt_0\
+                , Tuple2_4_sel1_signed => \c$$j_case_alt\ ) when "0",
+                \c$case_alt_2\ when others;
 
-  \c$state'_app_arg_0\ <= resize(y1,64);
+  \c$case_alt_selection_8\ <= boolean'(synthaxiscomser_types.fromSLV(s_axi(4 downto 4)));
 
-  y1 <= \c$state'_case_scrut\.Tuple2_sel0_signed_0;
+  \c$case_alt_2\ <= \c$case_alt_3\ when \c$case_alt_selection_8\ else
+                    ( Tuple2_4_sel0_array_of_array_of_8_signed_32 => \c$$j_case_alt_0\
+                    , Tuple2_4_sel1_signed => \c$$j_case_alt\ );
 
-  CCenterOfMass12_synthAxisComSer_com_cstate_case_scrut : entity CCenterOfMass12_synthAxisComSer_com
-    port map
-      ( result => \c$state'_case_scrut\
-      , image  => thrImg );
+  \c$case_alt_3\ <= ( Tuple2_4_sel0_array_of_array_of_8_signed_32 => \c$$j_case_alt_0\
+                    , Tuple2_4_sel1_signed => \c$$j_case_alt\ ) when m_axis_tready else
+                    state.Tuple2_0_sel0_Tuple2_4;
+
+  \c$$j_case_alt_selection_2\ <= boolean'(synthaxiscomser_types.fromSLV(s_axi(4 downto 4)));
+
+  \c$$j_case_alt\ <= to_signed(0,64) when \c$$j_case_alt_selection_2\ else
+                     ((x_0 + to_signed(1,64)) and to_signed(63,64));
+
+  -- replace begin
+  replaceVec : block
+    signal vec_index : integer range 0 to 8-1;
+  begin
+    vec_index <= to_integer(\c$$j_case_scrut\)
+    -- pragma translate_off
+                 mod 8
+    -- pragma translate_on
+                 ;
+
+    process(vec_index,imgBuf_0,\c$$j_app_arg\)
+      variable ivec : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
+    begin
+      ivec := imgBuf_0;
+      ivec(vec_index) := \c$$j_app_arg\;
+      \c$$j_case_alt_0\ <= ivec;
+    end process;
+  end block;
+  -- replace end
+
+  -- replace begin
+  replaceVec_0 : block
+    signal vec_index_0 : integer range 0 to 8-1;
+  begin
+    vec_index_0 <= to_integer(((x_0 and to_signed(7,64))))
+    -- pragma translate_off
+                 mod 8
+    -- pragma translate_on
+                 ;
+
+    process(vec_index_0,\c$$j_case_alt_1\,s_axi)
+      variable ivec_0 : synthAxisComSer_types.array_of_signed_32(0 to 7);
+    begin
+      ivec_0 := \c$$j_case_alt_1\;
+      ivec_0(vec_index_0) := signed'(synthaxiscomser_types.fromSLV(s_axi(36 downto 5)));
+      \c$$j_app_arg\ <= ivec_0;
+    end process;
+  end block;
+  -- replace end
+
+  \c$$j_case_alt_selection_5\ <= \c$$j_case_scrut\;
+
+  with (\c$$j_case_alt_selection_5\) select
+    \c$$j_case_alt_1\ <= imgBuf_0(0) when x"0000000000000000",
+                         imgBuf_0(1) when x"0000000000000001",
+                         imgBuf_0(2) when x"0000000000000002",
+                         imgBuf_0(3) when x"0000000000000003",
+                         imgBuf_0(4) when x"0000000000000004",
+                         imgBuf_0(5) when x"0000000000000005",
+                         imgBuf_0(6) when x"0000000000000006",
+                         imgBuf_0(7) when x"0000000000000007",
+                         synthAxisComSer_types.array_of_signed_32'(0 to 7 => signed'(0 to 31 => '-')) when others;
+
+  result_selection_2 <= state.Tuple2_0_sel1_Maybe_0;
+
+  with (result_selection_2(8 downto 8)) select
+    result_1 <= \c$case_alt_7\ when "0",
+                \c$send'_case_alt\ when others;
+
+  \c$send'_case_alt\ <= std_logic_vector'("0" & "--------") when m_axis_tready else
+                        \c$case_alt_7\;
 
   fold_2 : block
     signal vec_2      : synthAxisComSer_types.array_of_signed_32(0 to 7);
@@ -189,9 +193,9 @@ begin
     signal acc_2_0_18 : signed(31 downto 0);
     signal acc_2_1_19 : signed(31 downto 0);
   begin
-    \c$state'_app_arg_1\ <= acc_3_0_20;
+    \c$app_arg_1\ <= acc_3_0_20;
 
-    vec_2 <= wild6;
+    vec_2 <= wild8;
 
     acc_0_23 <= vec_2(0);
 
@@ -240,8 +244,50 @@ begin
 
   end block;
 
+  \c$app_arg_2\ <= resize(y,64);
+
+  \c$app_arg_3\ <= resize(x1,64);
+
+  CCenterOfMass12_synthAxisComSer_com_ccase_scrut : entity CCenterOfMass12_synthAxisComSer_com
+    port map
+      (result => \c$case_scrut\, img    => thrImg);
+
+  result_selection_res <= \c$app_arg_1\ = to_signed(0,32);
+
+  result_2 <= ( Tuple2_3_sel0_unsigned_0 => to_unsigned(3,4)
+              , Tuple2_3_sel1_unsigned_1 => to_unsigned(3,4) ) when result_selection_res else
+              ( Tuple2_3_sel0_unsigned_0 => resize(unsigned(std_logic_vector(\c$app_arg_2\)),4)
+              , Tuple2_3_sel1_unsigned_1 => resize(unsigned(std_logic_vector(\c$app_arg_3\)),4) );
+
+  \c$case_alt_selection_12\ <= x.Axi4Stream_sel1_tLast;
+
+  \c$case_alt_4\ <= std_logic_vector'("1" & ((std_logic_vector(result_2.Tuple2_3_sel0_unsigned_0)
+                     & std_logic_vector(result_2.Tuple2_3_sel1_unsigned_1)))) when \c$case_alt_selection_12\ else
+                    std_logic_vector'("0" & "--------");
+
+  with (s_axi(37 downto 37)) select
+    \c$case_alt_5\ <= std_logic_vector'("0" & "--------") when "0",
+                      \c$case_alt_4\ when others;
+
+  \c$case_alt_6\ <= \c$case_alt_5\ when m_axis_tready else
+                    std_logic_vector'("0" & "--------");
+
+  \c$case_alt_selection_17\ <= state.Tuple2_0_sel1_Maybe_0;
+
+  with (\c$case_alt_selection_17\(8 downto 8)) select
+    \c$case_alt_7\ <= \c$case_alt_6\ when "0",
+                      state.Tuple2_0_sel1_Maybe_0 when others;
+
+  imgBuf <= state.Tuple2_0_sel0_Tuple2_4.Tuple2_4_sel0_array_of_array_of_8_signed_32;
+
+  x <= synthAxisComSer_types.Axi4Stream'(synthaxiscomser_types.fromSLV(s_axi(36 downto 0)));
+
+  CCenterOfMass12_synthAxisComSer_thresholdIm_thrImg : entity CCenterOfMass12_synthAxisComSer_thresholdIm
+    port map
+      (result => thrImg, eta1   => imgBuf);
+
   -- map begin
-  r_map : for i in wild6'range generate
+  r_map : for i_0 in wild8'range generate
   begin
     fold_3 : block
     signal vec_3      : synthAxisComSer_types.array_of_signed_32(0 to 7);
@@ -261,9 +307,9 @@ begin
     signal acc_2_0_25 : signed(31 downto 0);
     signal acc_2_1_26 : signed(31 downto 0);
   begin
-    wild6(i) <= acc_3_0_27;
+    wild8(i_0) <= acc_3_0_27;
 
-    vec_3 <= thrImg(i);
+    vec_3 <= thrImg(i_0);
 
     acc_0_32 <= vec_3(0);
 
@@ -314,80 +360,38 @@ begin
   end generate;
   -- map end
 
-  CCenterOfMass12_synthAxisComSer_thresholdIm_thrImg : entity CCenterOfMass12_synthAxisComSer_thresholdIm
-    port map
-      (result => thrImg, eta1   => \imgBuf'\);
+  y <= \c$case_scrut\.Tuple2_sel0_signed_0;
 
-  -- replace begin
-  replaceVec : block
-    signal vec_index : integer range 0 to 8-1;
+  x1 <= \c$case_scrut\.Tuple2_sel1_signed_1;
+
+  m_axis_tready <= ds.Tuple2_1_sel1_boolean;
+
+  s_axi <= ds.Tuple2_1_sel0_Maybe_1;
+
+  \c$$j_case_scrut\ <= \c$$j_app_arg_0\;
+
+  \c$shI\ <= to_signed(3,64);
+
+  cj_app_arg_0_shiftR : block
+    signal sh : natural;
   begin
-    vec_index <= to_integer(\c$imgBuf'_case_scrut\)
-    -- pragma translate_off
-                 mod 8
-    -- pragma translate_on
-                 ;
-
-    process(vec_index,imgBuf,\c$imgBuf'_app_arg\)
-      variable ivec : synthAxisComSer_types.array_of_array_of_8_signed_32(0 to 7);
-    begin
-      ivec := imgBuf;
-      ivec(vec_index) := \c$imgBuf'_app_arg\;
-      \imgBuf'\ <= ivec;
-    end process;
+    sh <=
+        -- pragma translate_off
+        natural'high when (\c$shI\(64-1 downto 31) /= 0) else
+        -- pragma translate_on
+        to_integer(\c$shI\);
+    \c$$j_app_arg_0\ <= shift_right(x_0,sh)
+        -- pragma translate_off
+        when (to_signed(3,64) >= 0) else (others => 'X')
+        -- pragma translate_on
+        ;
   end block;
-  -- replace end
 
-  \c$state'_app_arg_2\ <= to_unsigned(0,3) when \c$state'_case_scrut_0\ else
-                          x + to_unsigned(1,3);
+  x_0 <= i;
 
-  \c$state'_app_arg_3\ <= y + to_unsigned(1,3) when \c$state'_case_scrut_0\ else
-                          y;
+  i <= state.Tuple2_0_sel0_Tuple2_4.Tuple2_4_sel1_signed;
 
-  \c$state'_case_scrut_0\ <= x = to_unsigned(7,3);
-
-  -- replace begin
-  replaceVec_0 : block
-    signal vec_index_0 : integer range 0 to 8-1;
-  begin
-    vec_index_0 <= to_integer((signed(std_logic_vector(resize(x,64)))))
-    -- pragma translate_off
-                 mod 8
-    -- pragma translate_on
-                 ;
-
-    process(vec_index_0,\c$imgBuf'_case_alt\,s_axi)
-      variable ivec_0 : synthAxisComSer_types.array_of_signed_32(0 to 7);
-    begin
-      ivec_0 := \c$imgBuf'_case_alt\;
-      ivec_0(vec_index_0) := signed'(synthaxiscomser_types.fromSLV(s_axi(36 downto 5)));
-      \c$imgBuf'_app_arg\ <= ivec_0;
-    end process;
-  end block;
-  -- replace end
-
-  s_axi <= ds.Tuple2_0_sel0_Maybe_0;
-
-  x <= synthAxisComSer_types.index_8'(synthaxiscomser_types.fromSLV(state(2 downto 0)));
-
-  \c$imgBuf'_case_alt_selection_1\ <= \c$imgBuf'_case_scrut\;
-
-  with (\c$imgBuf'_case_alt_selection_1\) select
-    \c$imgBuf'_case_alt\ <= imgBuf(0) when x"0000000000000000",
-                            imgBuf(1) when x"0000000000000001",
-                            imgBuf(2) when x"0000000000000002",
-                            imgBuf(3) when x"0000000000000003",
-                            imgBuf(4) when x"0000000000000004",
-                            imgBuf(5) when x"0000000000000005",
-                            imgBuf(6) when x"0000000000000006",
-                            imgBuf(7) when x"0000000000000007",
-                            synthAxisComSer_types.array_of_signed_32'(0 to 7 => signed'(0 to 31 => '-')) when others;
-
-  \c$imgBuf'_case_scrut\ <= signed(std_logic_vector(resize(y,64)));
-
-  y <= synthAxisComSer_types.index_8'(synthaxiscomser_types.fromSLV(state(5 downto 3)));
-
-  imgBuf <= synthAxisComSer_types.array_of_array_of_8_signed_32'(synthaxiscomser_types.fromSLV(state(2053 downto 6)));
+  imgBuf_0 <= state.Tuple2_0_sel0_Tuple2_4.Tuple2_4_sel0_array_of_array_of_8_signed_32;
 
 
 end;

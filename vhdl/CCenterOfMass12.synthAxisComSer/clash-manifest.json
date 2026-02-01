@@ -40,7 +40,7 @@
         },
         {
             "name": "synthAxisComSer_types.vhdl",
-            "sha256": "4fe2d60ff9798c59586103e5784135ea6722e395727cc512dd820238a01a45d8"
+            "sha256": "5cf4a7dd776dad5fa65ba91279e03c0088370f80fa2eb66fd959a4d1d031f94a"
         },
         {
             "name": "CCenterOfMass12_synthAxisComSer_comRows.vhdl",
@@ -48,7 +48,7 @@
         },
         {
             "name": "CCenterOfMass12_synthAxisComSer_com.vhdl",
-            "sha256": "23cb694f3b2abc4de240f294bfd4d3c185cc70737139f1019017c06e2a31aef4"
+            "sha256": "6dac6388b4293a337b06c98475559beb94c318f51f7aad902d71eebc4ff8a1dc"
         },
         {
             "name": "CCenterOfMass12_synthAxisComSer_thresholdIm.vhdl",
@@ -56,22 +56,22 @@
         },
         {
             "name": "CCenterOfMass12_synthAxisComSer_axisComSer.vhdl",
-            "sha256": "38cd5be8b6edbbb9bcff2989a2b1dc1e5627730f6f1e9aef0e29d3efc2b256aa"
+            "sha256": "2d159d7e86d3ae81ab25b14a1069026a280cec7e47787006afe609a76a52f535"
         },
         {
             "name": "CCenterOfMass12_synthAxisComSer_mAxisComSer.vhdl",
-            "sha256": "92492728d3839ce90491698cdd4bf33fb6a8d4c39a12716de296405e121c4657"
+            "sha256": "5ffa413f3fd176751887aa50e6f347cd25649fb22914c46da8cc46e880c02ad6"
         },
         {
             "name": "synthAxisComSer.vhdl",
-            "sha256": "1bc4a01d406722b340e856c5628d18c24dacce590a37e585289f3dc0b8a7f216"
+            "sha256": "b1701441c8f287f670fccd8c6b89f7d77810ae69af1f2a7664858b74e2e1f85d"
         }
     ],
     "flags": [
         20,
         20
     ],
-    "hash": "be815f781cfa514b520853f46a7a09133f37c932e5051eb4ec44480027383ed0",
+    "hash": "a055a2db62d571c84ec8231c101566681364a7cf266bdd6e26c49190b9658080",
     "top_component": {
         "name": "synthAxisComSer",
         "ports_flat": [

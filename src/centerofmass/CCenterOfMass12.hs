@@ -81,7 +81,7 @@ comPartsWB img = unblocks2D d160 blocksWB
 --   imgBuf :: Vec 128 (Vec 128 (Signed 32)),
 --   outBuf :: (Unsigned 4, Unsigned 4)
 --   )
-type StateComSer = ((Vec 8 (Vec 8 (Signed 32)), Unsigned 8), Maybe (Unsigned 4, Unsigned 4))
+type StateComSer = ((Vec 8 (Vec 8 (Signed 32)), Int), Maybe (Unsigned 4, Unsigned 4))
 
 -- data StateComSer =
 --   Receiving (Vec 8 (Vec 8 (Signed 32))) (Index 8, Index 8) |
@@ -184,46 +184,85 @@ synthAxisComSer clk rst inp = exposeClockResetEnable mAxisComSer clk rst enableG
 -- Assignment 8, Axi streaming parallel
 -----------------------------------------------------------------------------------------
 
-type StateComPar = ((Vec 64 (Unsigned 8), Unsigned 8), Maybe (Unsigned 4, Unsigned 4))
+-- type StateComPar = ((Vec 64 (Unsigned 8), Unsigned 8), Maybe (Unsigned 4, Unsigned 4))
 
-axisComPar :: StateComPar 
-           -> (Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool) 
-           -> (StateComPar, (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool))
-axisComPar state (s_axi, m_axis_tready) = (nextState, (m_axis, s_axis_tready))
-  where
-    ((imgBuf, count), sendBuf) = state
+-- axisComPar :: StateComPar 
+--            -> (Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool) 
+--            -> (StateComPar, (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool))
+-- axisComPar state (s_axi, m_axis_tready) = (nextState, (m_axis, s_axis_tready))
+--   where
+--     ((imgBuf, count), sendBuf) = state
     
-    s_axi_tdata = maybe (repeat 0) tData s_axi
-    s_axi_tlast = maybe False tLast s_axi
-    s_axi_tvalid = isJust s_axi
-    s_axis_tready = isNothing sendBuf || m_axis_tready
-    handshake = s_axi_tvalid && s_axis_tready
+--     s_axi_tdata = maybe (repeat 0) tData s_axi
+--     s_axi_tlast = maybe False tLast s_axi
+--     s_axi_tvalid = isJust s_axi
+--     s_axis_tready = isNothing sendBuf || m_axis_tready
+--     handshake = s_axi_tvalid && s_axis_tready
 
-    (nextBuf, nextCount) = if handshake 
-      then (replaceSlice count s_axi_tdata imgBuf, if s_axi_tlast then 0 else count + 16)
-      else (imgBuf, count)
+--     (nextBuf, nextCount) = if handshake 
+--       then (replaceSlice count s_axi_tdata imgBuf, if s_axi_tlast then 0 else count + 16)
+--       else (imgBuf, count)
 
-    nextSendBuf = if handshake && s_axi_tlast
-      then Just calculateCom
-      else if m_axis_tready then Nothing else sendBuf
-      where
-        grid = unconcat d8 (map fromIntegral nextBuf)
+--     nextSendBuf = if handshake && s_axi_tlast
+--       then Just calculateCom
+--       else if m_axis_tready then Nothing else sendBuf
+--       where
+--         grid = unconcat d8 (map fromIntegral nextBuf)
 
-        thrImg = thresholdIm (fromIntegral threshold) grid
-        calculateCom = if sum (map sum thrImg) == 0 
-                       then (3, 3) 
-                       else (\(y, x) -> (fromIntegral y, fromIntegral x)) (com thrImg)
+--         thrImg = thresholdIm (fromIntegral threshold) grid
+--         calculateCom = if sum (map sum thrImg) == 0 
+--                        then (3, 3) 
+--                        else (\(y, x) -> (fromIntegral y, fromIntegral x)) (com thrImg)
 
-    nextState = ((nextBuf, nextCount), nextSendBuf)
+--     nextState = ((nextBuf, nextCount), nextSendBuf)
 
-    m_axis = case sendBuf of
+--     m_axis = case sendBuf of
+--       Just coords -> Just (Axi4Stream coords True 0b1)
+--       Nothing     -> Nothing
+
+-- replaceSlice :: (KnownNat n, KnownNat m) => Unsigned 8 -> Vec m a -> Vec n a -> Vec n a
+-- replaceSlice offset src dest = 
+--   let indices = iterateI (+1) (fromIntegral offset)
+--   in  foldl (\acc (i, val) -> replace i val acc) dest (zip indices src)
+
+
+type StateComPar = ((Vec 8 (Vec 8 (Unsigned 8)), Int), Maybe (Unsigned 4, Unsigned 4))
+
+{-# NOINLINE axisComPar #-}
+axisComPar :: StateComPar -> (Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool) -> (StateComPar, (Maybe ( Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool))
+axisComPar state (s_axi, m_axis_tready) = (state', (m_axi, s_axis_tready))
+  where
+    state' = (imgBuf', send')
+    imgBuf' = case (state, handshake) of
+      (((imgBuf, i), _), True) ->
+        (replace (i*2+1) r2 (replace (i*2) r1 imgBuf),
+          if s_axi_tlast then 0 else mod (i+1) 4)
+          where
+            (r1, r2) = splitAt d8 s_axi_tdata
+      ((cur, _), _) -> cur
+    send' = case (state, m_axis_tready, s_axi_tlast) of
+      ((_, Just _), True, _) -> Nothing
+      (((imgBuf, _), Nothing), True, True) -> Just coords
+        where
+          thrImg = thresholdIm (fromIntegral threshold) imgBuf
+          coords = if sum (map sum thrImg) == 0 then
+            (3,3)
+          else
+            (\(y, x) -> (fromIntegral y, fromIntegral x)) (com thrImg)
+      ((_, cur), _, _) -> cur
+    m_axi = case send' of
       Just coords -> Just (Axi4Stream coords True 0b1)
-      Nothing     -> Nothing
+      _           -> Nothing
+    s_axis_tready = case (send', s_axi_tlast, m_axis_tready) of
+      (Just _, True, False)    -> False
+      _            -> True
+    handshake = case (s_axi, s_axis_tready) of
+      (Just _, True) -> True
+      _              -> False
+    (s_axi_tdata, s_axi_tlast, _) = case s_axi of
+      Just x -> (tData x, tLast x, tKeep x)
+      _   -> (repeat 0, False, 0)
 
-replaceSlice :: (KnownNat n, KnownNat m) => Unsigned 8 -> Vec m a -> Vec n a -> Vec n a
-replaceSlice offset src dest = 
-  let indices = iterateI (+1) (fromIntegral offset)
-  in  foldl (\acc (i, val) -> replace i val acc) dest (zip indices src)
 
 {-# NOINLINE mAxisComPar #-}
 mAxisComPar :: (HiddenClockResetEnable dom)
@@ -231,17 +270,17 @@ mAxisComPar :: (HiddenClockResetEnable dom)
   -> Signal dom (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool)
 mAxisComPar mInp = mealy axisComPar initState mInp
   where
-    initState = ((repeat 0, 0), Nothing)
+    initState = ((repeat (repeat 0), 0), Nothing)
 
 -----------------------------------------------------------------------------------------
 -- You can use the simulation function spsAxisComParTb to print out all the iner stages of the states
--- spsAxisComPar :: [(Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool)] -> String
--- spsAxisComPar inp = simPrintState axisComPar initState inp -- Same as mealy
---   where
---     initState = undefined
+spsAxisComPar :: [(Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool)] -> String
+spsAxisComPar inp = simPrintState axisComPar initState inp -- Same as mealy
+  where
+    initState = ((repeat (repeat 0), 0), Nothing)
 
--- spsAxisComParTb :: IO ()
--- spsAxisComParTb = putStrLn $ spsAxisComPar mAxisComParInp
+spsAxisComParTb :: IO ()
+spsAxisComParTb = putStrLn $ spsAxisComPar mAxisComParInp
 -----------------------------------------------------------------------------------------
 
 simMAxisComParTb :: [(Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool)]

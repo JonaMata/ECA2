@@ -1,5 +1,10 @@
 {
     "components": [
+        "CCenterOfMass12_synthAxisComPar_comRows",
+        "CCenterOfMass12_synthAxisComPar_com",
+        "CCenterOfMass12_synthAxisComPar_thresholdIm",
+        "CCenterOfMass12_synthAxisComPar_axisComPar",
+        "CCenterOfMass12_synthAxisComPar_mAxisComPar",
         "synthAxisComPar"
     ],
     "dependencies": {
@@ -35,18 +40,38 @@
         },
         {
             "name": "synthAxisComPar_types.vhdl",
-            "sha256": "c5f06c311be1eae5b35ce06e94779b8120349bd7a7372d2e4f6e52b3a75adc80"
+            "sha256": "4f701733ff13e08abd4c9651cecc92d598c4cd7f56a0e6a91a1c9a488bb408ff"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComPar_comRows.vhdl",
+            "sha256": "43a74cee5526f07aef7546ed13f0e9ce9a357f3b07519275d903626473c30a90"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComPar_com.vhdl",
+            "sha256": "ab2ac076075bc9b15411d74d7a7e2741b352f1d480da8413c6778cd45fee64d6"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComPar_thresholdIm.vhdl",
+            "sha256": "f2112e28e81202ca4221e47ea419011e9f278c2314253467b024842dccc36844"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComPar_axisComPar.vhdl",
+            "sha256": "bbbe65c61b2c7011ae93ffc71c8c0e286c088a2519ceb7b45f70dad8093a2200"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComPar_mAxisComPar.vhdl",
+            "sha256": "66e82e84634258a9a1f9ccb41916cb81396b0b60c02eb6dd1ba17e5025128fc9"
         },
         {
             "name": "synthAxisComPar.vhdl",
-            "sha256": "b9eed8ec4236362f1b2a0566464f788ae4f647c81e5761e6061de93f198d820b"
+            "sha256": "d46d16168484200bf96326f0ae5f75a69e680d574836195aab1e2ad061046e63"
         }
     ],
     "flags": [
         20,
         20
     ],
-    "hash": "011616fe56df19416d317c08060db34663e85fc5da2ea6cbd1116420e65a8a1c",
+    "hash": "6af6dcb423b5b12af5509d1b5406b1e09bfef068dd426202db117648b2774c6a",
     "top_component": {
         "name": "synthAxisComPar",
         "ports_flat": [
