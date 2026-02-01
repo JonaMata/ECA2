@@ -80,49 +80,41 @@ comPartsWB img = unblocks2D d160 blocksWB
 --   imgBuf :: Vec 128 (Vec 128 (Signed 32)),
 --   outBuf :: (Unsigned 4, Unsigned 4)
 --   )
+type StateComSer = ((Vec 8 (Vec 8 (Signed 32)), Unsigned 8), Maybe (Unsigned 4, Unsigned 4))
 
-data StateComSer =
-  Receiving (Vec 8 (Vec 8 (Signed 32))) (Index 8, Index 8) |
-  Sending (Unsigned 4, Unsigned 4)
-  deriving (Show, Generic, NFDataX)
+-- data StateComSer =
+--   Receiving (Vec 8 (Vec 8 (Signed 32))) (Index 8, Index 8) |
+--   Sending (Unsigned 4, Unsigned 4)
+--   deriving (Show, Generic, NFDataX)
 
 {-# NOINLINE axisComSer #-}
 axisComSer :: StateComSer -> (Maybe (Axi4Stream (Signed 32) (BitVector 4)), Bool) -> (StateComSer, (Maybe ( Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool))
 axisComSer state (s_axi, m_axis_tready) = (state', (m_axi, s_axis_tready))
   where
-    state' = case (state, handshake, m_axis_tready) of
-      (Receiving imgBuf (y, x), True, _) ->
-        let imgBuf' = replace y (replace x s_axi_tdata (imgBuf!!y)) imgBuf
-        in
-        if s_axi_tlast then
-          let thrImg = thresholdIm (fromIntegral threshold) imgBuf'
-          in
-          if sum (map sum thrImg) == 0 then
-            Sending (4,4)
+    state' = (imgBuf', send')
+    imgBuf' = case (state, handshake) of
+      (((imgBuf, i), _), True) ->
+        (replace (div i 8) (replace (mod i 8) s_axi_tdata (imgBuf!!div i 8)) imgBuf,
+          mod (i+1) 64)
+      ((cur, _), _) -> cur
+    send' = case (state, m_axis_tready, s_axi_tlast) of
+      ((_, Just _), True, _) -> Nothing
+      (((imgBuf, _), Nothing), True, True) -> Just coords
+        where
+          thrImg = thresholdIm (fromIntegral threshold) imgBuf
+          coords = if sum (map sum thrImg) == 0 then
+            (3,3)
           else
-          Sending ((\(y, x) -> (fromIntegral y, fromIntegral x)) (com $ thrImg))
-        else
-          Receiving imgBuf' (nextY, nextX)
-            where
-              nextX = if x == 7 then 0 else x + 1
-              nextY = if x == 7 then y + 1 else y
-      (Sending _, _, True) ->
-        Receiving (repeat (repeat 0)) (0,0)
-      _ -> state
-    m_axi = case (m_axis_tready, state') of
-      (True, Sending out) -> Just (Axi4Stream {
-        tData = out,
-        tLast = True,
-        tKeep = 1
-      })
-      _ -> Nothing
-    s_axis_tready = case state of
-      Receiving _ _ -> True
-      _             -> False
+            (\(y, x) -> (fromIntegral y, fromIntegral x)) (com thrImg)
+      ((_, cur), _, _) -> cur
+    m_axi = case send' of
+      Just coords -> Just (Axi4Stream coords True 0b1)
+      _           -> Nothing
+    s_axis_tready = True
     handshake = case (s_axi, s_axis_tready) of
       (Just _, True) -> True
       _              -> False
-    (s_axi_tdata, s_axi_tlast, s_axi_tkeep) = case s_axi of
+    (s_axi_tdata, s_axi_tlast, _) = case s_axi of
       Just x -> (tData x, tLast x, tKeep x)
       _   -> (0, False, 0)
 
@@ -133,14 +125,14 @@ mAxisComSer :: (HiddenClockResetEnable dom)
   -> Signal dom (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool)
 mAxisComSer mInp = mealy axisComSer initState mInp
   where
-    initState = Receiving (repeat (repeat 0)) (0,0)
+    initState = ((repeat (repeat 0), 0), Nothing)
 
 -----------------------------------------------------------------------------------------
 -- You can use the simulation function spsAxisComSerTb to print out all the iner stages of the states
 spsAxisComSer :: [(Maybe (Axi4Stream (Signed 32) (BitVector 4)), Bool)] -> String
 spsAxisComSer inp = simPrintState axisComSer initState inp -- Same as mealy
   where
-    initState = Receiving (repeat (repeat 0)) (0,0)
+    initState = ((repeat (repeat 0), 0), Nothing)
 
 spsAxisComSerTb :: IO ()
 spsAxisComSerTb = putStrLn $ spsAxisComSer mAxisComSerInp
