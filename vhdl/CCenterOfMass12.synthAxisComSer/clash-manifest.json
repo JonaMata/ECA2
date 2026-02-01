@@ -1,0 +1,167 @@
+{
+    "components": [
+        "CCenterOfMass12_synthAxisComSer_comRows",
+        "CCenterOfMass12_synthAxisComSer_com",
+        "CCenterOfMass12_synthAxisComSer_thresholdIm",
+        "CCenterOfMass12_synthAxisComSer_axisComSer",
+        "CCenterOfMass12_synthAxisComSer_mAxisComSer",
+        "synthAxisComSer"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "synthAxisComSer.sdc",
+            "sha256": "388c8f2f10854d2124896b63ccd608c470e3f7b9cb2074c85f7471071f3d3384"
+        },
+        {
+            "name": "synthAxisComSer_types.vhdl",
+            "sha256": "4fe2d60ff9798c59586103e5784135ea6722e395727cc512dd820238a01a45d8"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComSer_comRows.vhdl",
+            "sha256": "025f44b5a7b46860f2efe5b4f11a104651e2d6a674a76bfc20c67f6121420057"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComSer_com.vhdl",
+            "sha256": "23cb694f3b2abc4de240f294bfd4d3c185cc70737139f1019017c06e2a31aef4"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComSer_thresholdIm.vhdl",
+            "sha256": "750e8c753d5e51d97744253992a1d2704294a84dc8efd1e35d9fb2b99da0f926"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComSer_axisComSer.vhdl",
+            "sha256": "38cd5be8b6edbbb9bcff2989a2b1dc1e5627730f6f1e9aef0e29d3efc2b256aa"
+        },
+        {
+            "name": "CCenterOfMass12_synthAxisComSer_mAxisComSer.vhdl",
+            "sha256": "92492728d3839ce90491698cdd4bf33fb6a8d4c39a12716de296405e121c4657"
+        },
+        {
+            "name": "synthAxisComSer.vhdl",
+            "sha256": "1bc4a01d406722b340e856c5628d18c24dacce590a37e585289f3dc0b8a7f216"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "be815f781cfa514b520853f46a7a09133f37c932e5051eb4ec44480027383ed0",
+    "top_component": {
+        "name": "synthAxisComSer",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": true,
+                "name": "aclk",
+                "type_name": "aclk.synthAxisComSer_types.clk_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": false,
+                "name": "nrst",
+                "type_name": "nrst.synthAxisComSer_types.rst_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tvalid",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tdata",
+                "type_name": "signed(31 downto 0)",
+                "width": 32
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tlast",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tkeep",
+                "type_name": "std_logic_vector(3 downto 0)",
+                "width": 4
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "m_axis_tready",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tvalid",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tdata",
+                "type_name": "std_logic_vector(7 downto 0)",
+                "width": 8
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tlast",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tkeep",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "s_axis_tready",
+                "type_name": "boolean",
+                "width": 1
+            }
+        ]
+    },
+    "version": "unstable"
+}

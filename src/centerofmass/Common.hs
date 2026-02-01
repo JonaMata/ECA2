@@ -12,7 +12,7 @@ imagePath :: FilePath
 imagePath = "../images/"
 
 lightHouseImgPath :: FilePath
-lightHouseImgPath = "../images/LightHouse.pgm"
+lightHouseImgPath = "src/centerofmass/images/LightHouse.pgm"
 
 rockyImgPath :: FilePath
 rockyImgPath = "../images/Rocky.pgm"

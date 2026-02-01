@@ -7,7 +7,7 @@ import Data.Maybe
 import Axi
 import qualified Data.List as L
 
-import CCenterOfMassXX -- Change this to your team nr.
+import CCenterOfMass12 -- Change this to your team nr.
 
 runLightHouse :: IO ()
 runLightHouse = do
@@ -44,6 +44,7 @@ runImage mode pw ww path = do
                   SER -> let imAxis = makeAxisInpSer     8 imCropped in simulateN @System (L.length imAxis) (mAxisComSer) imAxis
                   PAR -> let imAxis = makeAxisInpPar d16 8 imCropped in simulateN @System (L.length imAxis) (mAxisComPar) imAxis
       coords = L.map tData (catMaybes $ L.map fst funOut)
+  putStrLn $ L.concat ["Simulation done, output length: ", show (funOut)]
   putStrLn $ L.concat ["Simulation done, output length: ", show (L.length coords)]
   let h' = h + (div h ww')*2
       w' = w + (div w ww')*2

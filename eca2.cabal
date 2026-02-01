@@ -72,6 +72,7 @@ common common-options
     -fno-unbox-strict-fields
   build-depends:
     base,
+    split,
     Cabal,
 
     -- clash-prelude will set suitable version bounds for the plugins
@@ -87,9 +88,15 @@ library
     - src/stackprocessor
     - src/filters
     - src/centerofmass
+    - src/centerofmass/ghci
   exposed-modules:
     Filters12
     FilterCoefAndInput
+    CCenterOfMass12
+    Axi
+    ComAxisTb
+    Common
+    ImageData
     -- Exc6_Processor
     -- Exc7_Fetch
     -- Exc8_System

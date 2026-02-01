@@ -1,4 +1,5 @@
 {-# LANGUAGE FlexibleInstances    #-}
+{-# LANGUAGE TypeApplications     #-}
 {-# LANGUAGE UndecidableInstances #-}
 module Axi where
 
@@ -49,8 +50,8 @@ instance forall a n. (BitPack a, BitPack n,
     pack tkeep ++# pack tlast ++# pack tdata
 
   unpack bv =
-    let (axis, tdata) = BV.split# @(BitSize a) bv
-        (tkeep, tlast) = BV.split# @1 axis
+    let (tkeep :: BitVector (BitSize n), rest) = split bv
+        (tlast :: BitVector 1, tdata :: BitVector (BitSize a)) = split rest
     in (Axi4Stream {
       tData = unpack tdata,
       tLast = unpack tlast,

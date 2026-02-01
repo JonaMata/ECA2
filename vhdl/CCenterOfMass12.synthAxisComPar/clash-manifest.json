@@ -1,0 +1,142 @@
+{
+    "components": [
+        "synthAxisComPar"
+    ],
+    "dependencies": {
+        "transitive": []
+    },
+    "domains": {
+        "IntelSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "System": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Asynchronous",
+            "reset_polarity": "ActiveHigh"
+        },
+        "XilinxSystem": {
+            "active_edge": "Rising",
+            "init_behavior": "Defined",
+            "period": 10000,
+            "reset_kind": "Synchronous",
+            "reset_polarity": "ActiveHigh"
+        }
+    },
+    "files": [
+        {
+            "name": "synthAxisComPar.sdc",
+            "sha256": "388c8f2f10854d2124896b63ccd608c470e3f7b9cb2074c85f7471071f3d3384"
+        },
+        {
+            "name": "synthAxisComPar_types.vhdl",
+            "sha256": "c5f06c311be1eae5b35ce06e94779b8120349bd7a7372d2e4f6e52b3a75adc80"
+        },
+        {
+            "name": "synthAxisComPar.vhdl",
+            "sha256": "b9eed8ec4236362f1b2a0566464f788ae4f647c81e5761e6061de93f198d820b"
+        }
+    ],
+    "flags": [
+        20,
+        20
+    ],
+    "hash": "011616fe56df19416d317c08060db34663e85fc5da2ea6cbd1116420e65a8a1c",
+    "top_component": {
+        "name": "synthAxisComPar",
+        "ports_flat": [
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": true,
+                "name": "aclk",
+                "type_name": "aclk.synthAxisComPar_types.clk_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "domain": "System",
+                "is_clock": false,
+                "name": "nrst",
+                "type_name": "nrst.synthAxisComPar_types.rst_System",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tvalid",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tdata",
+                "type_name": "std_logic_vector(127 downto 0)",
+                "width": 128
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tlast",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "s_axis_tkeep",
+                "type_name": "std_logic_vector(15 downto 0)",
+                "width": 16
+            },
+            {
+                "direction": "in",
+                "is_clock": false,
+                "name": "m_axis_tready",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tvalid",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tdata",
+                "type_name": "std_logic_vector(7 downto 0)",
+                "width": 8
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tlast",
+                "type_name": "boolean",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "m_axis_tkeep",
+                "type_name": "std_logic_vector(0 downto 0)",
+                "width": 1
+            },
+            {
+                "direction": "out",
+                "is_clock": false,
+                "name": "s_axis_tready",
+                "type_name": "boolean",
+                "width": 1
+            }
+        ]
+    },
+    "version": "unstable"
+}
