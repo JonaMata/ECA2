@@ -1,5 +1,7 @@
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE UndecidableInstances #-}
+{-# LANGUAGE TypeApplications     #-}
+{-# LANGUAGE DataKinds            #-}
 module Axi where
 
 import           Clash.Prelude as CP

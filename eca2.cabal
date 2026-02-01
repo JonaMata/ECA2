@@ -7,6 +7,7 @@ maintainer:          John Smith <john@example.com>
 
 common common-options
   default-extensions:
+    MagicHash
     BangPatterns
     BinaryLiterals
     ConstraintKinds
@@ -72,6 +73,7 @@ common common-options
     -fno-unbox-strict-fields
   build-depends:
     base,
+    split,
     Cabal,
 
     -- clash-prelude will set suitable version bounds for the plugins
@@ -87,12 +89,21 @@ library
     - src/stackprocessor
     - src/filters
     - src/centerofmass
+    - src/centerofmass/ghci
   exposed-modules:
-    Filters12
-    FilterCoefAndInput
+    -- Filters12
+    -- FilterCoefAndInput
     -- Exc6_Processor
     -- Exc7_Fetch
     -- Exc8_System
+    CCenterOfMass12
+    Axi
+    AxisImageGenerator
+    AxisImageReader
+    ComAxisTb
+    Common
+    ImageData
+    RunImage
   default-language: Haskell2010
 
 -- Builds the executable 'clash', with tutorial project in scope

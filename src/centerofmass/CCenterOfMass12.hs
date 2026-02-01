@@ -1,29 +1,59 @@
 {-# LANGUAGE NoMonomorphismRestriction #-}
-module CCenterOfMassXX where
+module CCenterOfMass12 where
 import Clash.Prelude
 import Axi
 import Common
 import ComAxisTb
 import Data.Maybe
 import qualified Data.List as L
--- import ImageData
+import ImageData
 -- import Debug.Trace
 
--- Student information:
---  Student 1
---    lastname:
---    student number:
---  Student 2
---    lastname:
---    student number:
-
+{-
+Student information:
+  Student 1
+    lastname: Matarazzi
+    student number: s2133202
+  Student 2
+    lastname: Liebe
+    student number: s2506890
+-}
 
 -----------------------------------------------------------------------------------------
 -- Assignment 4, Changing a pixel in a picture
 -----------------------------------------------------------------------------------------
 
-changePixelInImage = undefined
+changePixelInImage 
+  :: (KnownNat rows, KnownNat cols)
+  => Vec rows (Vec cols Pixel) 
+  -> Index rows 
+  -> Index cols
+  -> Pixel 
+  -> Vec rows (Vec cols Pixel)
+changePixelInImage image y x p = replace y newRow image where
+  newRow = replace x p (image !! y)
+  
+thresholdIm :: (KnownNat rows, KnownNat cols) => Pixel -> Vec rows (Vec cols Pixel) -> Vec rows (Vec cols Pixel) -- flipped input types to follow the command syntax
+thresholdIm thr img = map (map (\pixel -> if pixel >= thr then 1 else 0)) img
 
+comRows :: (KnownNat rows, KnownNat cols, 1 <= rows) => Vec rows (Vec cols Pixel)  -> Index rows
+comRows img 
+  | mx == 0    = maxBound `shiftR` 1 -- same as div 2
+  | otherwise  = fromIntegral(rmx `div` mx)
+  where
+    rowSums = map sum img
+    mx = sum rowSums
+    rmx = sum $ zipWith (*) (iterateI (+1) 0) rowSums -- iterateI is the clash way of doing [0..] apparently
+
+com :: (KnownNat rows, KnownNat cols, 1 <= rows, 1 <= cols) => Vec rows (Vec cols Pixel)  -> (Index rows, Index cols)
+com img = (row, col) where
+  row = comRows img
+  col = comRows (transpose img)
+
+imageWithCom :: (KnownNat rows, KnownNat cols, 1 <= rows, 1 <= cols) => Vec rows (Vec cols Pixel) -> Pixel -> Vec rows (Vec cols Pixel)
+imageWithCom img color = changePixelInImage img row col color where
+  (row, col) = com img
+ 
 -----------------------------------------------------------------------------------------
 -- Assignment 5, Center of mass of parts of the image, with and without borders
 -----------------------------------------------------------------------------------------
