@@ -90,13 +90,16 @@ library
     - src/centerofmass
     - src/centerofmass/ghci
   exposed-modules:
-    Filters12
-    FilterCoefAndInput
+    -- Filters12
+    -- FilterCoefAndInput
     CCenterOfMass12
     Axi
+    AxisImageGenerator
     ComAxisTb
     Common
     ImageData
+    RunImage
+    ReadPGM
     -- Exc6_Processor
     -- Exc7_Fetch
     -- Exc8_System

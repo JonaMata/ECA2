@@ -1,5 +1,6 @@
 module Image where
 
+import Prelude
 import Data.List.Split -- cabal install split
 import Data.List
 

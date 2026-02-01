@@ -9,14 +9,15 @@ import qualified Data.List as L
 import ImageData()
 -- import Debug.Trace
 
--- Student information:
---  Student 1
---    lastname:
---    student number:
---  Student 2
---    lastname:
---    student number:
-
+{-
+Student information:
+  Student 1
+    lastname: Matarazzi
+    student number: s2133202
+  Student 2
+    lastname: Liebe
+    student number: s2506890
+-}
 
 -----------------------------------------------------------------------------------------
 -- Assignment 4, Changing a pixel in a picture
@@ -183,16 +184,54 @@ synthAxisComSer clk rst inp = exposeClockResetEnable mAxisComSer clk rst enableG
 -- Assignment 8, Axi streaming parallel
 -----------------------------------------------------------------------------------------
 
-axisComPar state (s_axi, m_axis_tready) = (state', (m_axi, s_axis_tready))
-  where
-    state' = undefined
-    m_axi = undefined
-    s_axis_tready = undefined
+type StateComPar = ((Vec 64 (Unsigned 8), Unsigned 8), Maybe (Unsigned 4, Unsigned 4))
 
+axisComPar :: StateComPar 
+           -> (Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool) 
+           -> (StateComPar, (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool))
+axisComPar state (s_axi, m_axis_tready) = (nextState, (m_axis, s_axis_tready))
+  where
+    ((imgBuf, count), sendBuf) = state
+    
+    s_axi_tdata = maybe (repeat 0) tData s_axi
+    s_axi_tlast = maybe False tLast s_axi
+    s_axi_tvalid = isJust s_axi
+    s_axis_tready = isNothing sendBuf || m_axis_tready
+    handshake = s_axi_tvalid && s_axis_tready
+
+    (nextBuf, nextCount) = if handshake 
+      then (replaceSlice count s_axi_tdata imgBuf, if s_axi_tlast then 0 else count + 16)
+      else (imgBuf, count)
+
+    nextSendBuf = if handshake && s_axi_tlast
+      then Just calculateCom
+      else if m_axis_tready then Nothing else sendBuf
+      where
+        grid = unconcat d8 (map fromIntegral nextBuf)
+
+        thrImg = thresholdIm (fromIntegral threshold) grid
+        calculateCom = if sum (map sum thrImg) == 0 
+                       then (3, 3) 
+                       else (\(y, x) -> (fromIntegral y, fromIntegral x)) (com thrImg)
+
+    nextState = ((nextBuf, nextCount), nextSendBuf)
+
+    m_axis = case sendBuf of
+      Just coords -> Just (Axi4Stream coords True 0b1)
+      Nothing     -> Nothing
+
+replaceSlice :: (KnownNat n, KnownNat m) => Unsigned 8 -> Vec m a -> Vec n a -> Vec n a
+replaceSlice offset src dest = 
+  let indices = iterateI (+1) (fromIntegral offset)
+  in  foldl (\acc (i, val) -> replace i val acc) dest (zip indices src)
+
+{-# NOINLINE mAxisComPar #-}
 mAxisComPar :: (HiddenClockResetEnable dom)
   => Signal dom (Maybe (Axi4Stream (Vec 16 (Unsigned 8)) (BitVector 16)), Bool)
   -> Signal dom (Maybe (Axi4Stream (Unsigned 4, Unsigned 4) (BitVector 1)), Bool)
-mAxisComPar mInp = undefined
+mAxisComPar mInp = mealy axisComPar initState mInp
+  where
+    initState = ((repeat 0, 0), Nothing)
 
 -----------------------------------------------------------------------------------------
 -- You can use the simulation function spsAxisComParTb to print out all the iner stages of the states
